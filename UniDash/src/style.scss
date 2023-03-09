@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@900&display=swap');
+
+// width
+$light-len: 0.3rem;
+$min-len: 0.5rem;
+$default-len: 1rem;
+$medium-len: 1.5rem;
+$max-len: 2rem;
+
+// color
+$black-color: #1E2527;
+$black-gray-color: #252C2F;
+$gray-color: #2F393D;
+$white-color: #D9D9D9;
+$gradient-color: linear-gradient(to bottom right, #00B2FF, #8000FF);
+
+body {
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: $black-color;
+  color: $white-color;
+}
+
+* {
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+}
+
+p, a, label, span, h1, h2, h3, h4, h5, h6 {
+  margin: $min-len;
+  padding: 0;
+}
