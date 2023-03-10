@@ -23,11 +23,11 @@ export default {
     background: $gradient-color;
     padding-bottom: $light-len;
     width: 100%;
-    border-radius: $medium-len
+    border-radius: $default-len;
   }
   .tab-content {
     width: 100%;
     background-color: $black-color;
-    border-radius: $medium-len;
+    border-radius: $default-len;
   }
 </style>

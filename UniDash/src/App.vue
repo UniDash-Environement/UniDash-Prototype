@@ -1,10 +1,10 @@
 <script setup>
-  import Background from "./components/LeftMenu/Background.vue";
+  import Menu from "./components/LeftMenu/Menu.vue";
 
 </script>
 
 <template>
-  <Background />
+  <Menu />
 </template>
 
 <style scoped lang="scss">
