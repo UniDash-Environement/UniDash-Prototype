@@ -1,10 +1,11 @@
-
 <script>
   import Tab from "./Tabs/Tab.vue";
+  import Slider from "./Tabs/Slider.vue";
   export default {
     name: "Menu",
     components: {
-      Tab
+      Tab,
+      Slider
     }
   }
 </script>
@@ -23,6 +24,8 @@
         <li><Tab /></li>
         <li><Tab /></li>
       </ul>
+
+      <slider />
     </div>
   </nav>
 </template>
@@ -46,10 +49,11 @@
     height: 100vh;
     width: 100%;
     border-radius: 0 $default-len $default-len 0;
+    padding: $min-len;
 
     .content {
       width: 100%;
-      padding: 0 $min-len;
+      padding: $min-len 0;
       height: 100%;
       display: flex;
       justify-content: start;
@@ -85,8 +89,8 @@ input[type="checkbox"] {
     align-items:center;
     justify-content: center;
     position: fixed;
-    top:0.04rem;
-    left:0.04rem;
+    top: $min-len;
+    left: $min-len;
     z-index:1;
     background: $white-color;
     border-radius: 0.7rem;

@@ -1,24 +1,28 @@
 <template>
-  <div class="tab">
-    <div class="tab-content">
-      <span>Tab</span>
-      <div class="tab-icons">
-        <BookmarkIcon />
-        <XMarkIcon />
-      </div>
+  <div class="slider">
+    <div class="slider-content">
+      <ChevronLeftIcon />
+      <StarIcon />
+      <span>Server 1</span>
+      <Cog6ToothIcon />
+      <ChevronRightIcon />
     </div>
   </div>
 </template>
 
 <script>
-import { XMarkIcon } from "@heroicons/vue/20/solid";
-import { BookmarkIcon } from "@heroicons/vue/20/solid";
+import { ChevronLeftIcon } from "@heroicons/vue/20/solid";
+import { ChevronRightIcon } from "@heroicons/vue/20/solid";
+import { StarIcon } from "@heroicons/vue/20/solid";
+import { Cog6ToothIcon } from "@heroicons/vue/20/solid";
 
 export default {
   name: "Tab",
   components: {
-    XMarkIcon,
-    BookmarkIcon
+    ChevronLeftIcon,
+    ChevronRightIcon,
+    StarIcon,
+    Cog6ToothIcon
   }
 }
 </script>
@@ -26,7 +30,7 @@ export default {
 <style scoped lang="scss">
   @import "../../../style";
 
-  .tab {
+  .slider {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -36,7 +40,7 @@ export default {
     width: 100%;
     border-radius: $default-len;
 
-    .tab-content {
+    .slider-content {
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -44,17 +48,10 @@ export default {
       background-color: $black-color;
       border-radius: $default-len;
 
-      .tab-icons {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding-right: $min-len;
-
-        svg {
-          height: $medium-len;
-          margin: 0;
-          padding: 0;
-        }
+      svg {
+        height: $medium-len;
+        margin: 0;
+        padding: 0;
       }
     }
   }
