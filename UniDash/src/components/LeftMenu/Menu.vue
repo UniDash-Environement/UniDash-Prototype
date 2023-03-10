@@ -16,7 +16,7 @@
 
   <nav class="left-menu-background-border">
     <div class="left-menu-background">
-      <h1>UniDash</h1>
+      <h1 class="title">UniDash</h1>
 
       <ul class="content">
         <li><Tab /></li>
@@ -141,7 +141,7 @@ nav {
   position: fixed;
   left: 0;
   top: 0;
-  transform: translateX(-100%);
+  transform: translateX(-77.5%);
   will-change: transform;
 
   ul {
@@ -157,6 +157,16 @@ nav {
 
 .menu-hamburger:checked+label~ nav {
   transform: unset;
+
+  .tab, .slider, .title {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+.tab, .slider, .title {
+  visibility: hidden;
+  opacity: 0;
 }
 
 // Accessibilité
@@ -191,9 +201,24 @@ nav {
   }
 }
 
-.menu-hamburger:focus-visible~label,nav a:focus-visible,
-nav a:focus  {
+.menu-hamburger:focus-visible~label,
+nav .tab:focus-visible,
+nav .title:focus-visible,
+nav .slider:focus-visible,
+nav .tab:focus,
+nav .title:focus,
+nav .slider:focus {
   transition: outline-offset .25s ease;
+}
+
+nav {
+  transition: transform 0.5s;
+}
+
+.tab,
+.slider,
+.title {
+  transition: visibility 500ms,opacity 500ms 300ms;
 }
 
 </style>
