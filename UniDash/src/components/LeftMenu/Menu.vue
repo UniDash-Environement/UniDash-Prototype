@@ -12,7 +12,7 @@
 
 <template>
   <input ref="menu-hamburger-button" class="menu-hamburger" type="checkbox" id="show-menu-button" tabindex="1">
-  <label for="show-menu-button" aria-label="Menu"><span></span></label>
+  <label class="icon-burger" for="show-menu-button" aria-label="Menu"><span></span></label>
 
   <nav class="left-menu-background-border">
     <div class="left-menu-background">
@@ -77,7 +77,6 @@ input[type="checkbox"] {
 
   position: absolute;
   left: -100vw;
-  z-index: 9999;
 
 }
 
@@ -92,7 +91,7 @@ input[type="checkbox"] {
     position: fixed;
     top: $min-len;
     left: $min-len;
-    z-index:1;
+    z-index: 9999;
     background: $white-color;
     border-radius: 0.7rem;
 
@@ -144,6 +143,7 @@ nav {
   top: 0;
   transform: translateX(-15.6rem);
   will-change: transform;
+  z-index: 9998;
 
   ul {
     list-style-type: none;
@@ -234,6 +234,7 @@ nav {
 
 #menu-right-join {
   position: absolute;
+  z-index: 9999;
 
   width: calc(100vw - 20rem);
   height: 100vh;
