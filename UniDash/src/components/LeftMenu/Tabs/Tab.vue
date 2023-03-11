@@ -44,6 +44,11 @@ export default {
       background-color: $black-color;
       border-radius: $default-len;
 
+      span {
+        font-size: $medium-min-len;
+        margin: $light-len
+      }
+
       .tab-icons {
         display: flex;
         align-items: center;
@@ -51,7 +56,7 @@ export default {
         padding-right: $min-len;
 
         svg {
-          height: $medium-len;
+          height: $default-len;
           margin: 0;
           padding: 0;
         }

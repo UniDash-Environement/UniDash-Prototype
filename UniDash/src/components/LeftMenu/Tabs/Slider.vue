@@ -2,9 +2,11 @@
   <div class="slider">
     <div class="slider-content">
       <ChevronLeftIcon />
-      <StarIcon />
-      <span>Server 1</span>
-      <Cog6ToothIcon />
+      <div class="slider-element">
+        <StarIcon />
+        <span>Server 1</span>
+        <Cog6ToothIcon />
+      </div>
       <ChevronRightIcon />
     </div>
   </div>
@@ -47,6 +49,22 @@ export default {
       width: 100%;
       background-color: $black-color;
       border-radius: $default-len;
+
+      .slider-element {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        span {
+          font-size: $medium-min-len;
+          margin: $light-len
+        }
+        svg {
+          height: $default-len;
+          margin: 0;
+          padding: 0;
+        }
+      }
 
       svg {
         height: $medium-len;
