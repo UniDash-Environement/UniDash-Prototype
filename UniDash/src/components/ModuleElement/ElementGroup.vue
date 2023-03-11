@@ -12,17 +12,41 @@
   import Element from "./Element.vue";
   export default {
     name: "ElementGroup",
+
     components: {
       Element
     },
+
+    methods: {
+      getUrls() {
+        const urlList = document.querySelectorAll('.tab[data-url]');
+        const urls = [];
+        urlList.forEach((tab) => {
+          urls.push(tab.dataset.url);
+        });
+        return urls;
+      },
+
+      updateUrls() {
+        let urls2 = this.getUrls();
+        if (this.urls !== urls2) {
+          this.urls = urls2;
+          this.$forceUpdate();
+        }
+      }
+    },
+
     setup() {
-      const urlList = document.querySelectorAll('.tab[data-url]');
-      const urls = [];
-      urlList.forEach((tab) => {
-        urls.push(tab.dataset.url);
-      });
-      console.log(urls);
-      return { urls };
+      let urls = [];
+      return {
+        urls
+      }
+    },
+
+    mounted() {
+      setInterval(() => {
+        this.updateUrls();
+      }, 1000);
     }
   }
 </script>

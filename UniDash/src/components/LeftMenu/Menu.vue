@@ -19,10 +19,10 @@
       <h1 class="title">UniDash</h1>
 
       <ul class="content">
-        <li><Tab /></li>
-        <li><Tab /></li>
-        <li><Tab /></li>
-        <li><Tab /></li>
+        <li><Tab url="https://www.example.com" /></li>
+        <li><Tab url="https://proxy.heurepika.com" /></li>
+        <li><Tab url="https://proxmox.heurepika.com" /></li>
+        <li><Tab url="https://www.example.com" /></li>
       </ul>
 
       <slider />
