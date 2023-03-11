@@ -11,7 +11,7 @@
 </script>
 
 <template>
-  <input class="menu-hamburger" type="checkbox" id="show-menu-button" tabindex="1">
+  <input ref="menu-hamburger-button" class="menu-hamburger" type="checkbox" id="show-menu-button" tabindex="1">
   <label for="show-menu-button" aria-label="Menu"><span></span></label>
 
   <nav class="left-menu-background-border">
@@ -28,6 +28,7 @@
       <slider />
     </div>
   </nav>
+  <div id="menu-right-join" @click="this.$refs['menu-hamburger-button'].checked = false"></div>
 </template>
 
 <style scoped lang="scss">
@@ -141,7 +142,7 @@ nav {
   position: fixed;
   left: 0;
   top: 0;
-  transform: translateX(-77.5%);
+  transform: translateX(-15.6rem);
   will-change: transform;
 
   ul {
@@ -155,18 +156,28 @@ nav {
   }
 }
 
-.menu-hamburger:checked+label~ nav {
-  transform: unset;
+.menu-hamburger:checked+label~ {
+  nav {
+    transform: unset;
 
-  .tab, .slider, .title {
-    visibility: visible;
-    opacity: 1;
+    .tab, .slider, .title {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+
+  #menu-right-join {
+    display: block;
   }
 }
 
 .tab, .slider, .title {
   visibility: hidden;
   opacity: 0;
+}
+
+#menu-right-join {
+  display: none;
 }
 
 // Accessibilité
@@ -221,4 +232,13 @@ nav {
   transition: visibility 500ms,opacity 500ms 300ms;
 }
 
+#menu-right-join {
+  position: absolute;
+
+  width: calc(100vw - 20rem);
+  height: 100vh;
+
+  top: 0;
+  left: 20rem;
+}
 </style>
