@@ -28,7 +28,7 @@
 @import "../../style";
 
   main {
-    width: calc(100vw - $min-len * 2 - 4.3vw);
+    width: calc(100vw - $min-len * 2 - 4.1vw);
     height: calc(100vh - $min-len * 2);
 
     padding: $min-len;
