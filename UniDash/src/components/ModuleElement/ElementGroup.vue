@@ -1,14 +1,8 @@
 <template>
   <main>
     <ul>
-      <li>
-        <Element></Element>
-      </li>
-      <li>
-        <Element></Element>
-      </li>
-      <li>
-        <Element></Element>
+      <li v-for="url in urls" :key="url">
+        <Element :url="url" />
       </li>
     </ul>
   </main>
@@ -20,6 +14,15 @@
     name: "ElementGroup",
     components: {
       Element
+    },
+    setup() {
+      const urlList = document.querySelectorAll('.tab[data-url]');
+      const urls = [];
+      urlList.forEach((tab) => {
+        urls.push(tab.dataset.url);
+      });
+      console.log(urls);
+      return { urls };
     }
   }
 </script>

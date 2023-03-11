@@ -1,5 +1,5 @@
 <template>
-  <div class="tab">
+  <div class="tab" data-url="https://www.example.com">
     <div class="tab-content">
       <span>Tab</span>
       <div class="tab-icons">
