@@ -42,13 +42,14 @@ export default {
     height: 100%;
 
     border-radius: $default-len;
-    background: $gradient-color;
+    background: $black-gray-color;
 
     position: relative;
 
     .my-iframe {
-      width: 100%;
-      height: 100%;
+      width: calc(100% - 0.2rem * 2);
+      height: calc(100% - 0.2rem * 2);
+      margin: 0.2rem;
 
       border: none;
       border-radius: $default-len;
@@ -56,12 +57,10 @@ export default {
 
       filter: none;
       transition: filter 100ms ease-in-out;
+    }
 
-      &:hover {
-        width: calc(100% - 0.2rem * 2);
-        height: calc(100% - 0.2rem * 2);
-        margin: 0.2rem;
-      }
+    &:hover {
+      background: $gradient-color
     }
 
     .my-iframe-dark {
