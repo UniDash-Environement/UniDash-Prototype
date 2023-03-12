@@ -52,7 +52,7 @@
 </script>
 
 <style scoped lang="scss">
-@import "../../style";
+@import "src/style";
 
   main {
     width: calc(100vw - $min-len * 2 - 4.1vw);

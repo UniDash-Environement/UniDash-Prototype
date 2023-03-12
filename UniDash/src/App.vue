@@ -9,5 +9,5 @@
 </template>
 
 <style scoped lang="scss">
-
+@import "src/style";
 </style>

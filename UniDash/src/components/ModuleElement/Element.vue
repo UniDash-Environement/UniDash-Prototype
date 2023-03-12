@@ -35,7 +35,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-   @import "../../style";
+@import "src/style";
 
   .element {
     width: 100%;

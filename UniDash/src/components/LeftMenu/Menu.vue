@@ -54,7 +54,7 @@
 </template>
 
 <style scoped lang="scss">
-@import "../../style";
+@import "src/style";
 
 .left-menu-background-border {
   background: $gradient-color;
