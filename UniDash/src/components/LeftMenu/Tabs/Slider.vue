@@ -3,9 +3,9 @@
     <div class="slider-content">
       <ChevronLeftIcon />
       <div class="slider-element">
-        <StarIcon @click="showFavorites" />
+        <StarIcon ref="favoris-icon" @click="showEelement('favoris-icon', 'show-favoris')" />
         <span>Server 1</span>
-        <Cog6ToothIcon @click="showSettings" />
+        <Cog6ToothIcon ref="settings-icon" @click="showEelement('settings-icon', 'show-settings')" />
       </div>
       <ChevronRightIcon />
     </div>
@@ -27,22 +27,19 @@ export default {
     Cog6ToothIcon
   },
   methods: {
-    showSettings() {
-      let settings = document.getElementById("show-settings");
-      if (settings.checked) {
+    showEelement(element, checkboxId, color) {
+      let svgList = document.querySelectorAll(".slider-element>svg");
+      svgList.forEach(svg => {
+        svg.classList.remove("checked");
+      });
+
+      let checkbox = document.getElementById(checkboxId);
+      if (checkbox.checked) {
         document.getElementById("show-tab").click();
       }
       else {
-        settings.click()
-      }
-    },
-    showFavorites() {
-      let favoris = document.getElementById("show-favoris");
-      if (favoris.checked) {
-        document.getElementById("show-tab").click();
-      }
-      else {
-        favoris.click()
+        checkbox.click();
+        this.$refs[element].classList.add("checked");
       }
     }
   }
@@ -90,6 +87,13 @@ export default {
         height: $medium-len;
         margin: 0;
         padding: 0;
+
+        color: $white-color;
+        transition: color 100ms ease-out;
+
+        &.checked {
+          color: hsl(248, 78%, 58%);
+        }
       }
     }
   }

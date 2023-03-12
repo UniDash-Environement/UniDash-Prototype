@@ -1,6 +1,7 @@
 <script>
   import Tab from "./Tabs/Tab.vue";
   import Slider from "./Tabs/Slider.vue";
+
   export default {
     name: "Menu",
     components: {
@@ -9,10 +10,10 @@
     },
     methods: {
       ifShowUpdater(event) {
-        document.getElementById("show-tab").checked = false;
-        document.getElementById("show-favoris").checked = false;
-        document.getElementById("show-settings").checked = false;
-
+        let checkboxList = document.querySelectorAll(".show-checkbox-list>input[type='checkbox']");
+        checkboxList.forEach(checkbox => {
+          checkbox.checked = false;
+        });
         event.target.checked = true;
       }
     }
@@ -27,23 +28,26 @@
     <div class="left-menu-background">
       <h1 class="title">UniDash</h1>
 
-      <input id="show-tab" type="checkbox" checked @click="ifShowUpdater">
-      <input id="show-favoris" type="checkbox" @click="ifShowUpdater">
-      <input id="show-settings" type="checkbox" @click="ifShowUpdater">
-      <ul class="tab-content">
-        <li><Tab url="https://www.example.com" /></li>
-        <li><Tab url="https://www.example.com" /></li>
-        <li><Tab url="https://www.example.com" /></li>
-        <li><Tab url="https://www.example.com" /></li>
-      </ul>
+      <div class="show-checkbox-list">
+        <input id="show-tab" type="checkbox" checked @click="ifShowUpdater">
+        <input id="show-favoris" type="checkbox" @click="ifShowUpdater">
+        <input id="show-settings" type="checkbox" @click="ifShowUpdater">
 
-      <ul class="favoris-content">
-      </ul>
+        <ul class="tab-content">
+          <li><Tab url="https://www.example.com" /></li>
+          <li><Tab url="https://www.example.com" /></li>
+          <li><Tab url="https://www.example.com" /></li>
+          <li><Tab url="https://www.example.com" /></li>
+        </ul>
 
-      <ul class="settings-content">
-      </ul>
+        <ul class="favoris-content">
+        </ul>
 
-      <slider />
+        <ul class="settings-content">
+        </ul>
+      </div>
+
+      <Slider></Slider>
     </div>
   </nav>
   <div id="menu-right-join" @click="this.$refs['menu-hamburger-button'].checked = false"></div>
@@ -70,29 +74,40 @@
     border-radius: 0 $default-len $default-len 0;
     padding: $min-len;
 
-    #show-tab:checked ~ .tab-content {
-      display: flex;
-    }
-
-    #show-favoris:checked ~ .favoris-content {
-      display: flex;
-    }
-
-    #show-settings:checked ~ .settings-content {
-      display: flex;
-    }
-
-    .tab-content, .favoris-content, .settings-content {
+    .show-checkbox-list {
       width: 100%;
-      padding: $min-len 0;
       height: 100%;
-      display: none;
-      justify-content: start;
-      align-items: center;
-      flex-direction: column;
 
-      li {
+      #show-tab:checked ~ .tab-content, #show-favoris:checked ~ .favoris-content, #show-settings:checked ~ .settings-content {
+        opacity: 1;
+        visibility: visible;
+        position: static;
+      }
+
+      .show-checkbox-list {
+        display: none;
+      }
+
+      .tab-content, .favoris-content, .settings-content {
         width: 100%;
+        height: 100%;
+        padding: $min-len 0;
+
+        position: absolute;
+        left: -100vw;
+
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        flex-direction: column;
+
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+
+        li {
+          width: 100%;
+        }
       }
     }
   }
