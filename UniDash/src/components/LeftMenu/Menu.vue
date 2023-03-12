@@ -6,6 +6,15 @@
     components: {
       Tab,
       Slider
+    },
+    methods: {
+      ifShowUpdater(event) {
+        document.getElementById("show-tab").checked = false;
+        document.getElementById("show-favoris").checked = false;
+        document.getElementById("show-settings").checked = false;
+
+        event.target.checked = true;
+      }
     }
   }
 </script>
@@ -18,11 +27,20 @@
     <div class="left-menu-background">
       <h1 class="title">UniDash</h1>
 
-      <ul class="content">
+      <input id="show-tab" type="checkbox" checked @click="ifShowUpdater">
+      <input id="show-favoris" type="checkbox" @click="ifShowUpdater">
+      <input id="show-settings" type="checkbox" @click="ifShowUpdater">
+      <ul class="tab-content">
         <li><Tab url="https://www.example.com" /></li>
-        <li><Tab url="https://proxy.heurepika.com" /></li>
-        <li><Tab url="https://proxmox.heurepika.com" /></li>
         <li><Tab url="https://www.example.com" /></li>
+        <li><Tab url="https://www.example.com" /></li>
+        <li><Tab url="https://www.example.com" /></li>
+      </ul>
+
+      <ul class="favoris-content">
+      </ul>
+
+      <ul class="settings-content">
       </ul>
 
       <slider />
@@ -52,11 +70,23 @@
     border-radius: 0 $default-len $default-len 0;
     padding: $min-len;
 
-    .content {
+    #show-tab:checked ~ .tab-content {
+      display: flex;
+    }
+
+    #show-favoris:checked ~ .favoris-content {
+      display: flex;
+    }
+
+    #show-settings:checked ~ .settings-content {
+      display: flex;
+    }
+
+    .tab-content, .favoris-content, .settings-content {
       width: 100%;
       padding: $min-len 0;
       height: 100%;
-      display: flex;
+      display: none;
       justify-content: start;
       align-items: center;
       flex-direction: column;

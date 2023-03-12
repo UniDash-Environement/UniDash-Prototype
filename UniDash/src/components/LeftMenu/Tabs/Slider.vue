@@ -3,9 +3,9 @@
     <div class="slider-content">
       <ChevronLeftIcon />
       <div class="slider-element">
-        <StarIcon />
+        <StarIcon @click="showFavorites" />
         <span>Server 1</span>
-        <Cog6ToothIcon />
+        <Cog6ToothIcon @click="showSettings" />
       </div>
       <ChevronRightIcon />
     </div>
@@ -25,6 +25,26 @@ export default {
     ChevronRightIcon,
     StarIcon,
     Cog6ToothIcon
+  },
+  methods: {
+    showSettings() {
+      let settings = document.getElementById("show-settings");
+      if (settings.checked) {
+        document.getElementById("show-tab").click();
+      }
+      else {
+        settings.click()
+      }
+    },
+    showFavorites() {
+      let favoris = document.getElementById("show-favoris");
+      if (favoris.checked) {
+        document.getElementById("show-tab").click();
+      }
+      else {
+        favoris.click()
+      }
+    }
   }
 }
 </script>
