@@ -1,10 +1,12 @@
 <script>
   import Tab from "./Tabs/Tab.vue";
   import Slider from "./Tabs/Slider.vue";
+  import FavorisList from "./Favoris/FavorisList.vue";
 
   export default {
     name: "Menu",
     components: {
+      FavorisList,
       Tab,
       Slider
     },
@@ -40,8 +42,9 @@
           <li><Tab url="https://www.example.com" /></li>
         </ul>
 
-        <ul class="favoris-content">
-        </ul>
+        <div class="favoris-content">
+          <FavorisList />
+        </div>
 
         <ul class="settings-content">
         </ul>
