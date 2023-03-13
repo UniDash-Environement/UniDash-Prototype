@@ -33,9 +33,9 @@
       <h1 class="title hidden">UniDash</h1>
 
       <div class="show-checkbox-list">
-        <input id="show-tab" type="checkbox" checked @click="ifShowUpdater">
-        <input id="show-favoris" type="checkbox" @click="ifShowUpdater">
-        <input id="show-settings" type="checkbox" @click="ifShowUpdater">
+        <input id="show-tab" class="hidden" type="checkbox" checked @click="ifShowUpdater">
+        <input id="show-favoris" class="hidden" type="checkbox" @click="ifShowUpdater">
+        <input id="show-settings" class="hidden" type="checkbox" @click="ifShowUpdater">
 
         <div class="tab-content">
           <TabsList class="hidden" />
@@ -78,13 +78,19 @@
     .show-checkbox-list {
       width: 100%;
       height: 100%;
+      display: flex;
 
       #show-tab:checked ~ .tab-content,
       #show-favoris:checked ~ .favoris-content,
       #show-settings:checked ~ .settings-content {
+        height: 100%;
+        width: 100%;
+
         opacity: 1;
         visibility: visible;
         position: static;
+
+        transition: height $light-time ease-in-out, width $light-time ease-in-out;
       }
 
       .show-checkbox-list {
@@ -92,22 +98,23 @@
       }
 
       .tab-content, .favoris-content, .settings-content {
-        width: 100%;
-        height: 100%;
-
-        position: absolute;
-        left: -100vw;
+        width: 0;
+        height: 0;
 
         opacity: 0;
         visibility: hidden;
-        transition: opacity $light-time ease-in-out, visibility $light-time ease-in-out;
+        overflow: hidden;
+
+        transition: height $light-time ease-in-out, width $light-time ease-in-out;
       }
     }
   }
 
   .hidden {
+    margin-left: -100%;
     visibility: hidden;
     opacity: 0;
+
     transition: visibility $default-time, opacity $default-time $light-time;
   }
 }
@@ -180,6 +187,7 @@
         .hidden {
           visibility: visible;
           opacity: 1;
+          margin-left: 0;
         }
       }
     }
@@ -191,7 +199,7 @@
 }
 
 nav {
-  margin-left: -15.6rem;
+  margin-left: -14.8rem;
   transition: margin-left $default-time;
 
   ul {
