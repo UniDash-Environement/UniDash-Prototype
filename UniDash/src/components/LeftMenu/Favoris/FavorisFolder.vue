@@ -71,6 +71,7 @@ export default {
 
     display: flex;
     flex-direction: column;
+    overflow: hidden;
 
     transition: max-height $long-time ease-out;
 
@@ -95,13 +96,12 @@ export default {
     }
 
     ul {
+      margin-left: $default-len;
       list-style: none;
       height: 0;
 
       visibility: hidden;
       opacity: 0;
-      transition-delay: $default-time;
-      transition: opacity $long-time ease-in-out;
     }
 
     .active-ul {
@@ -109,8 +109,6 @@ export default {
 
       visibility: visible;
       opacity: 1;
-      transition-delay: $medium-time;
-      transition: opacity $long-time ease-in-out;
     }
 
     &.active-content {
