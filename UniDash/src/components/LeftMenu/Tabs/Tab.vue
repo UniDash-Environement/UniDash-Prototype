@@ -35,7 +35,7 @@ export default {
     background: $gradient-color;
     padding-bottom: $light-len;
     width: 100%;
-    border-radius: $default-len;
+    border-radius: $medium-min-len;
 
     .tab-content {
       display: flex;
@@ -43,7 +43,7 @@ export default {
       justify-content: space-between;
       width: 100%;
       background-color: $black-color;
-      border-radius: $default-len;
+      border-radius: $medium-min-len;
 
       span {
         font-size: $medium-min-len;

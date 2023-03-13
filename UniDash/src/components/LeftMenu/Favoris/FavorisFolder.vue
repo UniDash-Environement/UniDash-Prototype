@@ -58,7 +58,7 @@ export default {
   background: $gradient-color;
   padding-bottom: $light-len;
   width: 100%;
-  border-radius: $default-len;
+  border-radius: $medium-min-len;
 
   .favoris-folder-content {
     width: calc(100% - $light-len * 2);
@@ -67,7 +67,7 @@ export default {
     padding: $light-len;
 
     background-color: $black-color;
-    border-radius: $default-len;
+    border-radius: $medium-min-len;
 
     display: flex;
     flex-direction: column;
