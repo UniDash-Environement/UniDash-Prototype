@@ -30,7 +30,7 @@
 
   <nav class="left-menu-background-border">
     <div class="left-menu-background">
-      <h1 class="title">UniDash</h1>
+      <h1 class="title hidden">UniDash</h1>
 
       <div class="show-checkbox-list">
         <input id="show-tab" type="checkbox" checked @click="ifShowUpdater">
@@ -38,18 +38,18 @@
         <input id="show-settings" type="checkbox" @click="ifShowUpdater">
 
         <div class="tab-content">
-          <TabsList />
+          <TabsList class="hidden" />
         </div>
 
         <div class="favoris-content">
-          <FavorisList />
+          <FavorisList class="hidden" />
         </div>
 
         <ul class="settings-content">
         </ul>
       </div>
 
-      <Slider></Slider>
+      <Slider class="hidden"></Slider>
     </div>
   </nav>
   <div id="menu-right-join" @click="this.$refs['menu-hamburger-button'].checked = false"></div>
@@ -100,10 +100,6 @@
         opacity: 0;
         visibility: hidden;
         transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
-
-        li {
-          width: 100%;
-        }
       }
     }
   }
@@ -201,7 +197,7 @@ nav {
   nav {
     transform: unset;
 
-    .tab, .slider, .title {
+    .hidden {
       visibility: visible;
       opacity: 1;
     }
@@ -212,7 +208,7 @@ nav {
   }
 }
 
-.tab, .slider, .title {
+.hidden {
   visibility: hidden;
   opacity: 0;
 }
@@ -254,12 +250,8 @@ nav {
 }
 
 .menu-hamburger:focus-visible~label,
-nav .tab:focus-visible,
-nav .title:focus-visible,
-nav .slider:focus-visible,
-nav .tab:focus,
-nav .title:focus,
-nav .slider:focus {
+nav .hidden:focus-visible,
+nav .hidden:focus {
   transition: outline-offset .25s ease;
 }
 
@@ -267,9 +259,7 @@ nav {
   transition: transform 0.5s;
 }
 
-.tab,
-.slider,
-.title {
+.hidden {
   transition: visibility 500ms,opacity 500ms 300ms;
 }
 
