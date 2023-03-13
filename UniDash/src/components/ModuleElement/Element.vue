@@ -56,7 +56,7 @@ export default {
       background-color: $black-gray-color;
 
       filter: none;
-      transition: filter 100ms ease-in-out;
+      transition: filter 300ms ease-in-out;
     }
 
     &:hover {
@@ -65,7 +65,7 @@ export default {
 
     .my-iframe-dark {
       filter: hue-rotate(180deg) invert(0.9) saturate(1.2);
-      transition: filter 100ms ease-in-out;
+      transition: filter 300ms ease-in-out;
     }
 
     .dark-theme {
@@ -78,7 +78,7 @@ export default {
         width: $medium-len;
         height: $medium-len;
         color: $black-gray-color;
-        transition: color 100ms ease-in-out;
+        transition: color 300ms ease-in-out;
       }
 
       .dark-iframe-button {
@@ -87,7 +87,7 @@ export default {
 
       .dark-iframe-button:checked + .checkmark {
         color: $white-color;
-        transition: color 100ms ease-in-out;
+        transition: color 300ms ease-in-out;
       }
     }
   }
