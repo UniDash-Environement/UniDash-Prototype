@@ -83,6 +83,7 @@ export default {
 
     ul {
       display: none;
+      list-style: none;
     }
 
     .active {
