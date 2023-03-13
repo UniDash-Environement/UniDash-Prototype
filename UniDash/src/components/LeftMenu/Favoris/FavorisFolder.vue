@@ -101,7 +101,7 @@ export default {
       visibility: hidden;
       opacity: 0;
       transition-delay: 0.5s;
-      transition: opacity 0.3s ease-in-out;
+      transition: opacity 1s ease-in-out;
     }
 
     .active-ul {
@@ -110,12 +110,11 @@ export default {
       visibility: visible;
       opacity: 1;
       transition-delay: 0.3s;
-      transition: opacity 0.3s ease-in-out;
+      transition: opacity 1s ease-in-out;
     }
 
     &.active-content {
       max-height: 1000px;
-      transition: max-height 0.5s ease-out;
     }
   }
 }
