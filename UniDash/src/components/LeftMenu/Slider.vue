@@ -47,7 +47,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "src/style";
+@import "../../style";
 
   .slider {
     display: flex;
