@@ -52,7 +52,6 @@
       <Slider class="hidden"></Slider>
     </div>
   </nav>
-  <div id="menu-right-join" @click="this.$refs['menu-hamburger-button'].checked = false"></div>
 </template>
 
 <style scoped lang="scss">
@@ -80,7 +79,9 @@
       width: 100%;
       height: 100%;
 
-      #show-tab:checked ~ .tab-content, #show-favoris:checked ~ .favoris-content, #show-settings:checked ~ .settings-content {
+      #show-tab:checked ~ .tab-content,
+      #show-favoris:checked ~ .favoris-content,
+      #show-settings:checked ~ .settings-content {
         opacity: 1;
         visibility: visible;
         position: static;
@@ -103,39 +104,37 @@
       }
     }
   }
+
+  .hidden {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 500ms, opacity 500ms 300ms;
+  }
 }
 
-*,*::before, *::after {
-  box-sizing: border-box
-}
-
-// ICONE HAMBURGER
-input[type="checkbox"] {
-
-  position: absolute;
-  left: -100vw;
-
-}
-
-.menu-hamburger{
+.menu-hamburger {
   &+label {
-    cursor: pointer;
     width: 2rem;
     height: 2rem;
+    z-index: 9999;
+
     display:flex;
     align-items:center;
     justify-content: center;
+
     position: fixed;
     top: $min-len;
     left: $min-len;
-    z-index: 9999;
+
+    cursor: pointer;
     background: $white-color;
     border-radius: 0.7rem;
 
     span {
-      background: $gradient-color;
       width: 100%;
       height: 0.2rem;
+
+      background: $gradient-color;
       position: relative;
 
       &::before {
@@ -147,45 +146,57 @@ input[type="checkbox"] {
       }
 
       &::before, &::after {
-        position: absolute;
-        background: $gradient-color;
         width: inherit;
         height: inherit;
+
+        position: absolute;
+        background: $gradient-color;
         content: "";
       }
     }
   }
 
-  &:checked+label span {
-    background: transparent;
+  &:checked+label {
+    span {
+      background: transparent;
 
-    &::before, &::after {
-      top: 0;
+      &::before, &::after {
+        top: 0;
+      }
+
+      &::before {
+        transform: rotate(45deg);
+      }
+
+      &::after {
+        transform: rotate(-45deg);
+      }
     }
 
-    &::before {
-      transform: rotate(45deg);
-    }
+    &~ {
+      nav {
+        margin-left: 0;
 
-    &::after {
-      transform: rotate(-45deg);
+        .hidden {
+          visibility: visible;
+          opacity: 1;
+        }
+      }
     }
+  }
+
+  &:not(:focus-visible):focus~label{
+    box-shadow: 0 0 0 0.2rem hsl(248, 78%, 58%)
   }
 }
 
-// MENU SLIDE
 nav {
-  position: fixed;
-  left: 0;
-  top: 0;
-  transform: translateX(-15.6rem);
-  will-change: transform;
-  z-index: 9998;
+  margin-left: -15.6rem;
+  transition: margin-left 0.5s;
 
   ul {
     list-style-type: none;
-    padding-left:0;
-    margin: 0;
+    padding:0;
 
     li {
       margin-bottom: $default-len;
@@ -193,34 +204,19 @@ nav {
   }
 }
 
-.menu-hamburger:checked+label~ {
-  nav {
-    transform: unset;
-
-    .hidden {
-      visibility: visible;
-      opacity: 1;
-    }
-  }
-
-  #menu-right-join {
-    display: block;
-  }
+*,*::before, *::after {
+  box-sizing: border-box
 }
 
-.hidden {
-  visibility: hidden;
-  opacity: 0;
+input[type="checkbox"] {
+  position: absolute;
+  left: -100vw;
 }
 
-#menu-right-join {
-  display: none;
-}
-
-// Accessibilité
-
-.menu-hamburger:not(:focus-visible):focus~label{
-  box-shadow: 0 0 0 4px hsl(248, 78%, 58%)
+.menu-hamburger:focus-visible~label,
+nav .hidden:focus-visible,
+nav .hidden:focus {
+  transition: outline-offset .25s ease;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -239,38 +235,5 @@ nav {
       }
     }
   }
-}
-
-nav {
-  transition: transform 0.5s;
-
-  a {
-    transition: visibility 500ms,opacity 500ms 300ms;
-  }
-}
-
-.menu-hamburger:focus-visible~label,
-nav .hidden:focus-visible,
-nav .hidden:focus {
-  transition: outline-offset .25s ease;
-}
-
-nav {
-  transition: transform 0.5s;
-}
-
-.hidden {
-  transition: visibility 500ms,opacity 500ms 300ms;
-}
-
-#menu-right-join {
-  position: absolute;
-  z-index: 9999;
-
-  width: calc(100vw - 20rem);
-  height: 100vh;
-
-  top: 0;
-  left: 20rem;
 }
 </style>

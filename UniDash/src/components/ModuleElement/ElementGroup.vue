@@ -55,11 +55,10 @@
 @import "src/style";
 
   main {
-    width: calc(100vw - $min-len * 2 - 4.1vw);
+    width: calc(100vw - $min-len * 2);
     height: calc(100vh - $min-len * 2);
 
     padding: $min-len;
-    margin: 0 0 0 4.3rem;
 
     ul {
       width: 100%;
