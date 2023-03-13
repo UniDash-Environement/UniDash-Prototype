@@ -72,7 +72,7 @@ export default {
     display: flex;
     flex-direction: column;
 
-    transition: max-height 0.5s ease-out;
+    transition: max-height $long-time ease-out;
 
     .favoris-folder-label {
       display: flex;
@@ -100,8 +100,8 @@ export default {
 
       visibility: hidden;
       opacity: 0;
-      transition-delay: 0.5s;
-      transition: opacity 1s ease-in-out;
+      transition-delay: $default-time;
+      transition: opacity $long-time ease-in-out;
     }
 
     .active-ul {
@@ -109,8 +109,8 @@ export default {
 
       visibility: visible;
       opacity: 1;
-      transition-delay: 0.3s;
-      transition: opacity 1s ease-in-out;
+      transition-delay: $medium-time;
+      transition: opacity $long-time ease-in-out;
     }
 
     &.active-content {

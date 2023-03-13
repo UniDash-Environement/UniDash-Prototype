@@ -100,7 +100,7 @@
 
         opacity: 0;
         visibility: hidden;
-        transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+        transition: opacity $light-time ease-in-out, visibility $light-time ease-in-out;
       }
     }
   }
@@ -108,14 +108,14 @@
   .hidden {
     visibility: hidden;
     opacity: 0;
-    transition: visibility 500ms, opacity 500ms 300ms;
+    transition: visibility $default-time, opacity $default-time $light-time;
   }
 }
 
 .menu-hamburger {
   &+label {
-    width: 2rem;
-    height: 2rem;
+    width: $max-len;
+    height: $max-len;
     z-index: 9999;
 
     display:flex;
@@ -128,21 +128,21 @@
 
     cursor: pointer;
     background: $white-color;
-    border-radius: 0.7rem;
+    border-radius: $medium-min-len;
 
     span {
       width: 100%;
-      height: 0.2rem;
+      height: $super-light-len;
 
       background: $gradient-color;
       position: relative;
 
       &::before {
-        top: -0.3rem;
+        top: - calc($super-light-len * 1.5);
       }
 
       &::after {
-        top: 0.3rem;
+        top: calc($super-light-len * 1.5);
       }
 
       &::before, &::after {
@@ -186,13 +186,13 @@
   }
 
   &:not(:focus-visible):focus~label{
-    box-shadow: 0 0 0 0.2rem hsl(248, 78%, 58%)
+    box-shadow: 0 0 0 $super-light-len $uni-gray-color;
   }
 }
 
 nav {
   margin-left: -15.6rem;
-  transition: margin-left 0.5s;
+  transition: margin-left $default-time;
 
   ul {
     list-style-type: none;
@@ -225,13 +225,13 @@ nav .hidden:focus {
       transition: background 10ms 300ms;
 
       &::before, &::after {
-        transition: top 300ms 350ms, transform 300ms 50ms;
+        transition: top $default-time $default-time, transform $default-time 50ms;
       }
     }
 
     &:checked+label span {
       &::before, &::after {
-        transition: top 300ms 50ms, transform 300ms 350ms;
+        transition: top $default-time 50ms, transform $default-time $default-time
       }
     }
   }

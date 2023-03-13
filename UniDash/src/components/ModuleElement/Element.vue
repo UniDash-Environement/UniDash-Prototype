@@ -47,8 +47,8 @@ export default {
     position: relative;
 
     .my-iframe {
-      width: calc(100% - 0.2rem * 2);
-      height: calc(100% - 0.2rem * 2);
+      width: calc(100% - $super-light-len * 2);
+      height: calc(100% - $super-light-len * 2);
       margin: 0.2rem;
 
       border: none;
@@ -65,7 +65,7 @@ export default {
 
     .my-iframe-dark {
       filter: hue-rotate(180deg) invert(0.9) saturate(1.2);
-      transition: filter 300ms ease-in-out;
+      transition: filter $medium-time ease-in-out;
     }
 
     .dark-theme {
@@ -78,7 +78,7 @@ export default {
         width: $medium-len;
         height: $medium-len;
         color: $black-gray-color;
-        transition: color 300ms ease-in-out;
+        transition: color $medium-time ease-in-out;
       }
 
       .dark-iframe-button {
@@ -87,7 +87,7 @@ export default {
 
       .dark-iframe-button:checked + .checkmark {
         color: $white-color;
-        transition: color 300ms ease-in-out;
+        transition: color $medium-time ease-in-out;
       }
     }
   }

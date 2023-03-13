@@ -89,10 +89,10 @@ export default {
         padding: 0;
 
         color: $white-color;
-        transition: color 100ms ease-out;
+        transition: color $medium-time ease-out;
 
         &.checked {
-          color: hsl(248, 78%, 58%);
+          color: $uni-gray-color;
         }
       }
     }
