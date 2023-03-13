@@ -1,11 +1,13 @@
 <script>
   import Tab from "./Tabs/Tab.vue";
-  import Slider from "./Tabs/Slider.vue";
+  import Slider from "./Slider.vue";
   import FavorisList from "./Favoris/FavorisList.vue";
+  import TabsList from "./Tabs/TabsList.vue";
 
   export default {
     name: "Menu",
     components: {
+      TabsList,
       FavorisList,
       Tab,
       Slider
@@ -35,12 +37,9 @@
         <input id="show-favoris" type="checkbox" @click="ifShowUpdater">
         <input id="show-settings" type="checkbox" @click="ifShowUpdater">
 
-        <ul class="tab-content">
-          <li><Tab url="https://www.example.com" /></li>
-          <li><Tab url="https://www.example.com" /></li>
-          <li><Tab url="https://www.example.com" /></li>
-          <li><Tab url="https://www.example.com" /></li>
-        </ul>
+        <div class="tab-content">
+          <TabsList />
+        </div>
 
         <div class="favoris-content">
           <FavorisList />
@@ -94,15 +93,9 @@
       .tab-content, .favoris-content, .settings-content {
         width: 100%;
         height: 100%;
-        padding: $min-len 0;
 
         position: absolute;
         left: -100vw;
-
-        display: flex;
-        justify-content: start;
-        align-items: center;
-        flex-direction: column;
 
         opacity: 0;
         visibility: hidden;
