@@ -30,7 +30,16 @@ export default {
         }
       }
 
-      folderItemList.classList.toggle("active");
+      document.querySelectorAll(".favoris-folder-ul").forEach(folder => {
+        folder.classList.remove("active-ul");
+      });
+      document.querySelectorAll(".favoris-folder-content").forEach(folder => {
+        folder.classList.remove("active-content");
+      });
+
+      folderItemList.classList.toggle("active-ul");
+      let folderContent = folderItemList.parentElement;
+      folderContent.classList.toggle("active-content");
     }
   }
 }
@@ -53,13 +62,17 @@ export default {
 
   .favoris-folder-content {
     width: calc(100% - $light-len * 2);
-    height: calc(100% - $light-len * 2);
+    height: auto;
+    max-height: 20px;
     padding: $light-len;
+
     background-color: $black-color;
     border-radius: $default-len;
+
     display: flex;
     flex-direction: column;
-    justify-content: center;
+
+    transition: max-height 0.5s ease-out;
 
     .favoris-folder-label {
       display: flex;
@@ -82,12 +95,27 @@ export default {
     }
 
     ul {
-      display: none;
       list-style: none;
+      height: 0;
+
+      visibility: hidden;
+      opacity: 0;
+      transition-delay: 0.5s;
+      transition: opacity 0.3s ease-in-out;
     }
 
-    .active {
-      display: block;
+    .active-ul {
+      height: auto;
+
+      visibility: visible;
+      opacity: 1;
+      transition-delay: 0.3s;
+      transition: opacity 0.3s ease-in-out;
+    }
+
+    &.active-content {
+      max-height: 1000px;
+      transition: max-height 0.5s ease-out;
     }
   }
 }
