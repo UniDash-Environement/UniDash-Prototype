@@ -59,6 +59,7 @@
     height: calc(100vh - $min-len * 2);
 
     padding: $min-len;
+    overflow: scroll;
 
     ul {
       width: 100%;
