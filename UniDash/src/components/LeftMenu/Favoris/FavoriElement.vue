@@ -1,12 +1,14 @@
 <template>
-  <li class="favori-element">
+  <li class="favori-element" @click="addTab">
     <DocumentIcon class="favori-icon" />
+    <input type="checkbox" name="favoris-checkbox" class="favoris-checkbox" hidden="hidden">
     <span :data-url="url">{{ name }}</span>
   </li>
 </template>
 
 <script>
 import { DocumentIcon } from "@heroicons/vue/20/solid";
+import { useStore } from "vuex";
 export default {
   name: "FavoriElement",
   components: {
@@ -21,6 +23,28 @@ export default {
       type: String,
       required: true
     }
+  },
+  setup() {
+    const store = useStore();
+
+    function updateTabList(newList) {
+      store.commit('updateTabList', newList);
+    }
+
+    return { updateTabList };
+  },
+  methods: {
+    addTab() {
+      let tabList = this.$store.state.tabList;
+      let newTab = {
+        name: this.name,
+        url: this.url,
+        active: true,
+        id: Date.now().toString()
+      };
+      tabList.push(newTab);
+      this.updateTabList(tabList);
+    }
   }
 }
 </script>
@@ -29,12 +53,6 @@ export default {
 @import "src/style";
 
 .favori-element {
-  .favori-icon {
-    width: $default-len;
-    color: $white-color;
-    padding-left: 0;
-  }
-
   span {
     user-select: none;
     padding: 0 $light-len;
@@ -45,7 +63,8 @@ export default {
   svg {
     padding: 0;
     margin: 0;
-    height: 0 $default-len;
+    width: $default-len;
+    color: $white-color;
   }
 }
 </style>

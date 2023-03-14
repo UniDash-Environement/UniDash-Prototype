@@ -1,8 +1,8 @@
 <template>
   <main>
     <ul>
-      <li v-for="url in urls" :key="url">
-        <Element :url="url" />
+      <li v-for="tab in tabList" :data-show="tab.active" class="show-element">
+        <Element :url="tab.url" />
       </li>
     </ul>
   </main>
@@ -10,43 +10,19 @@
 
 <script>
   import Element from "./Element.vue";
+  import {useStore} from "vuex";
+  import {computed} from "vue";
   export default {
     name: "ElementGroup",
 
     components: {
       Element
     },
-
-    methods: {
-      getUrls() {
-        const urlList = document.querySelectorAll('.tab[data-url]');
-        const urls = [];
-        urlList.forEach((tab) => {
-          urls.push(tab.dataset.url);
-        });
-        return urls;
-      },
-
-      updateUrls() {
-        let urls2 = this.getUrls();
-        if (this.urls !== urls2) {
-          this.urls = urls2;
-          this.$forceUpdate();
-        }
-      }
-    },
-
     setup() {
-      let urls = [];
-      return {
-        urls
-      }
-    },
+      const store = useStore();
+      const tabList = computed(() => store.state.tabList);
 
-    mounted() {
-      setInterval(() => {
-        this.updateUrls();
-      }, 1000);
+      return { tabList };
     }
   }
 </script>
@@ -67,19 +43,25 @@
 
       padding: 0;
       margin: 0;
+      list-style-type: none;
 
       display: flex;
       flex-wrap: wrap;
-      gap: $min-len;
 
-      li {
-        width: auto;
+      li.show-element {
         height: auto;
+        width: auto;
         min-height: calc(50% - $min-len / 2);
         min-width: calc(50% - $min-len / 2);
         flex: 1;
 
-        display: block;
+        padding: 0;
+        margin: 0;
+        display: flex;
+
+        &[data-show="false"] {
+          display: none;
+        }
       }
     }
   }

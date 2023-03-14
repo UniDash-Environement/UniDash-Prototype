@@ -10,6 +10,9 @@
 import FavorisFolder from "./FavorisFolder.vue";
 import FavoriElement from "./FavoriElement.vue";
 import favorisFolder from "./FavorisFolder.vue";
+import { computed } from 'vue';
+import { useStore } from 'vuex';
+
 export default {
   name: "FavorisList",
   computed: {
@@ -22,61 +25,10 @@ export default {
     FavoriElement
   },
   setup() {
-    return {
-      favorisFolderList: [
-        {
-          name: "Folder 1",
-          list: [
-            {
-              name: "Favori 1",
-              url: "https://www.example.com"
-            },
-            {
-              name: "Favori 2",
-              url: "https://www.example.com"
-            },
-            {
-              name: "Favori 3",
-              url: "https://www.example.com"
-            }
-          ]
-        },
-        {
-          name: "Folder 2",
-          list: [
-            {
-              name: "Favori 1",
-              url: "https://www.example.com"
-            },
-            {
-              name: "Favori 2",
-              url: "https://www.example.com"
-            },
-            {
-              name: "Favori 3",
-              url: "https://www.example.com"
-            }
-          ]
-        },
-        {
-          name: "Folder 3",
-          list: [
-            {
-              name: "Favori 1",
-              url: "https://www.example.com"
-            },
-            {
-              name: "Favori 2",
-              url: "https://www.example.com"
-            },
-            {
-              name: "Favori 3",
-              url: "https://www.example.com"
-            }
-          ]
-        }
-      ]
-    }
+    const store = useStore();
+    const favorisFolderList = computed(() => store.state.favorisFolderList);
+
+    return { favorisFolderList };
   }
 }
 </script>

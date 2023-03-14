@@ -3,7 +3,7 @@
     <div class="slider-content">
       <ChevronLeftIcon />
       <div class="slider-element">
-        <StarIcon ref="favoris-icon" @click="showEelement('favoris-icon', 'show-favoris')" />
+        <StarIcon ref="favoris-icon" class="checked" @click="showEelement('favoris-icon', 'show-favoris')" />
         <span>Server 1</span>
         <Cog6ToothIcon ref="settings-icon" @click="showEelement('settings-icon', 'show-settings')" />
       </div>

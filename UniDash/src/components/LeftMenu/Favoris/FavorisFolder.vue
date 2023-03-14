@@ -1,9 +1,9 @@
 <template>
-  <div class="favoris-folder" @click="showFolder">
+  <div class="favoris-folder">
     <div class="favoris-folder-content">
       <div class="favoris-folder-label">
-        <FolderIcon class="folder-icon" />
-        <span>{{ favorisFolder.name }}</span>
+        <FolderIcon class="folder-icon" @click="showFolder"/>
+        <span @click="showFolder">{{ favorisFolder.name }}</span>
       </div>
       <ul class="favoris-folder-ul">
         <FavoriElement v-for="favori in favorisFolder.list" :name="favori.name" :url="favori.url"/>
@@ -88,19 +88,20 @@ export default {
       align-items: center;
       justify-content: flex-start;
       cursor: pointer;
-    }
 
-    span {
-      user-select: none;
-      padding: 0 $light-len;
-      margin: 0;
-      font-size: $medium-min-len;
-    }
+      span {
+        user-select: none;
+        padding: 0 $light-len;
+        margin: 0;
+        font-size: $medium-min-len;
+        width: 100%;
+      }
 
-    svg {
-      padding: 0;
-      margin: 0;
-      height: 0 $default-len;
+      svg {
+        padding: 0;
+        margin: 0;
+        height: 0 $default-len;
+      }
     }
 
     ul {

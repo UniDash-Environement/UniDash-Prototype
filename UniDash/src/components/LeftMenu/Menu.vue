@@ -25,7 +25,7 @@
 </script>
 
 <template>
-  <input ref="menu-hamburger-button" class="menu-hamburger" type="checkbox" id="show-menu-button" tabindex="1">
+  <input ref="menu-hamburger-button" class="menu-hamburger" type="checkbox" id="show-menu-button" tabindex="1" checked>
   <label class="icon-burger" for="show-menu-button" aria-label="Menu"><span></span></label>
 
   <nav class="left-menu-background-border">
@@ -33,8 +33,8 @@
       <h1 class="title hidden">UniDash</h1>
 
       <div class="show-checkbox-list">
-        <input id="show-tab" class="hidden" type="checkbox" checked @click="ifShowUpdater">
-        <input id="show-favoris" class="hidden" type="checkbox" @click="ifShowUpdater">
+        <input id="show-tab" class="hidden" type="checkbox" @click="ifShowUpdater">
+        <input id="show-favoris" class="hidden" type="checkbox" checked @click="ifShowUpdater">
         <input id="show-settings" class="hidden" type="checkbox" @click="ifShowUpdater">
 
         <div class="tab-content">
@@ -88,7 +88,6 @@
 
         opacity: 1;
         visibility: visible;
-        position: static;
 
         transition: height $light-time ease-in-out, width $light-time ease-in-out;
       }

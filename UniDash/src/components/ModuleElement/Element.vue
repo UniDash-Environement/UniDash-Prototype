@@ -1,6 +1,6 @@
 <template>
   <div class="element">
-    <iframe class="my-iframe" ref="myIframe" :src="url"></iframe>
+    <iframe class="my-iframe" ref="myIframe" :src="this.url"></iframe>
     <label class="dark-theme">
       <input class="dark-iframe-button" type="checkbox" v-model="isDarkTheme">
       <MoonIcon class="checkmark"></MoonIcon>
@@ -17,7 +17,12 @@ export default {
       isDarkTheme: false,
     }
   },
-  props: ['url'],
+  props: {
+    url: {
+      type: String,
+      required: true
+    },
+  },
   components: {
     MoonIcon,
   },

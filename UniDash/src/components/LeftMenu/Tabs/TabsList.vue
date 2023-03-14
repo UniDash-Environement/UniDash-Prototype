@@ -1,23 +1,34 @@
 <template>
   <ul class="tab-list">
-    <li><Tab url="https://www.example.com/" /></li>
-    <li><Tab url="https://www.example.com" /></li>
-    <li><Tab url="https://www.example.com" /></li>
-    <li><Tab url="https://www.example.com" /></li>
+    <li v-for="tab in this.tabList"><Tab :tab="tab" /></li>
   </ul>
 </template>
 
 <script>
 import Tab from "./Tab.vue";
+import { computed } from 'vue';
+import { useStore } from 'vuex';
 
 export default {
   name: "TabList",
-  components: {Tab}
+  components: {
+    Tab
+  },
+  setup() {
+    const store = useStore();
+    const tabList = computed(() => store.state.tabList);
+
+    return { tabList };
+  }
 }
 </script>
 
 <style scoped lang="scss">
 @import "src/style";
+
+#add-tab {
+  display: none;
+}
 
 .tab-list {
   width: 100%;
