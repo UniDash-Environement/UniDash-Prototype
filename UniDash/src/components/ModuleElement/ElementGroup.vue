@@ -47,6 +47,7 @@
 
       display: flex;
       flex-wrap: wrap;
+      gap: $light-len;
 
       li.show-element {
         height: auto;
