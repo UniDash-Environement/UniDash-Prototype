@@ -1,20 +1,7 @@
 <template>
   <ul class="favoris-list">
-    <li>
-      <FavorisFolder>
-        <FavoriElement />
-        <FavoriElement />
-        <FavoriElement />
-        <FavoriElement />
-      </FavorisFolder>
-    </li>
-    <li>
-      <FavorisFolder>
-        <FavoriElement />
-        <FavoriElement />
-        <FavoriElement />
-        <FavoriElement />
-      </FavorisFolder>
+    <li v-for="favoriFolder in favorisFolderList">
+      <FavorisFolder :favoris-folder="favoriFolder" />
     </li>
   </ul>
 </template>
@@ -22,11 +9,74 @@
 <script>
 import FavorisFolder from "./FavorisFolder.vue";
 import FavoriElement from "./FavoriElement.vue";
+import favorisFolder from "./FavorisFolder.vue";
 export default {
   name: "FavorisList",
+  computed: {
+    favorisFolder() {
+      return favorisFolder
+    }
+  },
   components: {
     FavorisFolder,
     FavoriElement
+  },
+  setup() {
+    return {
+      favorisFolderList: [
+        {
+          name: "Folder 1",
+          list: [
+            {
+              name: "Favori 1",
+              url: "https://www.example.com"
+            },
+            {
+              name: "Favori 2",
+              url: "https://www.example.com"
+            },
+            {
+              name: "Favori 3",
+              url: "https://www.example.com"
+            }
+          ]
+        },
+        {
+          name: "Folder 2",
+          list: [
+            {
+              name: "Favori 1",
+              url: "https://www.example.com"
+            },
+            {
+              name: "Favori 2",
+              url: "https://www.example.com"
+            },
+            {
+              name: "Favori 3",
+              url: "https://www.example.com"
+            }
+          ]
+        },
+        {
+          name: "Folder 3",
+          list: [
+            {
+              name: "Favori 1",
+              url: "https://www.example.com"
+            },
+            {
+              name: "Favori 2",
+              url: "https://www.example.com"
+            },
+            {
+              name: "Favori 3",
+              url: "https://www.example.com"
+            }
+          ]
+        }
+      ]
+    }
   }
 }
 </script>

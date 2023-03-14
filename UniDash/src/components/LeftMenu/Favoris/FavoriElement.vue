@@ -1,7 +1,7 @@
 <template>
   <li class="favori-element">
     <DocumentIcon class="favori-icon" />
-    <span data-url="https://www.example.com">Favoris</span>
+    <span :data-url="url">{{ name }}</span>
   </li>
 </template>
 
@@ -12,6 +12,16 @@ export default {
   components: {
     DocumentIcon
   },
+  props: {
+    url: {
+      type: String,
+      required: true
+    },
+    name: {
+      type: String,
+      required: true
+    }
+  }
 }
 </script>
 

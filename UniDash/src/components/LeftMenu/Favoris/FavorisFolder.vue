@@ -3,10 +3,10 @@
     <div class="favoris-folder-content">
       <div class="favoris-folder-label">
         <FolderIcon class="folder-icon" />
-        <span>Folder</span>
+        <span>{{ favorisFolder.name }}</span>
       </div>
       <ul class="favoris-folder-ul">
-        <slot></slot>
+        <FavoriElement v-for="favori in favorisFolder.list" :name="favori.name" :url="favori.url"/>
       </ul>
     </div>
   </div>
@@ -14,9 +14,11 @@
 
 <script>
 import { FolderIcon } from "@heroicons/vue/24/solid";
+import FavoriElement from "./FavoriElement.vue";
 export default {
   name: "FavorisFolder",
   components: {
+    FavoriElement,
     FolderIcon
   },
   methods: {
@@ -40,6 +42,12 @@ export default {
       folderItemList.classList.toggle("active-ul");
       let folderContent = folderItemList.parentElement;
       folderContent.classList.toggle("active-content");
+    }
+  },
+  props: {
+    favorisFolder: {
+      type: Object,
+      required: true
     }
   }
 }
