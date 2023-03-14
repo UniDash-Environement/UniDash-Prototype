@@ -115,7 +115,7 @@
     visibility: hidden;
     opacity: 0;
 
-    transition: visibility $default-time, opacity $default-time $light-time;
+    transition: visibility $default-time, opacity $default-time $light-time, margin-left $default-time $light-time;
   }
 }
 
@@ -188,6 +188,8 @@
           visibility: visible;
           opacity: 1;
           margin-left: 0;
+
+          transition: visibility $default-time, opacity $default-time $light-time, margin-left $default-time $light-time;
         }
       }
     }
