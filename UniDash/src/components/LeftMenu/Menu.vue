@@ -97,6 +97,8 @@
       }
 
       .tab-content, .favoris-content, .settings-content {
+        padding: $min-len 0;
+
         width: 0;
         height: 0;
 
