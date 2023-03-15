@@ -29,7 +29,7 @@ export default {
   },
   setup() {
     return {
-      favorisFolderList: favoris["favorisFolderList"]
+      favorisFolderList: favoris.favorisFolderList
     };
   }
 }
