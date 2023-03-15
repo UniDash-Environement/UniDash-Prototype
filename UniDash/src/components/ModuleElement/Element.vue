@@ -1,19 +1,15 @@
 <template>
-  <IframeElement :url="this.url" />
+  <component v-bind:is="this.data.module" :data="this.data" />
 </template>
 
 <script>
-import IframeElement from "../../modules/vue/IframeElement.vue";
 export default {
   name: "Element",
   props: {
-    url: {
-      type: String,
+    data: {
+      type: Object,
       required: true
     },
-  },
-  components: {
-    IframeElement,
   },
 }
 </script>

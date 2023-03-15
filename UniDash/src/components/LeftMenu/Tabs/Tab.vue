@@ -40,7 +40,7 @@ export default {
     removeTab() {
       let tabList = this.$store.state.tabList;
       for (let tabElement of tabList) {
-        if (tabElement.id ===this.tab.id) {
+        if (tabElement.id === this.tab.id) {
           tabList.splice(tabElement, 1);
         }
       }
@@ -50,7 +50,7 @@ export default {
     activeToggleTab(event) {
       let tabList = this.$store.state.tabList;
       for (let tabElement of tabList) {
-        if (tabElement.id ===this.tab.id) {
+        if (tabElement.id === this.tab.id) {
           tabElement.active = !tabElement.active;
         }
       }

@@ -6,7 +6,7 @@
         <span>{{ favorisFolder.name }}</span>
       </div>
       <ul class="favoris-folder-ul">
-        <FavoriElement v-for="favori in favorisFolder.list" :name="favori.name" :url="favori.url"/>
+        <FavoriElement v-for="favori in favorisFolder.list" :name="favori.name" :data="favori.data"/>
       </ul>
     </div>
   </div>

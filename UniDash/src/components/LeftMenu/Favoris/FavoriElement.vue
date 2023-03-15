@@ -2,7 +2,7 @@
   <li class="favori-element" @click="addTab">
     <DocumentIcon class="favori-icon" />
     <input type="checkbox" name="favoris-checkbox" class="favoris-checkbox" hidden="hidden">
-    <span :data-url="url">{{ name }}</span>
+    <span>{{ name }}</span>
   </li>
 </template>
 
@@ -15,8 +15,8 @@ export default {
     DocumentIcon
   },
   props: {
-    url: {
-      type: String,
+    data: {
+      type: Object,
       required: true
     },
     name: {
@@ -38,7 +38,7 @@ export default {
       let tabList = this.$store.state.tabList;
       let newTab = {
         name: this.name,
-        url: this.url,
+        data: this.data,
         active: true,
         id: Date.now().toString()
       };

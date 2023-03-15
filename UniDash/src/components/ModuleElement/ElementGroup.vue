@@ -2,7 +2,7 @@
   <main>
     <ul>
       <li v-for="tab in tabList" :data-show="tab.active" class="show-element">
-        <Element :url="tab.url" />
+        <Element :data="tab.data" />
       </li>
     </ul>
   </main>
