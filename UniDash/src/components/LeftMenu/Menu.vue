@@ -28,28 +28,24 @@
   <input ref="menu-hamburger-button" class="menu-hamburger" type="checkbox" id="show-menu-button" tabindex="1" checked>
   <label class="icon-burger" for="show-menu-button" aria-label="Menu"><span></span></label>
 
-  <nav class="left-menu-background-border">
-    <div class="left-menu-background">
-      <h1 class="title hidden">UniDash</h1>
+  <nav class="left-menu-background-border flex flex-column gradient-bprder">
+    <div class="left-menu-background flex flex-column height-100 width-100 content">
+      <h1 class="title">UniDash</h1>
 
-      <div class="show-checkbox-list">
-        <input id="show-tab" class="hidden" type="checkbox" @click="ifShowUpdater">
-        <input id="show-favoris" class="hidden" type="checkbox" checked @click="ifShowUpdater">
-        <input id="show-settings" class="hidden" type="checkbox" @click="ifShowUpdater">
-
-        <div class="tab-content">
-          <TabsList class="hidden" />
+      <div id="menu-lists" class="show-checkbox-list flex flex-column width-100 height-100 padding">
+        <div class="width-100 height-100 show hidden" id="tab-content">
+          <TabsList />
         </div>
 
-        <div class="favoris-content">
-          <FavorisList class="hidden" />
+        <div class="width-100 height-100 show" id="favoris-content">
+          <FavorisList />
         </div>
 
-        <ul class="settings-content">
-        </ul>
+        <div class="width-100 height-100 show hidden" id="settings-content">
+        </div>
       </div>
 
-      <Slider class="hidden"></Slider>
+      <Slider></Slider>
     </div>
   </nav>
 </template>
@@ -58,65 +54,16 @@
 @import "src/style";
 
 .left-menu-background-border {
-  background: $gradient-color;
   height: 100vh;
   width: 20rem;
-  padding-right: $light-len;
-  border-radius: 0 $default-len $default-len 0;
+  padding: 0;
 
   .left-menu-background {
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    flex-direction: column;
     background-color: $gray-color;
-    height: 100vh;
-    width: 100%;
-    border-radius: 0 $default-len $default-len 0;
-    padding: $min-len;
 
-    .show-checkbox-list {
-      width: 100%;
-      height: 100%;
-      display: flex;
-
-      #show-tab:checked ~ .tab-content,
-      #show-favoris:checked ~ .favoris-content,
-      #show-settings:checked ~ .settings-content {
-        height: 100%;
-        width: 100%;
-
-        opacity: 1;
-        visibility: visible;
-
-        transition: height $light-time ease-in-out, width $light-time ease-in-out;
-      }
-
-      .show-checkbox-list {
-        display: none;
-      }
-
-      .tab-content, .favoris-content, .settings-content {
-        padding: $min-len 0;
-
-        width: 0;
-        height: 0;
-
-        opacity: 0;
-        visibility: hidden;
-        overflow: hidden;
-
-        transition: height $light-time ease-in-out, width $light-time ease-in-out;
-      }
+    #menu-lists {
+      overflow: scroll;
     }
-  }
-
-  .hidden {
-    margin-left: -100%;
-    visibility: hidden;
-    opacity: 0;
-
-    transition: visibility $default-time, opacity $default-time $light-time, margin-left $default-time $light-time;
   }
 }
 
@@ -184,20 +131,12 @@
     &~ {
       nav {
         margin-left: 0;
-
-        .hidden {
-          visibility: visible;
-          opacity: 1;
-          margin-left: 0;
-
-          transition: visibility $default-time, opacity $default-time $light-time, margin-left $default-time $light-time;
-        }
       }
     }
   }
 
   &:not(:focus-visible):focus~label{
-    box-shadow: 0 0 0 $super-light-len $uni-gray-color;
+    box-shadow: 0 0 0 $super-light-len $uni-gradiant-color;
   }
 }
 

@@ -1,10 +1,12 @@
 <template>
-  <div class="tab" :data-url="tab.url">
-    <div class="tab-content">
-      <span>{{ tab.name }}</span>
-      <div class="tab-icons">
-        <BookmarkIcon class="checked" @click="activeToggleTab" />
-        <XMarkIcon @click="removeTab" />
+  <div class="gradient-bprder width-100" :data-url="tab.url">
+    <div class="content width-100">
+      <div class="hover width-100 flex flex-center flex-between">
+        <span>{{ tab.name }}</span>
+        <div class="tab-icons">
+          <BookmarkIcon class="clicked" @click="activeToggleTab" />
+          <XMarkIcon @click="removeTab" />
+        </div>
       </div>
     </div>
   </div>
@@ -59,7 +61,7 @@ export default {
       if (element.tagName !== "svg") {
         element = event.target.parentElement;
       }
-      element.classList.toggle("checked");
+      element.classList.toggle("clicked");
     },
     ShowFavorisIfTabListEmpty() {
       let tabList = this.$store.state.tabList;
@@ -74,48 +76,10 @@ export default {
 <style scoped lang="scss">
 @import "src/style";
 
-  .tab {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    background: $gradient-color;
-    padding-bottom: $light-len;
-    width: 100%;
-    border-radius: $medium-min-len;
-
-    .tab-content {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      width: 100%;
-      background-color: $black-color;
-      border-radius: $medium-min-len;
-
-      span {
-        font-size: $medium-min-len;
-        margin: $light-len
-      }
-
-      .tab-icons {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding-right: $min-len;
-
-        svg {
-          height: $default-len;
-          margin: 0;
-          padding: 0;
-
-          color: $white-color;
-          transition: color $medium-time ease-out;
-
-          &.checked {
-            color: $uni-gray-color;
-          }
-        }
-      }
-    }
-  }
+.tab-icons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $super-light-len;
+}
 </style>

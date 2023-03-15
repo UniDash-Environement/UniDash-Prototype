@@ -1,7 +1,7 @@
 <template>
-  <main>
-    <ul>
-      <li v-for="tab in tabList" :data-show="tab.active" class="show-element">
+  <main class="width-100">
+    <ul class="width-100 height-100 flex flex-warp list-none">
+      <li v-for="tab in tabList" v-show="tab.active" class="auto-size">
         <Element :data="tab.data" />
       </li>
     </ul>
@@ -30,40 +30,12 @@
 <style scoped lang="scss">
 @import "src/style";
 
-  main {
-    width: calc(100vw - $min-len * 2);
-    height: calc(100vh - $min-len * 2);
+main {
+  overflow: scroll;
+  height: calc(100vh - $light-len * 2);
+  widows: calc(100vw - $light-len * 2);
 
-    padding: $min-len;
-    overflow: scroll;
+  padding: $light-len;
+}
 
-    ul {
-      width: 100%;
-      height: 100%;
-
-      padding: 0;
-      margin: 0;
-      list-style-type: none;
-
-      display: flex;
-      flex-wrap: wrap;
-      gap: $light-len;
-
-      li.show-element {
-        height: auto;
-        width: auto;
-        min-height: calc(50% - $min-len / 2);
-        min-width: calc(50% - $min-len / 2);
-        flex: 1;
-
-        padding: 0;
-        margin: 0;
-        display: flex;
-
-        &[data-show="false"] {
-          display: none;
-        }
-      }
-    }
-  }
 </style>

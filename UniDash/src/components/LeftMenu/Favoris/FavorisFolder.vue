@@ -1,11 +1,11 @@
 <template>
-  <div class="favoris-folder">
-    <div class="favoris-folder-content">
-      <div class="favoris-folder-label" @click="showFolder">
-        <FolderIcon class="folder-icon"/>
+  <div class="gradient-bprder width-100 flex">
+    <div class="favoris-folder content width-100 flex flex-column">
+      <div class="hover flex" @click="showFolder">
+        <FolderIcon class="n"/>
         <span>{{ favorisFolder.name }}</span>
       </div>
-      <ul class="favoris-folder-ul">
+      <ul class="favoris-folder show hidden flex flex-column">
         <FavoriElement v-for="favori in favorisFolder.list" :name="favori.name" :data="favori.data"/>
       </ul>
     </div>
@@ -23,25 +23,20 @@ export default {
   },
   methods: {
     showFolder(event) {
-      let folderItemList = event.target.parentElement.querySelector(".favoris-folder-ul");
+      let folderItemList = event.target.parentElement.querySelector("ul.favoris-folder");
 
       if (!folderItemList) {
-        folderItemList = event.target.parentElement.parentElement.parentElement.querySelector(".favoris-folder-ul");
+        folderItemList = event.target.parentElement.parentElement.parentElement.querySelector("ul.favoris-folder");
         if (event.target.parentElement.tagName === "svg") {
-          folderItemList = event.target.parentElement.parentElement.parentElement.parentElement.querySelector(".favoris-folder-ul");
+          folderItemList = event.target.parentElement.parentElement.parentElement.parentElement.querySelector("ul.favoris-folder");
         }
       }
 
-      document.querySelectorAll(".favoris-folder-ul").forEach(folder => {
-        folder.classList.remove("active-ul");
-      });
-      document.querySelectorAll(".favoris-folder-content").forEach(folder => {
-        folder.classList.remove("active-content");
+      document.querySelectorAll("ul.favoris-folder").forEach(folder => {
+        folder.classList.add("hidden");
       });
 
-      folderItemList.classList.toggle("active-ul");
-      let folderContent = folderItemList.parentElement;
-      folderContent.classList.toggle("active-content");
+      folderItemList.classList.toggle("hidden");
     }
   },
   props: {
@@ -55,80 +50,4 @@ export default {
 
 <style scoped lang="scss">
 @import "src/style";
-
-.folder-icon {
-  width: $default-len;
-  color: $white-color;
-  padding-left: 0;
-}
-
-.favoris-folder {
-  background: $gradient-color;
-  padding-bottom: $light-len;
-  width: 100%;
-  border-radius: $medium-min-len;
-
-  .favoris-folder-content {
-    width: calc(100% - $light-len * 2);
-    height: auto;
-    max-height: 20px;
-    padding: $light-len $light-len calc($light-len * 1.7) $light-len;
-
-    background-color: $black-color;
-    border-radius: $medium-min-len;
-
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-
-    transition: max-height $long-time ease-out;
-
-    .favoris-folder-label {
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      cursor: pointer;
-      padding: $super-light-len;
-
-      &:hover {
-        background-color: $black-gray-color;
-        border-radius: $min-len;
-        filter: brightness(1.25);
-      }
-
-      span {
-        user-select: none;
-        padding: 0 $light-len;
-        margin: 0;
-        font-size: $medium-min-len;
-        width: 100%;
-      }
-
-      svg {
-        padding: 0;
-        margin: 0;
-        height: 0 $default-len;
-      }
-    }
-
-    ul {
-      list-style: none;
-      height: 0;
-
-      visibility: hidden;
-      opacity: 0;
-    }
-
-    .active-ul {
-      height: auto;
-
-      visibility: visible;
-      opacity: 1;
-    }
-
-    &.active-content {
-      max-height: 1000px;
-    }
-  }
-}
 </style>

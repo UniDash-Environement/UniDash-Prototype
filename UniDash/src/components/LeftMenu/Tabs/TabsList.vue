@@ -1,6 +1,6 @@
 <template>
-  <ul class="tab-list">
-    <li v-for="tab in this.tabList"><Tab :tab="tab" /></li>
+  <ul class="tab-list width-100 height-100 flex flex-column">
+    <li class="width-100" v-for="tab in this.tabList"><Tab :tab="tab" /></li>
   </ul>
 </template>
 
@@ -26,22 +26,7 @@ export default {
 <style scoped lang="scss">
 @import "src/style";
 
-#add-tab {
-  display: none;
-}
-
 .tab-list {
-  width: 100%;
-  height: 100%;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  gap: $min-len;
-
-  li {
-    width: 100%;
-  }
+  overflow: scroll;
 }
 </style>

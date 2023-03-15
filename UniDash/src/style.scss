@@ -28,7 +28,7 @@ $black-gray-color: #252C2F;
 $gray-color: #2F393D;
 $white-color: #D9D9D9;
 $gradient-color: linear-gradient(to bottom right, #00B2FF, #8000FF);
-$uni-gray-color: hsl(248, 78%, 58%);
+$uni-gradiant-color: hsl(248, 78%, 58%);
 
 // tile
 $light-time: 0.1s;
@@ -36,6 +36,135 @@ $medium-time: 0.3s;
 $default-time: 0.5s;
 $medium-long-time: 0.7s;
 $long-time: 1s;
+
+.hover {
+  &:hover {
+    background-color: $gray-color;
+    border-radius: $min-len;
+    filter: brightness(1.25);
+  }
+}
+
+.input {
+  background-color: $black-gray-color;
+  border-radius: $min-len;
+  border: none;
+  width: calc(100% - $super-light-len * 2);
+  padding: calc($min-len - $super-light-len / 2) $super-light-len;
+  color: $white-color;
+  text-align: center;
+}
+
+.flex {
+  display: flex;
+  gap: $min-len;
+}
+
+.auto-size {
+  height: auto;
+  width: auto;
+  min-height: calc(50% - $min-len / 2);
+  min-width: calc(50% - $min-len / 2);
+  flex: 1;
+  padding: 0;
+  margin: 0;
+}
+
+.flex-warp {
+  flex-wrap: wrap;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.flex-center {
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-between {
+  justify-content: space-between;
+}
+
+.gradient-bprder {
+  background: $gradient-color;
+  border-radius: $medium-min-len;
+  padding: 0 0 $light-len 0;
+}
+
+.width-100 {
+  width: 100%;
+}
+
+.height-100 {
+  height: 100%;
+}
+
+.list-none {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+.show {
+  position: relative;
+
+  visibility: visible;
+  opacity: 1;
+}
+
+.hidden {
+  position: absolute;
+
+  height: 0;
+  width: 0;
+
+  visibility: hidden;
+  opacity: 0;
+}
+
+.padding-left {
+  padding-left: $default-len;
+  width: calc(100% - $default-len);
+}
+
+.padding {
+  padding: $light-len;
+}
+
+.content {
+  background: $black-color;
+  border-radius: $medium-min-len;
+  padding: $super-light-len;
+  width: calc(100% - $super-light-len * 2);
+}
+
+.clicked {
+  color: $uni-gradiant-color !important;
+}
+
+label, span {
+  user-select: none;
+  padding: 0;
+  margin: 0;
+  font-size: $medium-min-len;
+
+  &:hover {
+    filter: brightness(1.5);
+  }
+}
+
+svg {
+  padding-left: $min-len;
+  margin: $min-len;
+  width: $default-len;
+  color: $white-color;
+
+  &:hover {
+    filter: brightness(1.5);
+  }
+}
 
 body {
   margin: 0;
@@ -53,4 +182,12 @@ body {
 p, a, label, span, h1, h2, h3, h4, h5, h6 {
   margin: $min-len;
   padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  text-align: center;
+}
+
+p, a, label, span {
+  font-size: $medium-min-len;
 }

@@ -1,11 +1,14 @@
 <template>
-  <ul class="favoris-list">
+  <ul class="flex flex-column width-100 height-100">
     <li v-for="favoriFolder in favorisFolderList">
       <FavorisFolder :favoris-folder="favoriFolder" />
     </li>
-    <li class="favoris-folder">
-      <div class="favoris-folder-content">
-        <FolderPlusIcon class="folder-icon"></FolderPlusIcon>
+    <li class="gradient-bprder width-100">
+      <div class="content width-100">
+        <div class="hover flex flex-column flex-center" @click="addFolderShowUpdater" >
+          <FolderPlusIcon class="folder-icon show" />
+          <input type="text" name="add-folder" class="input hover show hidden" id="add-folder">
+        </div>
       </div>
     </li>
   </ul>
@@ -22,8 +25,10 @@ import favoris from '../../../settings/favoris.json' assert {type: 'json'};
 export default {
   name: "FavorisList",
   computed: {
-    favorisFolder() {
-      return favorisFolder
+  },
+  data() {
+    return {
+      addFolderShow: false
     }
   },
   components: {
@@ -35,60 +40,35 @@ export default {
     return {
       favorisFolderList: favoris.favorisFolderList
     };
+  },
+  methods: {
+    addFolderShowUpdater(event) {
+      let svg = event.target.querySelector("svg");
+      if (event.target.tagName === "svg") {
+        svg = event.target;
+      } else if (event.target.tagName === "path") {
+        svg = event.target.parentElement;
+      }
+      svg.classList.toggle("hidden");
+      let input = document.getElementById("add-folder")
+      input.classList.toggle("hidden");
+      input.focus();
+
+      let disableFocusOut = () => {
+        input.classList.toggle("hidden");
+        svg.classList.toggle("hidden");
+        input.removeEventListener("focusout", disableFocusOut);
+        input.value = "";
+      }
+
+      if (! input.classList.contains("hidden")) {
+        input.addEventListener("focusout", disableFocusOut);
+      }
+    }
   }
 }
 </script>
 
 <style scoped lang="scss">
 @import "src/style";
-
-.favoris-list {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  gap: $min-len;
-
-  li {
-    width: 100%;
-  }
-
-  .favoris-folder {
-    background: $gradient-color;
-    padding-bottom: $light-len;
-    width: 100%;
-    border-radius: $medium-min-len;
-
-    .favoris-folder-content {
-      width: calc(100% - $light-len * 2);
-      height: auto;
-      padding: $light-len;
-
-      background-color: $black-color;
-      border-radius: $medium-min-len;
-
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-
-      svg {
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-        cursor: pointer;
-        height: $default-len;
-        padding: $super-light-len;
-
-
-        &:hover {
-          background-color: $black-gray-color;
-          border-radius: $min-len;
-          filter: brightness(1.25);
-        }
-      }
-    }
-  }
-}
 </style>

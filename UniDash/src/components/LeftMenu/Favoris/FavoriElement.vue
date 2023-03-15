@@ -1,7 +1,7 @@
 <template>
-  <li class="favori-element" @click="addTab">
-    <DocumentIcon class="favori-icon" />
-    <input type="checkbox" name="favoris-checkbox" class="favoris-checkbox" hidden="hidden">
+  <li class="flex width-100 hover padding-left" @click="addTab">
+    <DocumentIcon class="" />
+    <input type="checkbox" name="favoris-checkbox" class="" hidden="hidden">
     <span>{{ name }}</span>
   </li>
 </template>
@@ -42,6 +42,7 @@ export default {
         active: true,
         id: Date.now().toString()
       };
+
       tabList.push(newTab);
       this.updateTabList(tabList);
     }
@@ -51,30 +52,4 @@ export default {
 
 <style scoped lang="scss">
 @import "src/style";
-
-.favori-element {
-  padding: $super-light-len $super-light-len $super-light-len $default-len;
-  margin-top: $light-len;
-  display: flex;
-
-  &:hover {
-    background-color: $black-gray-color;
-    border-radius: $min-len;
-    filter: brightness(1.25);
-  }
-
-  span {
-    user-select: none;
-    padding: 0 $light-len;
-    margin: 0;
-    font-size: $medium-min-len;
-  }
-
-  svg {
-    padding: 0;
-    margin: 0;
-    width: $default-len;
-    color: $white-color;
-  }
-}
 </style>
