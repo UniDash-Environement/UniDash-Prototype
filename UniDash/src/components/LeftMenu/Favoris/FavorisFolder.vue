@@ -1,9 +1,9 @@
 <template>
   <div class="favoris-folder">
     <div class="favoris-folder-content">
-      <div class="favoris-folder-label">
-        <FolderIcon class="folder-icon" @click="showFolder"/>
-        <span @click="showFolder">{{ favorisFolder.name }}</span>
+      <div class="favoris-folder-label" @click="showFolder">
+        <FolderIcon class="folder-icon"/>
+        <span>{{ favorisFolder.name }}</span>
       </div>
       <ul class="favoris-folder-ul">
         <FavoriElement v-for="favori in favorisFolder.list" :name="favori.name" :url="favori.url"/>
@@ -23,12 +23,12 @@ export default {
   },
   methods: {
     showFolder(event) {
-      let folderItemList = event.target.querySelector(".favoris-folder-ul");
+      let folderItemList = event.target.parentElement.querySelector(".favoris-folder-ul");
 
       if (!folderItemList) {
-        folderItemList = event.target.parentElement.parentElement.querySelector(".favoris-folder-ul");
+        folderItemList = event.target.parentElement.parentElement.parentElement.querySelector(".favoris-folder-ul");
         if (event.target.parentElement.tagName === "svg") {
-          folderItemList = event.target.parentElement.parentElement.parentElement.querySelector(".favoris-folder-ul");
+          folderItemList = event.target.parentElement.parentElement.parentElement.parentElement.querySelector(".favoris-folder-ul");
         }
       }
 
@@ -89,6 +89,12 @@ export default {
       justify-content: flex-start;
       cursor: pointer;
 
+      &:hover {
+        background-color: $black-gray-color;
+        border-radius: $light-len;
+        filter: brightness(1.25);
+      }
+
       span {
         user-select: none;
         padding: 0 $light-len;
@@ -105,7 +111,6 @@ export default {
     }
 
     ul {
-      margin-left: $default-len;
       list-style: none;
       height: 0;
 

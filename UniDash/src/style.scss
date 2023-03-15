@@ -4,6 +4,10 @@
   display: flex;
 }
 
+svg:hover {
+  filter: brightness(1.5);
+}
+
 ul {
   padding: 0;
   margin: 0;

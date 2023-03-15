@@ -53,6 +53,15 @@ export default {
 @import "src/style";
 
 .favori-element {
+  padding: 0 0 0 $default-len;
+  margin-top: $light-len;
+
+  &:hover {
+    background-color: $black-gray-color;
+    border-radius: $light-len;
+    filter: brightness(1.25);
+  }
+
   span {
     user-select: none;
     padding: 0 $light-len;
