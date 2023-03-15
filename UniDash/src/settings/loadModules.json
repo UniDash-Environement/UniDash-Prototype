@@ -1,0 +1,8 @@
+{
+  "loadModules": [
+    {
+      "name": "test",
+      "path": "test.js"
+    }
+  ]
+}
