@@ -1,1 +1,7 @@
-console.log('test.js loaded');
+import MyComponent from './test.vue'
+
+export default {
+    install: (app, options) => {
+        app.component("Test", MyComponent)
+    }
+}

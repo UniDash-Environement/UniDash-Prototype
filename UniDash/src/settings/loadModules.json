@@ -1,8 +1,8 @@
 {
   "loadModules": [
     {
-      "name": "test",
-      "path": "test.js"
+      "enabled": true,
+      "path": "test"
     }
   ]
 }

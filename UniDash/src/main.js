@@ -5,11 +5,21 @@ import Vuex from 'vuex';
 import parameters from './settings/parameters.json' assert {type: 'json'};
 import loadModules from './settings/loadModules.json' assert {type: 'json'};
 
+let modulesList = [];
+if (loadModules.loadModules != null) {
+    for (const module of loadModules.loadModules) {
+        if (module != null && module.path != null && module.enabled === true) {
+            let moduleTemp = import("./modules/" + module.path);
+            modulesList.push(moduleTemp);
+        }
+    }
+}
 
 const store = new Vuex.Store({
     state() {
         return {
             tabList: [],
+            modulesList: modulesList,
         }
     },
     mutations: {
@@ -19,6 +29,14 @@ const store = new Vuex.Store({
     }
 });
 
-createApp(App)
-    .use(store)
-    .mount('#app')
+let app = createApp(App)
+app.use(store)
+app.mount('#app')
+
+if (modulesList.length > 0) {
+    for (const moduleTemp of modulesList) {
+        moduleTemp.then((module) => {
+            app.use(module.default);
+        });
+    }
+}
