@@ -9,7 +9,7 @@ let modulesList = [];
 if (loadModules.loadModules != null) {
     for (const module of loadModules.loadModules) {
         if (module != null && module.path != null && module.enabled) {
-            let moduleTemp = import(/* @vite-ignore */"./modules/loader/" + module.path);
+            let moduleTemp = import(/* @vite-ignore */`./modules/loader/${module.path}.js`);
             modulesList.push(moduleTemp);
         }
     }
