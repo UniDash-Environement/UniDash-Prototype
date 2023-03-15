@@ -53,12 +53,13 @@ export default {
 @import "src/style";
 
 .favori-element {
-  padding: 0 0 0 $default-len;
+  padding: $super-light-len $super-light-len $super-light-len $default-len;
   margin-top: $light-len;
+  display: flex;
 
   &:hover {
     background-color: $black-gray-color;
-    border-radius: $light-len;
+    border-radius: $min-len;
     filter: brightness(1.25);
   }
 

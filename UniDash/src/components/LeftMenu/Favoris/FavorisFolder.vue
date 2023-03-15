@@ -72,7 +72,7 @@ export default {
     width: calc(100% - $light-len * 2);
     height: auto;
     max-height: 20px;
-    padding: $light-len;
+    padding: $light-len $light-len calc($light-len * 1.7) $light-len;
 
     background-color: $black-color;
     border-radius: $medium-min-len;
@@ -88,10 +88,11 @@ export default {
       align-items: center;
       justify-content: flex-start;
       cursor: pointer;
+      padding: $super-light-len;
 
       &:hover {
         background-color: $black-gray-color;
-        border-radius: $light-len;
+        border-radius: $min-len;
         filter: brightness(1.25);
       }
 
