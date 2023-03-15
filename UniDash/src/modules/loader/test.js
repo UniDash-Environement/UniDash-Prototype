@@ -1,4 +1,4 @@
-import MyComponent from './test.vue'
+import MyComponent from '../vue/test.vue'
 
 export default {
     install: (app, options) => {
