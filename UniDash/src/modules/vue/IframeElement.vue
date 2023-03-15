@@ -30,9 +30,9 @@ export default {
   watch: {
     isDarkTheme(value) {
       if (value) {
-        this.$refs.myIframe.classList.add('my-iframe-dark');
+        this.$refs.myIframe.classList.add('iframe-dark');
       } else {
-        this.$refs.myIframe.classList.remove('my-iframe-dark');
+        this.$refs.myIframe.classList.remove('iframe-dark');
       }
     },
   },
