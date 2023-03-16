@@ -1,15 +1,11 @@
 <template>
-  <div class="gradient-bprder width-100" :data-url="tab.url">
-    <div class="content width-100">
-      <div class="hover width-100 flex flex-center flex-between">
-        <span>{{ tab.name }}</span>
-        <div class="tab-icons">
-          <BookmarkIcon class="clicked" @click="activeToggleTab" />
-          <XMarkIcon @click="removeTab" />
-        </div>
-      </div>
+  <BoxHover>
+    <span>{{ tab.name }}</span>
+    <div class="tab-icons">
+      <BookmarkIcon class="clicked" @click="activeToggleTab" />
+      <XMarkIcon @click="removeTab" />
     </div>
-  </div>
+  </BoxHover>
 </template>
 
 <script>
@@ -17,10 +13,12 @@ import { XMarkIcon } from "@heroicons/vue/20/solid";
 import { BookmarkIcon } from "@heroicons/vue/20/solid";
 import {useStore} from "vuex";
 import {computed} from "vue";
+import BoxHover from "../../Custom/BoxHover.vue";
 
 export default {
   name: "Tab",
   components: {
+    BoxHover,
     XMarkIcon,
     BookmarkIcon
   },

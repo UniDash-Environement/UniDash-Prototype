@@ -5,7 +5,7 @@
     </li>
     <li class="gradient-bprder width-100">
       <div class="content width-100">
-        <div ref="add-folder" class="hover flex flex-column flex-center" @click="addFolderShowUpdater" >
+        <div ref="add-folder" class="hover flex flex-column flex-center show" @click="addFolderShowUpdater" >
           <FolderPlusIcon class="folder-icon show" />
           <input type="text" name="add-folder" class="input hover show hidden">
         </div>
@@ -69,5 +69,9 @@ export default {
 
 .folder-icon{
   height: $default-len !important;
+}
+
+input.input[type="text"][name="add-folder"] {
+  width: calc(100% - 2 * $min-len);
 }
 </style>

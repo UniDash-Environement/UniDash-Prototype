@@ -9,10 +9,12 @@
   import favorisList from "./Favoris/FavorisList.vue";
   import {useStore} from "vuex";
   import {computed} from "vue";
+  import BoxHover from "../Custom/BoxHover.vue";
 
   export default {
     name: "Menu",
     components: {
+      BoxHover,
       TabsList,
       FavorisList,
       Tab,
@@ -84,19 +86,15 @@
       </div>
 
       <div class="padding">
-        <div class="gradient-bprder width-100">
-          <div class="content width-100">
-            <div class="hover flex flex-center flex-between width-100">
-              <ChevronLeftIcon class="chevron" />
-              <div class="flex flex-center flex-between width-100">
-                <StarIcon ref="favoris-icon" class="clicked" @click="showEelement('favoris-icon', 'favoris-content')" />
-                <span>Server 1</span>
-                <Cog6ToothIcon ref="settings-icon" @click="showEelement('settings-icon', 'settings-content')" />
-              </div>
-              <ChevronRightIcon class="chevron" />
-            </div>
+        <BoxHover>
+          <ChevronLeftIcon class="chevron" />
+          <div class="flex flex-center flex-between width-100">
+            <StarIcon ref="favoris-icon" class="clicked" @click="showEelement('favoris-icon', 'favoris-content')" />
+            <span>Server 1</span>
+            <Cog6ToothIcon ref="settings-icon" @click="showEelement('settings-icon', 'settings-content')" />
           </div>
-        </div>
+          <ChevronRightIcon class="chevron" />
+        </BoxHover>
       </div>
     </div>
   </nav>

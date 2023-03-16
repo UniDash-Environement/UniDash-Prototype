@@ -1,23 +1,23 @@
 <template>
-  <div class="gradient-bprder width-100 flex">
-    <div class="favoris-folder content width-100 flex flex-column">
-      <div class="hover flex" @click="showFolder">
-        <FolderIcon class="n"/>
-        <span>{{ favorisFolder.name }}</span>
-      </div>
-      <ul ref="favoris-folder" class="show hidden flex flex-column">
-        <FavoriElement v-for="favori in favorisFolder.list" :name="favori.name" :data="favori.data"/>
-      </ul>
+  <Box>
+    <div class="hover flex" @click="showFolder">
+      <FolderIcon class="n"/>
+      <span>{{ favorisFolder.name }}</span>
     </div>
-  </div>
+    <ul ref="favoris-folder" class="show hidden flex flex-column">
+      <FavoriElement v-for="favori in favorisFolder.list" :name="favori.name" :data="favori.data"/>
+    </ul>
+  </Box>
 </template>
 
 <script>
 import { FolderIcon } from "@heroicons/vue/24/solid";
 import FavoriElement from "./FavoriElement.vue";
+import Box from "../../Custom/Box.vue";
 export default {
   name: "FavorisFolder",
   components: {
+    Box,
     FavoriElement,
     FolderIcon
   },
