@@ -64,8 +64,8 @@ $long-time: 1s;
 .auto-size {
   height: auto;
   width: auto;
-  min-height: calc(50% - $min-len / 2);
-  min-width: calc(50% - $min-len / 2);
+  min-height: calc(50% - $super-light-len);
+  min-width: calc(50% - $super-light-len);
   flex: 1;
   padding: 0;
   margin: 0;

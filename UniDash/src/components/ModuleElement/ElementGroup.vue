@@ -32,13 +32,13 @@
 
 main {
   overflow: scroll;
-  height: calc(100vh - $light-len * 2);
-  widows: calc(100vw - $light-len * 2);
+  height: calc(100vh - $super-light-len * 2);
+  widows: calc(100vw - $super-light-len * 2);
 
   padding: $light-len;
 
-  #element-list {
-    gap: $super-light-len;
+  #element-list li {
+    margin: calc($super-light-len / 2);
   }
 }
 
