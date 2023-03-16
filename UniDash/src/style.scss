@@ -110,9 +110,6 @@ $long-time: 1s;
 }
 
 .show {
-  height: auto;
-  width: auto;
-
   visibility: visible;
   opacity: 1;
   transition: opacity $long-time;
@@ -123,6 +120,8 @@ $long-time: 1s;
   width: 0 !important;
   min-height: 0 !important;
   min-width: 0 !important;
+  max-height: 0 !important;
+  max-width: 0 !important;
 
   padding: 0 !important;
   margin: 0 !important;
