@@ -1,6 +1,6 @@
 <template>
   <main class="width-100">
-    <ul class="width-100 height-100 flex flex-warp list-none">
+    <ul id="element-list" class="width-100 height-100 flex flex-warp list-none">
       <li v-for="tab in tabList" v-show="tab.active" class="auto-size">
         <Element :data="tab.data" />
       </li>
@@ -36,6 +36,10 @@ main {
   widows: calc(100vw - $light-len * 2);
 
   padding: $light-len;
+
+  #element-list {
+    gap: $super-light-len;
+  }
 }
 
 </style>
