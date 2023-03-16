@@ -3,13 +3,13 @@
     <li v-for="favoriFolder in favorisFolderList">
       <FavorisFolder :favoris-folder="favoriFolder" />
     </li>
-    <li class="gradient-bprder width-100">
-      <div class="content width-100">
+    <li>
+      <Box>
         <div ref="add-folder" class="hover flex flex-column flex-center show" @click="addFolderShowUpdater" >
           <FolderPlusIcon class="folder-icon show" />
-          <input type="text" name="add-folder" class="input hover show hidden">
+          <input type="text" @keydown.enter="this.addFolder" name="add-folder" class="input hover show hidden">
         </div>
-      </div>
+      </Box>
     </li>
   </ul>
 </template>
@@ -17,10 +17,12 @@
 <script>
 import FavorisFolder from "./FavorisFolder.vue";
 import FavoriElement from "./FavoriElement.vue";
-import favorisFolder from "./FavorisFolder.vue";
 import { FolderPlusIcon } from "@heroicons/vue/24/solid";
+import Box from "../../Custom/Box.vue";
 
 import favoris from '../../../settings/favoris.json' assert {type: 'json'};
+import {useStore} from "vuex";
+import {computed} from "vue";
 
 export default {
   name: "FavorisList",
@@ -34,30 +36,58 @@ export default {
   components: {
     FavorisFolder,
     FavoriElement,
-    FolderPlusIcon
+    FolderPlusIcon,
+    Box
   },
   setup() {
+    const store = useStore();
+
+    const favorisFolderList = computed(() => store.state.favorisFolderList);
+    function updateFavorisFolderList(newList) {
+      store.commit('updateFavorisFolderList', newList);
+    }
+
     return {
-      favorisFolderList: favoris.favorisFolderList
+      updateFavorisFolderList,
+      favorisFolderList
     };
   },
   methods: {
-    addFolderShowUpdater(event) {
+    disableFocusOut() {
+      let input = this.$refs["add-folder"].querySelector("input");
+      let svg = this.$refs["add-folder"].querySelector("svg");
+
+      input.classList.add("hidden");
+      svg.classList.remove("hidden");
+      input.value = "";
+      input.removeEventListener("focusout", this.disableFocusOut);
+    },
+    addFolderShowUpdater() {
       let input = this.$refs["add-folder"].querySelector("input");
       let svg = this.$refs["add-folder"].querySelector("svg");
       svg.classList.add("hidden");
       input.classList.remove("hidden");
       input.focus();
 
-      let disableFocusOut = () => {
-        input.classList.add("hidden");
-        svg.classList.remove("hidden");
-        input.value = "";
-        input.removeEventListener("focusout", disableFocusOut);
-      }
-
       if (! input.classList.contains("hidden")) {
-        input.addEventListener("focusout", disableFocusOut);
+        input.addEventListener("focusout", this.disableFocusOut);
+      }
+    },
+    addFolder(event) {
+      let input = event.target;
+      let favorisFolderList = this.favorisFolderList;
+
+      if (input.value !== "") {
+        let newFolder = {
+          "id": Date.now().toString(),
+          "name": input.value,
+          "list": []
+        }
+
+        favorisFolderList.push(newFolder);
+        this.updateFavorisFolderList(favorisFolderList);
+
+        this.disableFocusOut();
       }
     }
   }
@@ -68,7 +98,7 @@ export default {
 @import "src/style";
 
 .folder-icon{
-  height: $default-len !important;
+  height: $default-len;
 }
 
 input.input[type="text"][name="add-folder"] {

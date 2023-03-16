@@ -4,6 +4,7 @@ import App from './App.vue';
 import Vuex from 'vuex';
 import parameters from './settings/parameters.json' assert {type: 'json'};
 import loadModules from './settings/loadModules.json' assert {type: 'json'};
+import favorisList from "./settings/favoris.json" assert {type: "json"};
 
 let modulesList = [];
 if (loadModules.loadModules != null) {
@@ -19,11 +20,15 @@ const store = new Vuex.Store({
     state() {
         return {
             tabList: [],
+            favorisFolderList: favorisList.favorisFolderList,
         }
     },
     mutations: {
         updateTabList(state, newList) {
             state.list = newList;
+        },
+        updateFavorisFolderList(state, newList) {
+            state.favorisFolderList = newList;
         }
     }
 });
