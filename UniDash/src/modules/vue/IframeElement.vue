@@ -47,7 +47,7 @@ export default {
   height: 100%;
 
   border-radius: $default-len;
-  background: $black-gray-color;
+  background: $black-color;
 
   position: relative;
 
