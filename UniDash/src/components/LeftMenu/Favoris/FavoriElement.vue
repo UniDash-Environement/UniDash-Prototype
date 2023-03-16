@@ -36,11 +36,12 @@ export default {
   methods: {
     addTab() {
       let tabList = this.$store.state.tabList;
+      let id = Date.now().toString();
       let newTab = {
         name: this.name,
         data: this.data,
         active: "",
-        id: Date.now().toString()
+        id: id
       };
 
       tabList.push(newTab);

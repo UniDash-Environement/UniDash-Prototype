@@ -16,6 +16,7 @@
 import { XMarkIcon } from "@heroicons/vue/20/solid";
 import { BookmarkIcon } from "@heroicons/vue/20/solid";
 import {useStore} from "vuex";
+import {computed} from "vue";
 
 export default {
   name: "Tab",
@@ -41,13 +42,15 @@ export default {
   methods: {
     removeTab() {
       let tabList = this.$store.state.tabList;
+
       for (let tabElement of tabList) {
         if (tabElement.id === this.tab.id) {
-          tabList.splice(tabElement, 1);
+          tabList.splice(tabList.indexOf(tabElement), 1);
+          console.log(tabElement.id + "\n" + this.tab.id + "\n");
         }
       }
+
       this.updateTabList(tabList);
-      this.ShowFavorisIfTabListEmpty()
     },
     activeToggleTab(event) {
       let tabList = this.$store.state.tabList;
@@ -66,12 +69,6 @@ export default {
         element = event.target.parentElement;
       }
       element.classList.toggle("clicked");
-    },
-    ShowFavorisIfTabListEmpty() {
-      let tabList = this.$store.state.tabList;
-      if (tabList.length === 0) {
-        document.getElementById("show-favoris").click();
-      }
     }
   }
 }
