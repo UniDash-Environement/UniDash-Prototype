@@ -80,6 +80,5 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: $super-light-len;
 }
 </style>
