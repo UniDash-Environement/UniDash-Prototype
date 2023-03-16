@@ -39,7 +39,7 @@ export default {
       let newTab = {
         name: this.name,
         data: this.data,
-        active: true,
+        active: "",
         id: Date.now().toString()
       };
 

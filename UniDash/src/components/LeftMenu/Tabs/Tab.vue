@@ -53,7 +53,11 @@ export default {
       let tabList = this.$store.state.tabList;
       for (let tabElement of tabList) {
         if (tabElement.id === this.tab.id) {
-          tabElement.active = !tabElement.active;
+          if (tabElement.active === "") {
+            tabElement.active = "hidden";
+          } else {
+            tabElement.active = "";
+          }
         }
       }
       this.updateTabList(tabList);

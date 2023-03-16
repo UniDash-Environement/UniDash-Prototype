@@ -1,8 +1,11 @@
 <script>
   import Tab from "./Tabs/Tab.vue";
-  import Slider from "./Slider.vue";
   import FavorisList from "./Favoris/FavorisList.vue";
   import TabsList from "./Tabs/TabsList.vue";
+  import { ChevronLeftIcon } from "@heroicons/vue/20/solid";
+  import { ChevronRightIcon } from "@heroicons/vue/20/solid";
+  import { StarIcon } from "@heroicons/vue/20/solid";
+  import { Cog6ToothIcon } from "@heroicons/vue/20/solid";
 
   export default {
     name: "Menu",
@@ -10,15 +13,40 @@
       TabsList,
       FavorisList,
       Tab,
-      Slider
+      ChevronLeftIcon,
+      ChevronRightIcon,
+      StarIcon,
+      Cog6ToothIcon
     },
     methods: {
-      ifShowUpdater(event) {
-        let checkboxList = document.querySelectorAll(".show-checkbox-list>input[type='checkbox']");
-        checkboxList.forEach(checkbox => {
-          checkbox.checked = false;
-        });
-        event.target.checked = true;
+      showEelement(iconId, showElementId) {
+        let showSettings = this.$refs["settings-content"];
+        let showFavoris = this.$refs["favoris-content"];
+        let showTab = this.$refs["tab-content"];
+
+        let settingsIcon = this.$refs["settings-icon"];
+        let favorisIcon = this.$refs["favoris-icon"];
+
+        let showElement = this.$refs[showElementId];
+        let icon = this.$refs[iconId];
+
+        const hiddenAll = () => {
+          showSettings.classList.add("hidden");
+          showFavoris.classList.add("hidden");
+          showTab.classList.add("hidden");
+
+          settingsIcon.classList.remove("clicked");
+          favorisIcon.classList.remove("clicked");
+        }
+
+        if (showElement.classList.contains("hidden")) {
+          hiddenAll();
+          showElement.classList.remove("hidden");
+          icon.classList.add("clicked");
+        } else {
+          hiddenAll();
+          showTab.classList.remove("hidden");
+        }
       }
     }
   }
@@ -33,25 +61,43 @@
       <h1 class="title">UniDash</h1>
 
       <div id="menu-lists" class="show-checkbox-list flex flex-column width-100 height-100 padding">
-        <div class="width-100 height-100 show hidden" id="tab-content">
+        <div class="width-100 height-100 show hidden" ref="tab-content">
           <TabsList />
         </div>
 
-        <div class="width-100 height-100 show" id="favoris-content">
+        <div class="width-100 height-100 show" ref="favoris-content">
           <FavorisList />
         </div>
 
-        <div class="width-100 height-100 show hidden" id="settings-content">
+        <div class="width-100 height-100 show hidden" ref="settings-content">
         </div>
       </div>
 
-      <Slider></Slider>
+      <div class="padding">
+        <div class="gradient-bprder width-100">
+          <div class="content width-100">
+            <div class="hover flex flex-center flex-between width-100">
+              <ChevronLeftIcon class="chevron" />
+              <div class="flex flex-center flex-between width-100">
+                <StarIcon ref="favoris-icon" class="clicked" @click="showEelement('favoris-icon', 'favoris-content')" />
+                <span>Server 1</span>
+                <Cog6ToothIcon ref="settings-icon" @click="showEelement('settings-icon', 'settings-content')" />
+              </div>
+              <ChevronRightIcon class="chevron" />
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </nav>
 </template>
 
 <style scoped lang="scss">
 @import "src/style";
+
+.chevron {
+  width: $max-len;
+}
 
 .left-menu-background-border {
   height: 100vh;
@@ -60,11 +106,16 @@
 
   .left-menu-background {
     background-color: $gray-color;
+    border-radius: 0 $default-len $default-len 0;
 
     #menu-lists {
       overflow: scroll;
     }
   }
+}
+
+.padding .gradient-bprder .content {
+  width: 100%;
 }
 
 .menu-hamburger {

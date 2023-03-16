@@ -42,6 +42,8 @@ $long-time: 1s;
     background-color: $gray-color;
     border-radius: $min-len;
     filter: brightness(1.25);
+    
+    transition: color $medium-time ease-in-out;
   }
 }
 
@@ -110,8 +112,12 @@ $long-time: 1s;
 .show {
   position: relative;
 
+  height: auto;
+  width: auto;
+
   visibility: visible;
   opacity: 1;
+  transition: opacity $long-time;
 }
 
 .hidden {
@@ -122,6 +128,7 @@ $long-time: 1s;
 
   visibility: hidden;
   opacity: 0;
+  transition: none;
 }
 
 .padding-left {
@@ -149,21 +156,30 @@ label, span {
   padding: 0;
   margin: 0;
   font-size: $medium-min-len;
+  text-wrap: none;
+}
+
+
+svg, span, label {
+  filter: none;
+  color: $white-color;
+  transition: color $medium-time ease-in-out;
 
   &:hover {
     filter: brightness(1.5);
+  }
+
+  &.clicked {
+    color: $uni-gradiant-color;
+    transition: color $medium-time ease-in-out;
   }
 }
 
 svg {
   padding-left: $min-len;
   margin: $min-len;
-  width: $default-len;
+  height: $default-len;
   color: $white-color;
-
-  &:hover {
-    filter: brightness(1.5);
-  }
 }
 
 body {

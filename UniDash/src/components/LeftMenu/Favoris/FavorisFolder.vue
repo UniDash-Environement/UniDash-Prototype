@@ -5,7 +5,7 @@
         <FolderIcon class="n"/>
         <span>{{ favorisFolder.name }}</span>
       </div>
-      <ul class="favoris-folder show hidden flex flex-column">
+      <ul ref="favoris-folder" class="show hidden flex flex-column">
         <FavoriElement v-for="favori in favorisFolder.list" :name="favori.name" :data="favori.data"/>
       </ul>
     </div>
@@ -23,19 +23,7 @@ export default {
   },
   methods: {
     showFolder(event) {
-      let folderItemList = event.target.parentElement.querySelector("ul.favoris-folder");
-
-      if (!folderItemList) {
-        folderItemList = event.target.parentElement.parentElement.parentElement.querySelector("ul.favoris-folder");
-        if (event.target.parentElement.tagName === "svg") {
-          folderItemList = event.target.parentElement.parentElement.parentElement.parentElement.querySelector("ul.favoris-folder");
-        }
-      }
-
-      document.querySelectorAll("ul.favoris-folder").forEach(folder => {
-        folder.classList.add("hidden");
-      });
-
+      let folderItemList = this.$refs["favoris-folder"];
       folderItemList.classList.toggle("hidden");
     }
   },

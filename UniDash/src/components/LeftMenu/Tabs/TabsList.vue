@@ -1,6 +1,6 @@
 <template>
   <ul class="tab-list width-100 height-100 flex flex-column">
-    <li class="width-100" v-for="tab in this.tabList"><Tab :tab="tab" /></li>
+    <li class="width-100" v-for="tab in this.tabList" :key="tab.id"><Tab :tab="tab" /></li>
   </ul>
 </template>
 

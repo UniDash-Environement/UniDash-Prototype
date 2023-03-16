@@ -5,9 +5,9 @@
     </li>
     <li class="gradient-bprder width-100">
       <div class="content width-100">
-        <div class="hover flex flex-column flex-center" @click="addFolderShowUpdater" >
+        <div ref="add-folder" class="hover flex flex-column flex-center" @click="addFolderShowUpdater" >
           <FolderPlusIcon class="folder-icon show" />
-          <input type="text" name="add-folder" class="input hover show hidden" id="add-folder">
+          <input type="text" name="add-folder" class="input hover show hidden">
         </div>
       </div>
     </li>
@@ -43,22 +43,17 @@ export default {
   },
   methods: {
     addFolderShowUpdater(event) {
-      let svg = event.target.querySelector("svg");
-      if (event.target.tagName === "svg") {
-        svg = event.target;
-      } else if (event.target.tagName === "path") {
-        svg = event.target.parentElement;
-      }
-      svg.classList.toggle("hidden");
-      let input = document.getElementById("add-folder")
-      input.classList.toggle("hidden");
+      let input = this.$refs["add-folder"].querySelector("input");
+      let svg = this.$refs["add-folder"].querySelector("svg");
+      svg.classList.add("hidden");
+      input.classList.remove("hidden");
       input.focus();
 
       let disableFocusOut = () => {
-        input.classList.toggle("hidden");
-        svg.classList.toggle("hidden");
-        input.removeEventListener("focusout", disableFocusOut);
+        input.classList.add("hidden");
+        svg.classList.remove("hidden");
         input.value = "";
+        input.removeEventListener("focusout", disableFocusOut);
       }
 
       if (! input.classList.contains("hidden")) {
@@ -71,4 +66,8 @@ export default {
 
 <style scoped lang="scss">
 @import "src/style";
+
+.folder-icon{
+  height: $default-len !important;
+}
 </style>

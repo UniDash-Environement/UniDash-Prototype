@@ -54,7 +54,7 @@ export default {
   iframe {
     width: calc(100% - $super-light-len * 2);
     height: calc(100% - $super-light-len * 2);
-    margin: 0.2rem;
+    margin: $super-light-len;
 
     border: none;
     border-radius: $default-len;
@@ -69,7 +69,7 @@ export default {
   }
 
   .iframe-dark {
-    filter: hue-rotate(180deg) invert(0.9) saturate(1.2);
+    filter: hue-rotate(180deg) invert(1) saturate(1.2);
     transition: filter $medium-time ease-in-out;
   }
 
