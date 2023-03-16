@@ -112,7 +112,7 @@ $long-time: 1s;
 .show {
   visibility: visible;
   opacity: 1;
-  transition: opacity $long-time;
+  transition: opacity $medium-time;
 }
 
 .hidden, .hidden * {
@@ -128,7 +128,6 @@ $long-time: 1s;
 
   visibility: hidden !important;
   opacity: 0 !important;
-  transition: none !important;
 }
 
 .padding-left {
