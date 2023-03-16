@@ -23,6 +23,18 @@
       StarIcon,
       Cog6ToothIcon
     },
+    setup() {
+      const store = useStore();
+      const tabList = computed(() => store.state.tabList);
+      return {
+        tabList
+      };
+    },
+    data() {
+      return {
+        toggleMenu: true
+      }
+    },
     methods: {
       showEelement(iconId, showElementId) {
         let showSettings = this.$refs["settings-content"];
@@ -54,25 +66,28 @@
         }
       }
     },
-    setup() {
-      const store = useStore();
-      const tabList = computed(() => store.state.tabList);
-      return {
-        tabList
-      };
-    },
+    watch: {
+      toggleMenu() {
+        this.$refs["menu-lists"].classList.toggle("show");
+        this.$refs["title"].classList.toggle("hidden");
+        this.$refs["tab-content"].classList.toggle("hidden");
+        this.$refs["favoris-content"].classList.toggle("hidden");
+        this.$refs["settings-content"].classList.toggle("hidden");
+        this.$refs["slider"].classList.toggle("hidden");
+      }
+    }
   }
 </script>
 
 <template>
-  <input ref="menu-hamburger-button" class="menu-hamburger" type="checkbox" id="show-menu-button" tabindex="1" checked>
+  <input v-model="toggleMenu" ref="menu-hamburger-button" class="menu-hamburger" type="checkbox" id="show-menu-button">
   <label class="icon-burger" for="show-menu-button" aria-label="Menu"><span></span></label>
 
   <nav class="left-menu-background-border flex flex-column gradient-bprder">
-    <div class="left-menu-background flex flex-column height-100 width-100 content">
-      <h1 class="title">UniDash</h1>
+    <div class="left-menu-background flex flex-column flex-g height-100 width-100 content">
+      <h1 ref="title" class="title">UniDash</h1>
 
-      <div id="menu-lists" class="show-checkbox-list flex flex-column width-100 height-100 padding">
+      <div ref="menu-lists" class="show-checkbox-list flex flex-column width-100 height-100 padding">
         <div class="width-100 height-100 show hidden" ref="tab-content">
           <TabsList />
         </div>
@@ -85,7 +100,7 @@
         </div>
       </div>
 
-      <div class="padding">
+      <div ref="slider" class="padding">
         <BoxHover>
           <ChevronLeftIcon class="chevron" />
           <div class="flex flex-center flex-between width-100">
@@ -111,10 +126,13 @@
   height: 100vh;
   width: 20rem;
   padding: 0;
+  border-radius: 0;
+  margin: 0;
 
   .left-menu-background {
     background-color: $gray-color;
-    border-radius: 0 $default-len $default-len 0;
+    border-radius: 0;
+    width: calc(100% - $light-len);
 
     #menu-lists {
       overflow: scroll;
@@ -141,14 +159,14 @@
     left: $min-len;
 
     cursor: pointer;
-    background: $white-color;
+    background: $black-color;
     border-radius: $medium-min-len;
 
     span {
       width: 100%;
       height: $super-light-len;
 
-      background: $gradient-color;
+      background: $uni-gradiant-color;
       position: relative;
 
       &::before {
@@ -164,7 +182,7 @@
         height: inherit;
 
         position: absolute;
-        background: $gradient-color;
+        background: $uni-gradiant-color;
         content: "";
       }
     }
@@ -189,7 +207,7 @@
 
     &~ {
       nav {
-        margin-left: 0;
+        margin-left: 0 !important;
       }
     }
   }
@@ -200,7 +218,7 @@
 }
 
 nav {
-  margin-left: -14.8rem;
+  margin-left: -14.7rem !important;
   transition: margin-left $default-time;
 
   ul {
