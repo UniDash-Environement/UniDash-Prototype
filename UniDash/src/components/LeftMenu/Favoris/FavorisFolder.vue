@@ -4,7 +4,7 @@
       <FolderIcon class="n"/>
       <span>{{ favorisFolder.name }}</span>
     </div>
-    <ul ref="favoris-folder" class="show hidden flex flex-column">
+    <ul ref="favoris-folder" class="show hidden flex flex-column list-none">
       <FavoriElement v-for="favori in favorisFolder.list" :name="favori.name" :data="favori.data"/>
       <li>
         <div ref="add-favori" class="flex width-100 hover" @click="addFavoriShowUpdater" >

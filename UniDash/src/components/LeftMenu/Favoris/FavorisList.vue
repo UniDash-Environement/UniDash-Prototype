@@ -1,5 +1,5 @@
 <template>
-  <ul class="flex flex-column width-100 height-100">
+  <ul class="flex list-none flex-column width-100 height-100">
     <li v-for="favoriFolder in favorisFolderList">
       <FavorisFolder :favoris-folder="favoriFolder" />
     </li>
