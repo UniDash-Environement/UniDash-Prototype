@@ -83,7 +83,7 @@
   <input v-model="toggleMenu" ref="menu-hamburger-button" class="menu-hamburger" type="checkbox" id="show-menu-button">
   <label class="icon-burger" for="show-menu-button" aria-label="Menu"><span></span></label>
 
-  <nav class="left-menu-background-border flex flex-column gradient-bprder">
+  <nav class="left-menu-background-border flex flex-column gradient-border">
     <div class="left-menu-background flex flex-column flex-g height-100 width-100 content">
       <h1 ref="title" class="title">UniDash</h1>
 
@@ -144,7 +144,7 @@
   }
 }
 
-.padding .gradient-bprder .content {
+.padding .gradient-border .content {
   width: 100%;
 }
 

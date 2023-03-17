@@ -1,6 +1,6 @@
 <template>
   <div class="mask-bg flex flex-center">
-    <div class="add-favori-form gradient-bprder flex">
+    <div class="add-favori-form gradient-border flex">
       <div class="content width-100 flex flex-column">
         <ul class="width-100 height-100 list-none" ref="input-list">
           <li>
@@ -26,8 +26,8 @@
         </ul>
         <Box>
           <div class="flex add-close-button">
-            <button class="input width-100 hover" @click="addFavoris">Add</button>
             <button class="input width-100 hover" @click="addFavorisClose">Close</button>
+            <button class="input width-100 hover" @click="addFavoris">Add</button>
           </div>
         </Box>
       </div>
