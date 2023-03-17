@@ -101,7 +101,7 @@
       </div>
 
       <div ref="slider" class="padding">
-        <BoxHover>
+        <BoxHover class="slider">
           <ChevronLeftIcon class="chevron" />
           <div class="flex flex-center flex-between width-100">
             <StarIcon ref="favoris-icon" class="clicked" @click="showEelement('favoris-icon', 'favoris-content')" />
@@ -136,6 +136,10 @@
 
     #menu-lists {
       overflow: scroll;
+    }
+
+    .slider {
+      margin: 0;
     }
   }
 }
