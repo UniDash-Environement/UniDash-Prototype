@@ -44,7 +44,6 @@ export default {
       for (let tabElement of tabList) {
         if (tabElement.id === this.tab.id) {
           tabList.splice(tabList.indexOf(tabElement), 1);
-          console.log(tabElement.id + "\n" + this.tab.id + "\n");
         }
       }
 

@@ -2,7 +2,19 @@
   "loadModules": [
     {
       "enabled": true,
-      "path": "iframeElement"
+      "path": "iframeElement",
+      "vuePath": "IframeElement",
+      "name": "Iframe",
+      "forms": {
+        "url": {
+          "label": "url",
+          "element": "input",
+          "type": "text",
+          "value": "http://www.example.com",
+          "required": true,
+          "hidden": false
+        }
+      }
     }
   ]
 }

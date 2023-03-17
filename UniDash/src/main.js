@@ -21,6 +21,7 @@ const store = new Vuex.Store({
         return {
             tabList: [],
             favorisFolderList: favorisList.favorisFolderList,
+            loadModules: loadModules.loadModules,
         }
     },
     mutations: {
