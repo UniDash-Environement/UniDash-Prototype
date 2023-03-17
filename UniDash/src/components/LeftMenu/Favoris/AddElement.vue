@@ -2,34 +2,30 @@
   <div class="mask-bg flex flex-center">
     <div class="add-favori-form gradient-border flex">
       <div class="content width-100 flex flex-column">
-        <ul class="width-100 height-100 list-none" ref="input-list">
-          <li>
+        <form @submit="addFavoris" class="flex flex-column flex-between width-100 height-100 list-none" ref="input-list">
+          <div>
             <Box>
               <label>NAME :</label>
               <input class="input hover" ref="favoriName" type="text">
             </Box>
-          </li>
-          <li>
             <Box>
               <label>MODULE :</label>
               <select v-bind:value="moduleName" v-model="moduleName" class="input width-100">
                 <option class="input" v-for="module in loadModules" :value="module.vuePath" :key="module.vuePath">{{ module.name }}</option>
               </select>
             </Box>
-          </li>
-          <li v-for="(input, index) in modules.forms" :key="index" v-show="!input.hidden">
-            <Box>
+            <Box v-for="(input, index) in modules.forms" :key="index" v-show="!input.hidden">
               <label>{{ input.label.toUpperCase() }} :</label>
               <input class="input hover" :class="input.label" :type="input.type" :value="input.value">
             </Box>
-          </li>
-        </ul>
-        <Box>
-          <div class="flex add-close-button">
-            <button class="input width-100 hover" @click="addFavorisClose">Close</button>
-            <button class="input width-100 hover" @click="addFavoris">Add</button>
           </div>
-        </Box>
+          <Box>
+            <div class="flex add-close-button">
+              <button class="input width-100 hover" @click="addFavorisClose">Close</button>
+              <button class="input width-100 hover" type="submit">Add</button>
+            </div>
+          </Box>
+        </form>
       </div>
     </div>
   </div>
@@ -85,7 +81,9 @@ export default {
       let module = loadModules.find(module => module.vuePath === this.moduleName);
       return module;
     },
-    addFavoris() {
+    addFavoris(event) {
+      event.preventDefault();
+
       let favorisFolderList = this.favorisFolderList;
       let favorisFolder = favorisFolderList.find(favorisFolder => favorisFolder.id === this.favorisFolder.id)
       let parent = this.getParent("FavorisFolder");
@@ -158,6 +156,9 @@ export default {
       padding: $default-len;
       background-color: $gray-color;
       overflow: scroll;
+      form * {
+        margin-bottom: $medium-min-len;
+      }
     }
   }
 }
