@@ -1,12 +1,12 @@
 <template>
   <div class="mask-bg flex flex-center">
-    <div class="add-favori-form gradient-border flex">
+    <div class="add-favorite-form gradient-border flex">
       <div class="content width-100 flex flex-column">
-        <form @submit="addFavoris" class="flex flex-column flex-between width-100 height-100 list-none" ref="input-list">
+        <form @submit="addFavorites" class="flex flex-column flex-between width-100 height-100 list-none" ref="input-list">
           <div>
             <Box>
               <label>NAME :</label>
-              <input class="input hover" ref="favoriName" type="text">
+              <input class="input hover" ref="favoriteName" type="text">
             </Box>
             <Box>
               <label>MODULE :</label>
@@ -21,7 +21,7 @@
           </div>
           <Box>
             <div class="flex add-close-button">
-              <button class="input width-100 hover" @click="addFavorisClose">Close</button>
+              <button class="input width-100 hover" @click="addFavoritesClose">Close</button>
               <button class="input width-100 hover" type="submit">Add</button>
             </div>
           </Box>
@@ -34,6 +34,7 @@
 <script>
 import {computed} from "vue";
 import {useStore} from "vuex";
+
 import Box from "@/components/Custom/Box.vue";
 
 export default {
@@ -51,16 +52,16 @@ export default {
   },
   setup() {
     const store = useStore();
-    const favorisFolderList = computed(() => store.state.favorisFolderList);
+    const favoritesFolderList = computed(() => store.state.favoritesFolderList);
     const loadModules = computed(() => store.state.loadModules);
 
-    function updateFavorisFolderList(newList) {
-      store.commit('updateFavorisFolderList', newList);
+    function updateFavoritesFolderList(newList) {
+      store.commit('updateFavoritesFolderList', newList);
     }
 
     return {
-      updateFavorisFolderList,
-      favorisFolderList,
+      updateFavoritesFolderList,
+      favoritesFolderList,
       loadModules
     };
   },
@@ -81,15 +82,15 @@ export default {
       let module = loadModules.find(module => module.vuePath === this.moduleName);
       return module;
     },
-    addFavoris(event) {
+    addFavorites(event) {
       event.preventDefault();
 
-      let favorisFolderList = this.favorisFolderList;
-      let favorisFolder = favorisFolderList.find(favorisFolder => favorisFolder.id === this.favorisFolder.id)
-      let parent = this.getParent("FavorisFolder");
+      let favoritesFolderList = this.favoritesFolderList;
+      let favoritesFolder = favoritesFolderList.find(favoritesFolder => favoritesFolder.id === this.favoritesFolder.id)
+      let parent = this.getParent("FavoritesFolder");
 
-      let newFavori = {
-        name: parent.$refs["add-favori-form"].$refs["favoriName"].value,
+      let newFavorite = {
+        name: parent.$refs["add-favorite-form"].$refs["favoriteName"].value,
         data: {
           module: this.moduleName,
         }
@@ -97,23 +98,23 @@ export default {
 
       for (const index in this.getModule().forms) {
         const input = this.getModule().forms[index];
-        newFavori.data[input.label] = this.$refs["input-list"].getElementsByClassName(input.label)[0].value;
+        newFavorite.data[input.label] = this.$refs["input-list"].getElementsByClassName(input.label)[0].value;
       }
 
-      favorisFolder.list.push(newFavori);
-      favorisFolderList.find(favorisFolder => favorisFolder.id === this.favorisFolder.id).list = favorisFolder.list
+      favoritesFolder.list.push(newFavorite);
+      favoritesFolderList.find(favoritesFolder => favoritesFolder.id === this.favoritesFolder.id).list = favoritesFolder.list
 
-      this.updateFavorisFolderList(favorisFolderList);
+      this.updateFavoritesFolderList(favoritesFolderList);
 
-      let favoriForm = this.getParent("FavorisFolder").$refs["add-favori-form"].$el;
-      favoriForm.classList.add("hidden");
+      let favoriteForm = this.getParent("FavoritesFolder").$refs["add-favorite-form"].$el;
+      favoriteForm.classList.add("hidden");
     },
-    addFavorisClose() {
-      this.getParent("FavorisFolder").$refs["add-favori-form"].$el.classList.add("hidden");
+    addFavoritesClose() {
+      this.getParent("FavoritesFolder").$refs["add-favorite-form"].$el.classList.add("hidden");
     }
   },
   props: {
-    favorisFolder: {
+    favoritesFolder: {
       type: Object,
       required: true
     }
@@ -146,7 +147,7 @@ export default {
 
   z-index: 99998;
 
-  .add-favori-form {
+  .add-favorite-form {
     width: 50vw;
     height: 75vh;
 

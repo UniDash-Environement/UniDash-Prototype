@@ -1,118 +1,118 @@
+<template>
+	<input v-model="toggleMenu" ref="menu-hamburger-button" class="menu-hamburger" type="checkbox" id="show-menu-button">
+	<label class="icon-burger" for="show-menu-button" aria-label="Menu"><span></span></label>
+
+	<nav class="left-menu-background-border flex flex-column gradient-border">
+		<div class="left-menu-background flex flex-column flex-g height-100 width-100 content">
+			<h1 ref="title" class="title">UniDash</h1>
+
+			<div ref="menu-lists" class="show-checkbox-list flex flex-column width-100 height-100 padding">
+				<div class="width-100 height-100 show hidden" ref="tab-content">
+					<TabsList />
+				</div>
+
+				<div class="width-100 height-100 show" ref="favorites-content">
+					<FavoritesList />
+				</div>
+
+				<div class="width-100 height-100 show hidden" ref="settings-content">
+				</div>
+			</div>
+
+			<div ref="slider" class="padding">
+				<BoxHover class="slider">
+					<ChevronLeftIcon class="chevron" />
+					<div class="flex flex-center flex-between width-100">
+						<StarIcon ref="favorites-icon" class="clicked" @click="showElement('favorites-icon', 'favorites-content')" />
+						<span>Server 1</span>
+						<Cog6ToothIcon ref="settings-icon" @click="showElement('settings-icon', 'settings-content')" />
+					</div>
+					<ChevronRightIcon class="chevron" />
+				</BoxHover>
+			</div>
+		</div>
+	</nav>
+</template>
+
 <script>
-  import FavorisList from "@/components/LeftMenu/Favoris/FavorisList.vue";
-  import Tab from "@/components/LeftMenu/Tabs/Tab.vue";
-  import TabsList from "@/components/LeftMenu/Tabs/TabsList.vue";
-  import { ChevronLeftIcon } from "@heroicons/vue/20/solid";
-  import { ChevronRightIcon } from "@heroicons/vue/20/solid";
-  import { StarIcon } from "@heroicons/vue/20/solid";
-  import { Cog6ToothIcon } from "@heroicons/vue/20/solid";
-  import {useStore} from "vuex";
-  import {computed} from "vue";
-  import BoxHover from "@/components/Custom/BoxHover.vue";
+import { computed } from "vue";
+import { useStore } from "vuex";
 
-  export default {
-    name: "Menu",
-    components: {
-      BoxHover,
-      TabsList,
-      FavorisList,
-      Tab,
-      ChevronLeftIcon,
-      ChevronRightIcon,
-      StarIcon,
-      Cog6ToothIcon
-    },
-    setup() {
-      const store = useStore();
-      const tabList = computed(() => store.state.tabList);
-      return {
-        tabList
-      };
-    },
-    data() {
-      return {
-        toggleMenu: true
+import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/vue/20/solid";
+import { Cog6ToothIcon, StarIcon } from "@heroicons/vue/20/solid";
+
+import BoxHover from "@/components/Custom/BoxHover.vue";
+import FavoritesList from "@/components/LeftMenu/Favorites/FavoritesList.vue";
+import Tab from "@/components/LeftMenu/Tabs/Tab.vue";
+import TabsList from "@/components/LeftMenu/Tabs/TabsList.vue";
+
+export default {
+  name: "Menu",
+  components: {
+    ChevronLeftIcon,
+    ChevronRightIcon,
+    Cog6ToothIcon,
+    StarIcon,
+    BoxHover,
+    FavoritesList,
+    TabsList,
+    Tab,
+  },
+  setup() {
+    const store = useStore();
+    const tabList = computed(() => store.state.tabList);
+    return {
+      tabList
+    };
+  },
+  data() {
+    return {
+      toggleMenu: true
+    }
+  },
+  methods: {
+    showElement(iconId, showElementId) {
+      let showSettings = this.$refs["settings-content"];
+      let showFavorites = this.$refs["favorites-content"];
+      let showTab = this.$refs["tab-content"];
+
+      let settingsIcon = this.$refs["settings-icon"];
+      let favoritesIcon = this.$refs["favorites-icon"];
+
+      let showElement = this.$refs[showElementId];
+      let icon = this.$refs[iconId];
+
+      const hiddenAll = () => {
+        showSettings.classList.add("hidden");
+        showFavorites.classList.add("hidden");
+        showTab.classList.add("hidden");
+
+        settingsIcon.classList.remove("clicked");
+        favoritesIcon.classList.remove("clicked");
       }
-    },
-    methods: {
-      showEelement(iconId, showElementId) {
-        let showSettings = this.$refs["settings-content"];
-        let showFavoris = this.$refs["favoris-content"];
-        let showTab = this.$refs["tab-content"];
 
-        let settingsIcon = this.$refs["settings-icon"];
-        let favorisIcon = this.$refs["favoris-icon"];
-
-        let showElement = this.$refs[showElementId];
-        let icon = this.$refs[iconId];
-
-        const hiddenAll = () => {
-          showSettings.classList.add("hidden");
-          showFavoris.classList.add("hidden");
-          showTab.classList.add("hidden");
-
-          settingsIcon.classList.remove("clicked");
-          favorisIcon.classList.remove("clicked");
-        }
-
-        if (showElement.classList.contains("hidden")) {
-          hiddenAll();
-          showElement.classList.remove("hidden");
-          icon.classList.add("clicked");
-        } else {
-          hiddenAll();
-          showTab.classList.remove("hidden");
-        }
-      }
-    },
-    watch: {
-      toggleMenu() {
-        this.$refs["menu-lists"].classList.toggle("show");
-        this.$refs["title"].classList.toggle("hidden");
-        this.$refs["tab-content"].classList.toggle("hidden");
-        this.$refs["favoris-content"].classList.toggle("hidden");
-        this.$refs["settings-content"].classList.toggle("hidden");
-        this.$refs["slider"].classList.toggle("hidden");
+      if (showElement.classList.contains("hidden")) {
+        hiddenAll();
+        showElement.classList.remove("hidden");
+        icon.classList.add("clicked");
+      } else {
+        hiddenAll();
+        showTab.classList.remove("hidden");
       }
     }
+  },
+  watch: {
+    toggleMenu() {
+      this.$refs["menu-lists"].classList.toggle("show");
+      this.$refs["title"].classList.toggle("hidden");
+      this.$refs["tab-content"].classList.toggle("hidden");
+      this.$refs["favorites-content"].classList.toggle("hidden");
+      this.$refs["settings-content"].classList.toggle("hidden");
+      this.$refs["slider"].classList.toggle("hidden");
+    }
   }
+}
 </script>
-
-<template>
-  <input v-model="toggleMenu" ref="menu-hamburger-button" class="menu-hamburger" type="checkbox" id="show-menu-button">
-  <label class="icon-burger" for="show-menu-button" aria-label="Menu"><span></span></label>
-
-  <nav class="left-menu-background-border flex flex-column gradient-border">
-    <div class="left-menu-background flex flex-column flex-g height-100 width-100 content">
-      <h1 ref="title" class="title">UniDash</h1>
-
-      <div ref="menu-lists" class="show-checkbox-list flex flex-column width-100 height-100 padding">
-        <div class="width-100 height-100 show hidden" ref="tab-content">
-          <TabsList />
-        </div>
-
-        <div class="width-100 height-100 show" ref="favoris-content">
-          <FavorisList />
-        </div>
-
-        <div class="width-100 height-100 show hidden" ref="settings-content">
-        </div>
-      </div>
-
-      <div ref="slider" class="padding">
-        <BoxHover class="slider">
-          <ChevronLeftIcon class="chevron" />
-          <div class="flex flex-center flex-between width-100">
-            <StarIcon ref="favoris-icon" class="clicked" @click="showEelement('favoris-icon', 'favoris-content')" />
-            <span>Server 1</span>
-            <Cog6ToothIcon ref="settings-icon" @click="showEelement('settings-icon', 'settings-content')" />
-          </div>
-          <ChevronRightIcon class="chevron" />
-        </BoxHover>
-      </div>
-    </div>
-  </nav>
-</template>
 
 <style scoped lang="scss">
 @import "@/style.scss";

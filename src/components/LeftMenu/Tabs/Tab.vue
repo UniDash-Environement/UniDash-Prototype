@@ -9,9 +9,11 @@
 </template>
 
 <script>
-import { XMarkIcon } from "@heroicons/vue/20/solid";
+import { useStore } from "vuex";
+
 import { BookmarkIcon } from "@heroicons/vue/20/solid";
-import {useStore} from "vuex";
+import { XMarkIcon } from "@heroicons/vue/20/solid";
+
 import BoxHover from "@/components/Custom/BoxHover.vue";
 
 export default {
