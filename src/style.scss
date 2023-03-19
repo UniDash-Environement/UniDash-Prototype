@@ -116,6 +116,8 @@ $long-time: 1s;
 }
 
 .hidden, .hidden * {
+  display: block !important;
+
   height: 0 !important;
   width: 0 !important;
   min-height: 0 !important;
@@ -128,6 +130,10 @@ $long-time: 1s;
 
   visibility: hidden !important;
   opacity: 0 !important;
+
+  p, h1, h2, h3, h4, h5, h6, a, label, span {
+    display: none !important;
+  }
 }
 
 .padding-left {
