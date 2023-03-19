@@ -108,13 +108,16 @@ export default {
 		}
 	},
 	watch: {
-		toggleMenu() {
-			this.$refs["menu-lists"].classList.toggle("show");
-			this.$refs["title"].classList.toggle("hidden");
-			this.$refs["tab-content"].classList.toggle("hidden");
-			this.$refs["favorites-content"].classList.toggle("hidden");
-			this.$refs["settings-content"].classList.toggle("hidden");
-			this.$refs["slider"].classList.toggle("hidden");
+		toggleMenu(value) {
+			if (!value) {
+				this.$refs["menu-lists"].classList.add("hidden");
+				this.$refs["title"].classList.add("hidden");
+				this.$refs["slider"].classList.add("hidden");
+			} else {
+				this.$refs["menu-lists"].classList.remove("hidden");
+				this.$refs["title"].classList.remove("hidden");
+				this.$refs["slider"].classList.remove("hidden");
+			}
 		}
 	}
 }
