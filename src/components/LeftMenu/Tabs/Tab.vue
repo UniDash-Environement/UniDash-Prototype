@@ -47,6 +47,17 @@ export default {
     return { updateTabList };
   },
   methods: {
+	  getParent(name) {
+		  let p = this.$parent;
+		  while (typeof p !== 'undefined') {
+			  if (p.$options.name == name) {
+				  return p;
+			  } else {
+				  p = p.$parent;
+			  }
+		  }
+		  return false;
+	  },
     removeTab() {
       let tabList = this.$store.state.tabList;
 
@@ -57,6 +68,9 @@ export default {
       }
 
       this.updateTabList(tabList);
+	    if (tabList.length === 0) {
+		    this.getParent("Menu").showElement("favorites-icon", "favorites-content");
+	    }
     },
     activeToggleTab(event) {
       let tabList = this.$store.state.tabList;
@@ -74,7 +88,8 @@ export default {
       if (element.tagName !== "svg") {
         element = event.target.parentElement;
       }
-      element.classList.toggle("clicked");
+
+	    element.classList.toggle("clicked");
     }
   }
 }
