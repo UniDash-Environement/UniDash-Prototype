@@ -5,7 +5,7 @@
 		</li>
 		<li>
 			<Box>
-				<div ref="add-folder" class="hover flex flex-column flex-center show"
+				<div ref="add-folder" class="hover flex flex-column flex-center"
 				     @click="addFolderShowUpdater">
 					<FolderPlusIcon class="folder-icon show"/>
 					<input type="text" @keydown.enter="this.addFolder" name="add-folder"
