@@ -40,7 +40,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "src/style";
+@import "@/style.scss";
 
 .iframe-element {
   width: 100%;

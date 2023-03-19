@@ -1,15 +1,15 @@
 import { createApp } from 'vue';
-import './style.scss';
-import App from './App.vue';
+import App from '@/App.vue';
 import Vuex from 'vuex';
-import loadModules from './settings/loadModules.json' assert {type: 'json'};
-import favorisList from "./settings/favoris.json" assert {type: "json"};
+import loadModules from '@/settings/loadModules.json' assert {type: 'json'};
+import favorisList from "@/settings/favoris.json" assert {type: "json"};
+import '@/style.scss';
 
 let modulesList = [];
 if (loadModules.loadModules != null) {
     for (const module of loadModules.loadModules) {
         if (module != null && module.path != null && module.enabled) {
-            let moduleTemp = import(/* @vite-ignore */`./modules/loader/${module.path}.js`);
+            let moduleTemp = import(`@/modules/loader/${module.path}.js`);
             modulesList.push(moduleTemp);
         }
     }

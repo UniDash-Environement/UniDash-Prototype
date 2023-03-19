@@ -94,7 +94,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "src/style";
+@import "@/style";
 
 .folder-icon{
   height: $default-len;

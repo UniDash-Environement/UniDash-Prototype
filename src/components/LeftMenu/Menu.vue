@@ -1,14 +1,14 @@
 <script>
-  import Tab from "./Tabs/Tab.vue";
-  import FavorisList from "./Favoris/FavorisList.vue";
-  import TabsList from "./Tabs/TabsList.vue";
+  import FavorisList from "@/components/LeftMenu/Favoris/FavorisList.vue";
+  import Tab from "@/components/LeftMenu/Tabs/Tab.vue";
+  import TabsList from "@/components/LeftMenu/Tabs/TabsList.vue";
   import { ChevronLeftIcon } from "@heroicons/vue/20/solid";
   import { ChevronRightIcon } from "@heroicons/vue/20/solid";
   import { StarIcon } from "@heroicons/vue/20/solid";
   import { Cog6ToothIcon } from "@heroicons/vue/20/solid";
   import {useStore} from "vuex";
   import {computed} from "vue";
-  import BoxHover from "../Custom/BoxHover.vue";
+  import BoxHover from "@/components/Custom/BoxHover.vue";
 
   export default {
     name: "Menu",
@@ -115,7 +115,7 @@
 </template>
 
 <style scoped lang="scss">
-@import "src/style";
+@import "@/style.scss";
 
 .chevron {
   width: $max-len;

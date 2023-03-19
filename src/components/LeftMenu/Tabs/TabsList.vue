@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Tab from "./Tab.vue";
+import Tab from "@/components/LeftMenu/Tabs/Tab.vue";
 import { computed } from 'vue';
 import { useStore } from 'vuex';
 
@@ -24,7 +24,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "src/style";
+@import "@/style";
 
 .tab-list {
   overflow: scroll;

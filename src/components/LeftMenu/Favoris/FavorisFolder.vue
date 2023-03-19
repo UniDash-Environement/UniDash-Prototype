@@ -70,7 +70,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "src/style";
+@import "@/style";
 
 .favori-icon{
   height: $default-len;

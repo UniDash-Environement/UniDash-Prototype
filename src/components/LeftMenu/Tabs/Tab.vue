@@ -12,7 +12,7 @@
 import { XMarkIcon } from "@heroicons/vue/20/solid";
 import { BookmarkIcon } from "@heroicons/vue/20/solid";
 import {useStore} from "vuex";
-import BoxHover from "../../Custom/BoxHover.vue";
+import BoxHover from "@/components/Custom/BoxHover.vue";
 
 export default {
   name: "Tab",
@@ -71,7 +71,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "src/style";
+@import "@/style";
 
 .tab-icons {
   display: flex;

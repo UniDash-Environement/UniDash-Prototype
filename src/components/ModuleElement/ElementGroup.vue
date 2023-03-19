@@ -28,7 +28,7 @@
 </script>
 
 <style scoped lang="scss">
-@import "../../style";
+@import "@/style.scss";
 
 main {
   overflow: scroll;

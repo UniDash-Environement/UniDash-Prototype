@@ -34,7 +34,7 @@
 <script>
 import {computed} from "vue";
 import {useStore} from "vuex";
-import Box from "../../Custom/Box.vue";
+import Box from "@/components/Custom/Box.vue";
 
 export default {
   name: "AddElement",
@@ -127,7 +127,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "src/style";
+@import "@/style";
 
 .add-close-button {
   gap: $light-len;
