@@ -64,11 +64,36 @@ $long-time: 1s;
 .auto-size {
   height: auto;
   width: auto;
-  min-height: calc(50% - $super-light-len);
-  min-width: calc(50% - $super-light-len);
+  min-height: 100%;
+  min-width: 100%;
   flex: 1;
   padding: 0;
   margin: 0;
+}
+
+.split-by-2 {
+  min-height: 100%;
+  min-width: calc(50% - $super-light-len);
+}
+
+.split-by-3 {
+  min-height: 100%;
+  min-width: calc(33% - $super-light-len);
+}
+
+.split-by-4 {
+  min-height: calc(50% - $super-light-len);
+  min-width: calc(50% - $super-light-len);
+}
+
+.vertical {
+  flex-direction: column;
+  width: calc($medium-len * 2);
+  margin-right: $light-len;
+
+  * {
+    flex-direction: column;
+  }
 }
 
 .flex-warp {
@@ -180,7 +205,7 @@ svg, span, label {
 }
 
 svg {
-  padding-left: $min-len;
+  padding-left: 0;
   margin: $min-len;
   height: $default-len;
   color: $white-color;

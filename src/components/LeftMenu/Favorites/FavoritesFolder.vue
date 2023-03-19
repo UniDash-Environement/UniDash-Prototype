@@ -77,7 +77,7 @@ export default {
 
 .favorite-icon {
 	height: $default-len;
-	padding-left: calc($default-len + $min-len);
+	padding-left: calc($default-len);
 }
 
 input.input[type="text"][name="add-favorite"] {

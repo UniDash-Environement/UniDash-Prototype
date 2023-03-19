@@ -4,10 +4,10 @@
 	<label class="icon-burger" for="show-menu-button" aria-label="Menu"><span></span></label>
 
 	<nav class="left-menu-background-border flex flex-column gradient-border">
-		<div class="left-menu-background flex flex-column flex-g height-100 width-100 content">
+		<div ref="left-menu-background" class="left-menu-background flex flex-column flex-g height-100 width-100 content">
 			<h1 ref="title" class="title">UniDash</h1>
 
-			<div ref="menu-lists"
+			<div ref="menu-lists" id="menu-lists"
 			     class="show-checkbox-list flex flex-column width-100 height-100 padding">
 				<div class="width-100 height-100 show hidden" ref="tab-content">
 					<TabsList/>
@@ -23,17 +23,22 @@
 
 			<div ref="slider" class="padding">
 				<BoxHover class="slider">
-					<ChevronLeftIcon class="chevron"/>
-					<div class="flex flex-center flex-between width-100">
-						<StarIcon ref="favorites-icon" class="clicked"
-						          @click="showElement(
+					<div ref="sliderContent" class="flex flex-between width-100">
+						<div class="flex flex-center">
+							<span ref="setSplitBy1Button" @click="setSplitBy1" class="clicked">1</span>
+							<span ref="setSplitBy2Button" @click="setSplitBy2">2</span>
+							<span ref="setSplitBy3Button" @click="setSplitBy3">3</span>
+							<span ref="setSplitBy4Button" @click="setSplitBy4">4</span>
+						</div>
+						<div class="flex">
+							<StarIcon ref="favorites-icon" class="clicked"
+							          @click="showElement(
 													'favorites-icon', 'favorites-content')"/>
-						<span>Server 1</span>
-						<Cog6ToothIcon ref="settings-icon"
-						               @click="showElement(
+							<Cog6ToothIcon ref="settings-icon"
+							               @click="showElement(
 															 'settings-icon', 'settings-content')"/>
+						</div>
 					</div>
-					<ChevronRightIcon class="chevron"/>
 				</BoxHover>
 			</div>
 		</div>
@@ -78,6 +83,12 @@ export default {
 	},
 	methods: {
 		showElement(iconId, showElementId) {
+			let menuBurgerButton = this.$refs["menu-hamburger-button"]
+
+			if (!menuBurgerButton.checked) {
+				menuBurgerButton.click();
+			}
+
 			let showSettings = this.$refs["settings-content"];
 			let showFavorites = this.$refs["favorites-content"];
 			let showTab = this.$refs["tab-content"];
@@ -105,18 +116,81 @@ export default {
 				hiddenAll();
 				showTab.classList.remove("hidden");
 			}
-		}
+		},
+		setSplitBy1() {
+			let elementList = document.querySelectorAll(".auto-size");
+			for (let element of elementList) {
+				element.classList.remove("split-by-2");
+				element.classList.remove("split-by-3");
+				element.classList.remove("split-by-4");
+			}
+
+			this.$refs["setSplitBy1Button"].classList.add("clicked");
+			this.$refs["setSplitBy2Button"].classList.remove("clicked");
+			this.$refs["setSplitBy3Button"].classList.remove("clicked");
+			this.$refs["setSplitBy4Button"].classList.remove("clicked");
+		},
+		setSplitBy2() {
+			let elementList = document.querySelectorAll(".auto-size");
+			for (let element of elementList) {
+				element.classList.add("split-by-2");
+
+				element.classList.remove("split-by-3");
+				element.classList.remove("split-by-4");
+			}
+
+			this.$refs["setSplitBy1Button"].classList.remove("clicked");
+			this.$refs["setSplitBy2Button"].classList.add("clicked");
+			this.$refs["setSplitBy3Button"].classList.remove("clicked");
+			this.$refs["setSplitBy4Button"].classList.remove("clicked");
+		},
+		setSplitBy3() {
+			let elementList = document.querySelectorAll(".auto-size");
+			for (let element of elementList) {
+				element.classList.add("split-by-3");
+
+				element.classList.remove("split-by-2");
+				element.classList.remove("split-by-4");
+			}
+
+			this.$refs["setSplitBy1Button"].classList.remove("clicked");
+			this.$refs["setSplitBy2Button"].classList.remove("clicked");
+			this.$refs["setSplitBy3Button"].classList.add("clicked");
+			this.$refs["setSplitBy4Button"].classList.remove("clicked");
+		},
+		setSplitBy4() {
+			let elementList = document.querySelectorAll(".auto-size");
+			for (let element of elementList) {
+				element.classList.add("split-by-4");
+
+				element.classList.remove("split-by-2");
+				element.classList.remove("split-by-3");
+			}
+
+			this.$refs["setSplitBy1Button"].classList.remove("clicked");
+			this.$refs["setSplitBy2Button"].classList.remove("clicked");
+			this.$refs["setSplitBy3Button"].classList.remove("clicked");
+			this.$refs["setSplitBy4Button"].classList.add("clicked");
+		},
 	},
 	watch: {
 		toggleMenu(value) {
 			if (!value) {
 				this.$refs["menu-lists"].classList.add("hidden");
 				this.$refs["title"].classList.add("hidden");
-				this.$refs["slider"].classList.add("hidden");
+
+				this.$refs["slider"].classList.remove("width-100");
+				this.$refs["slider"].classList.add("vertical");
+
+				this.$refs["left-menu-background"].classList.add("closed-menu");
 			} else {
 				this.$refs["menu-lists"].classList.remove("hidden");
 				this.$refs["title"].classList.remove("hidden");
-				this.$refs["slider"].classList.remove("hidden");
+
+				this.$refs["slider"].classList.remove("vertical");
+				this.$refs["slider"].classList.add("width-100");
+
+				this.$refs["left-menu-background"].classList.remove("closed-menu");
 			}
 		}
 	}
@@ -148,6 +222,11 @@ export default {
 
 		.slider {
 			margin: 0;
+		}
+
+		&.closed-menu {
+			align-items: end;
+			justify-content: end;
 		}
 	}
 }

@@ -104,7 +104,7 @@ export default {
 
 main {
 	overflow: scroll;
-	height: calc(100vh - $super-light-len * 4);
+	height: calc(100vh - $super-light-len * 3);
 	widows: calc(100vw - $super-light-len * 2);
 
 	padding: $light-len;
