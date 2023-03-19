@@ -1,12 +1,14 @@
 <template>
 	<div class="pop-box gradient-border flex">
-		<div class="pop-box-content favorites-folder content flex">
+		<div class="pop-box-content favorites-folder content flex" @mouseenter="showPopBoxMenu" @mouseleave="showPopBoxMenu">
 
-			<div ref="popBoxMenu" class="flex width-100 hidden">
+			<div ref="popBoxMenu" class="flex hidden">
 				<slot></slot>
 			</div>
 
-			<PlusIcon class="plus-icon" @click="showPopBoxMenu" />
+			<div ref="plusIcon" class="flex">
+				<PlusIcon class="plus-icon" />
+			</div>
 		</div>
 	</div>
 </template>
@@ -22,6 +24,7 @@ export default {
 	methods: {
 		showPopBoxMenu() {
 			this.$refs.popBoxMenu.classList.toggle("hidden");
+			this.$refs.plusIcon.classList.toggle("hidden");
 		}
 	}
 }

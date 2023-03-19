@@ -1,11 +1,5 @@
 <template>
-  <div class="iframe-element">
-    <iframe ref="myIframe" :src="data.url"></iframe>
-    <label class="dark-theme">
-      <input class="dark-iframe-button" type="checkbox" v-model="isDarkTheme">
-      <MoonIcon class="checkmark"></MoonIcon>
-    </label>
-  </div>
+	<iframe ref="iframeElement" :src="data.url"></iframe>
 </template>
 
 <script>
@@ -30,9 +24,9 @@ export default {
   watch: {
     isDarkTheme(value) {
       if (value) {
-        this.$refs.myIframe.classList.add('iframe-dark');
+        this.$refs.iframeElement.classList.add('iframe-dark');
       } else {
-        this.$refs.myIframe.classList.remove('iframe-dark');
+        this.$refs.iframeElement.classList.remove('iframe-dark');
       }
     },
   },
@@ -42,58 +36,40 @@ export default {
 <style scoped lang="scss">
 @import "@/style.scss";
 
-.iframe-element {
+iframe {
   width: 100%;
   height: 100%;
 
+  border: none;
   border-radius: $default-len;
-  background: $black-color;
+  background-color: $black-gray-color;
+}
 
-  position: relative;
+.iframe-dark {
+  filter: hue-rotate(180deg) invert(1) saturate(1.2);
+  transition: filter $medium-time ease-in-out;
+}
 
-  iframe {
-    width: calc(100% - $super-light-len * 2);
-    height: calc(100% - $super-light-len * 2);
-    margin: $super-light-len;
+.dark-theme {
+  position: absolute;
+  bottom: $light-len;
+  right: $light-len;
+  z-index: 1;
 
-    border: none;
-    border-radius: $default-len;
-    background-color: $black-gray-color;
-
-    filter: none;
-    transition: filter 300ms ease-in-out;
+  .checkmark {
+    width: $medium-len;
+    height: $medium-len;
+    color: $black-gray-color;
+    transition: color $medium-time ease-in-out;
   }
 
-  &:hover {
-     background: $gradient-color
+  .dark-iframe-button {
+    display: none;
   }
 
-  .iframe-dark {
-    filter: hue-rotate(180deg) invert(1) saturate(1.2);
-    transition: filter $medium-time ease-in-out;
-  }
-
-  .dark-theme {
-    position: absolute;
-    bottom: $light-len;
-    right: $light-len;
-    z-index: 1;
-
-    .checkmark {
-      width: $medium-len;
-      height: $medium-len;
-      color: $black-gray-color;
-      transition: color $medium-time ease-in-out;
-    }
-
-    .dark-iframe-button {
-      display: none;
-    }
-
-    .dark-iframe-button:checked + .checkmark {
-      color: $white-color;
-      transition: color $medium-time ease-in-out;
-    }
+  .dark-iframe-button:checked + .checkmark {
+    color: $white-color;
+    transition: color $medium-time ease-in-out;
   }
 }
 </style>

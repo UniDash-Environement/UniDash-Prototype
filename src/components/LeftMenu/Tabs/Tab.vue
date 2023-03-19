@@ -2,7 +2,9 @@
   <BoxHover>
     <span>{{ tab.name }}</span>
     <div class="tab-icons">
-      <BookmarkIcon class="clicked" @click="activeToggleTab" />
+	    <div :id="tab.id" class="flex">
+		    <BookmarkIcon class="clicked" @click="activeToggleTab" />
+	    </div>
       <XMarkIcon @click="removeTab" />
     </div>
   </BoxHover>
@@ -29,6 +31,12 @@ export default {
       required: true
     },
   },
+	data() {
+		let active = this.tab.active;
+		return {
+			active: active
+		}
+	},
   setup() {
     const store = useStore();
 
