@@ -9,11 +9,12 @@
 </template>
 
 <script>
-import { XMarkIcon } from "@heroicons/vue/20/solid";
+import { useStore } from "vuex";
+
 import { BookmarkIcon } from "@heroicons/vue/20/solid";
-import {useStore} from "vuex";
-import {computed} from "vue";
-import BoxHover from "../../Custom/BoxHover.vue";
+import { XMarkIcon } from "@heroicons/vue/20/solid";
+
+import BoxHover from "@/components/Custom/BoxHover.vue";
 
 export default {
   name: "Tab",
@@ -72,7 +73,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "src/style";
+@import "@/style";
 
 .tab-icons {
   display: flex;

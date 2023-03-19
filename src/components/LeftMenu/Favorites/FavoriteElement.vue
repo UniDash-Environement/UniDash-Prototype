@@ -1,16 +1,18 @@
 <template>
   <li class="flex width-100 hover padding-left" @click="addTab">
     <DocumentIcon class="" />
-    <input type="checkbox" name="favoris-checkbox" class="" hidden="hidden">
+    <input type="checkbox" name="favorites-checkbox" class="" hidden="hidden">
     <span>{{ name }}</span>
   </li>
 </template>
 
 <script>
-import { DocumentIcon } from "@heroicons/vue/20/solid";
 import { useStore } from "vuex";
+
+import { DocumentIcon } from "@heroicons/vue/20/solid";
+
 export default {
-  name: "FavoriElement",
+  name: "FavoriteElement",
   components: {
     DocumentIcon
   },
@@ -50,7 +52,3 @@ export default {
   }
 }
 </script>
-
-<style scoped lang="scss">
-@import "src/style";
-</style>

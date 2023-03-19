@@ -1,7 +1,7 @@
 <template>
   <ul class="flex list-none flex-column width-100 height-100">
-    <li v-for="favoriFolder in favorisFolderList">
-      <FavorisFolder :favoris-folder="favoriFolder" />
+    <li v-for="favoriteFolder in favoritesFolderList">
+      <FavoritesFolder :favorites-folder="favoriteFolder" />
     </li>
     <li>
       <Box>
@@ -15,17 +15,17 @@
 </template>
 
 <script>
-import FavorisFolder from "./FavorisFolder.vue";
-import FavoriElement from "./FavoriElement.vue";
-import { FolderPlusIcon } from "@heroicons/vue/24/solid";
-import Box from "../../Custom/Box.vue";
-
-import favoris from '../../../settings/favoris.json' assert {type: 'json'};
-import {useStore} from "vuex";
 import {computed} from "vue";
+import {useStore} from "vuex";
+
+import { FolderPlusIcon } from "@heroicons/vue/24/solid";
+
+import Box from "@/components/Custom/Box.vue";
+import FavoriteElement from "@/components/LeftMenu/Favorites/FavoriteElement.vue";
+import FavoritesFolder from "@/components/LeftMenu/Favorites/FavoritesFolder.vue";
 
 export default {
-  name: "FavorisList",
+  name: "FavoritesList",
   computed: {
   },
   data() {
@@ -34,22 +34,22 @@ export default {
     }
   },
   components: {
-    FavorisFolder,
-    FavoriElement,
-    FolderPlusIcon,
-    Box
+	  Box,
+	  FavoritesFolder,
+	  FavoriteElement,
+	  FolderPlusIcon,
   },
   setup() {
     const store = useStore();
 
-    const favorisFolderList = computed(() => store.state.favorisFolderList);
-    function updateFavorisFolderList(newList) {
-      store.commit('updateFavorisFolderList', newList);
+    const favoritesFolderList = computed(() => store.state.favoritesFolderList);
+    function updateFavoritesFolderList(newList) {
+      store.commit('updateFavoritesFolderList', newList);
     }
 
     return {
-      updateFavorisFolderList,
-      favorisFolderList
+      updateFavoritesFolderList,
+      favoritesFolderList
     };
   },
   methods: {
@@ -75,7 +75,7 @@ export default {
     },
     addFolder(event) {
       let input = event.target;
-      let favorisFolderList = this.favorisFolderList;
+      let favoritesFolderList = this.favoritesFolderList;
 
       if (input.value !== "") {
         let newFolder = {
@@ -84,8 +84,8 @@ export default {
           "list": []
         }
 
-        favorisFolderList.push(newFolder);
-        this.updateFavorisFolderList(favorisFolderList);
+        favoritesFolderList.push(newFolder);
+        this.updateFavoritesFolderList(favoritesFolderList);
 
         this.disableFocusOut();
       }
@@ -95,7 +95,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "src/style";
+@import "@/style";
 
 .folder-icon{
   height: $default-len;

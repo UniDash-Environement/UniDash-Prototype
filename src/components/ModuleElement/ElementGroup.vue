@@ -9,26 +9,27 @@
 </template>
 
 <script>
-  import {useStore} from "vuex";
-  import {computed} from "vue";
-  export default {
-    name: "ElementGroup",
-    setup() {
-      const store = useStore();
-      const tabList = computed(() => store.state.tabList);
+import { computed } from "vue";
+import { useStore } from "vuex";
 
-      return { tabList };
-    },
-    methods: {
-      toggleHidden(event) {
-        event.target.classList.toggle("hidden");
-      }
+export default {
+  name: "ElementGroup",
+  setup() {
+    const store = useStore();
+    const tabList = computed(() => store.state.tabList);
+
+    return { tabList };
+  },
+  methods: {
+    toggleHidden(event) {
+      event.target.classList.toggle("hidden");
     }
   }
+}
 </script>
 
 <style scoped lang="scss">
-@import "src/style";
+@import "@/style.scss";
 
 main {
   overflow: scroll;
@@ -41,5 +42,4 @@ main {
     margin: calc($super-light-len / 2);
   }
 }
-
 </style>
