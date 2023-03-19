@@ -6,7 +6,6 @@
   import { ChevronRightIcon } from "@heroicons/vue/20/solid";
   import { StarIcon } from "@heroicons/vue/20/solid";
   import { Cog6ToothIcon } from "@heroicons/vue/20/solid";
-  import favorisList from "./Favoris/FavorisList.vue";
   import {useStore} from "vuex";
   import {computed} from "vue";
   import BoxHover from "../Custom/BoxHover.vue";

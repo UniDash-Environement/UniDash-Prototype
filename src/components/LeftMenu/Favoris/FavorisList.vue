@@ -20,7 +20,6 @@ import FavoriElement from "./FavoriElement.vue";
 import { FolderPlusIcon } from "@heroicons/vue/24/solid";
 import Box from "../../Custom/Box.vue";
 
-import favoris from '../../../settings/favoris.json' assert {type: 'json'};
 import {useStore} from "vuex";
 import {computed} from "vue";
 

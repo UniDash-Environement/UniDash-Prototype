@@ -12,7 +12,6 @@
 import { XMarkIcon } from "@heroicons/vue/20/solid";
 import { BookmarkIcon } from "@heroicons/vue/20/solid";
 import {useStore} from "vuex";
-import {computed} from "vue";
 import BoxHover from "../../Custom/BoxHover.vue";
 
 export default {
