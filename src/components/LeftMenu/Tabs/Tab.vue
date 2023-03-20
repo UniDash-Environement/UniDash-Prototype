@@ -1,13 +1,15 @@
 <template>
-  <BoxHover>
-    <span>{{ tab.name }}</span>
-    <div class="tab-icons">
-	    <div :id="tab.id" class="flex">
-		    <BookmarkIcon class="clicked" @click="activeToggleTab" />
-	    </div>
-      <XMarkIcon @click="removeTab" />
-    </div>
-  </BoxHover>
+  <Box>
+	  <a :href="tabLink" class="hover width-100 flex flex-center flex-between">
+		  <span>{{ tab.name }}</span>
+		  <div class="tab-icons">
+			  <div :id="tabId" class="flex">
+				  <BookmarkIcon class="clicked" @click="activeToggleTab" />
+			  </div>
+			  <XMarkIcon @click="removeTab" />
+		  </div>
+	  </a>
+  </Box>
 </template>
 
 <script>
@@ -16,12 +18,13 @@ import { useStore } from "vuex";
 import { BookmarkIcon } from "@heroicons/vue/20/solid";
 import { XMarkIcon } from "@heroicons/vue/20/solid";
 
-import BoxHover from "@/components/Custom/BoxHover.vue";
+import Box from "@/components/Custom/Box.vue";
+import {computed} from "vue";
 
 export default {
   name: "Tab",
   components: {
-    BoxHover,
+    Box,
     XMarkIcon,
     BookmarkIcon
   },
@@ -33,31 +36,26 @@ export default {
   },
 	data() {
 		let active = this.tab.active;
+		let tabId = this.tab.id + "tab";
+		let tabLink = "#" + this.tab.id;
+
 		return {
-			active: active
+			active: active,
+			tabId: tabId,
+			tabLink: tabLink
 		}
 	},
   setup() {
     const store = useStore();
 
+	  const splitTab = computed(() => store.state.splitTab);
     function updateTabList(newList) {
       store.commit('updateTabList', newList);
     }
 
-    return { updateTabList };
+    return { updateTabList, splitTab };
   },
   methods: {
-	  getParent(name) {
-		  let p = this.$parent;
-		  while (typeof p !== 'undefined') {
-			  if (p.$options.name == name) {
-				  return p;
-			  } else {
-				  p = p.$parent;
-			  }
-		  }
-		  return false;
-	  },
     removeTab() {
       let tabList = this.$store.state.tabList;
 
@@ -96,7 +94,12 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "@/style";
+@import "@/style.scss";
+
+a {
+	margin: 0;
+	padding: 0;
+}
 
 .tab-icons {
   display: flex;

@@ -1,7 +1,7 @@
 <template>
 	<main class="width-100">
 		<ul id="element-list" class="width-100 height-100 flex flex-warp list-none">
-			<li v-for="(tab, index) in tabList" :key="tab.id" :class="tab.active"
+			<li :id="tab.id" v-for="(tab, index) in tabList" :key="tab.id" :class="[tab.active, `split-by-${splitTab}`]"
 			    ref="elementLi" class="auto-size show">
 				<div class="element">
 					<component ref="element" v-bind:is="tab.data.module" :data="tab.data"/>
@@ -45,13 +45,14 @@ export default {
 	},
 	setup() {
 		const store = useStore();
+		const splitTab = computed(() => store.state.splitTab);
 		const tabList = computed(() => store.state.tabList);
 
 		function updateTabList(newList) {
 			store.commit('updateTabList', newList);
 		}
 
-		return {tabList, updateTabList};
+		return {tabList, updateTabList, splitTab};
 	},
 	methods: {
 		toggleDark(index) {
@@ -91,7 +92,7 @@ export default {
 			}
 
 			this.updateTabList(tabList);
-			document.getElementById(id).querySelector("svg").classList.toggle("clicked");
+			document.getElementById(id + "tab").querySelector("svg").classList.toggle("clicked");
 			let svg = this.$refs.fullIcon[index].querySelector("svg");
 			svg.classList.toggle("clicked");
 		},

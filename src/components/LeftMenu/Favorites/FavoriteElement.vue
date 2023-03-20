@@ -10,6 +10,7 @@
 import {useStore} from "vuex";
 
 import {DocumentIcon} from "@heroicons/vue/20/solid";
+import {computed} from "vue";
 
 export default {
 	name: "FavoriteElement",
@@ -29,13 +30,28 @@ export default {
 	setup() {
 		const store = useStore();
 
+		const splitTab = computed(() => store.state.splitTab);
 		function updateTabList(newList) {
 			store.commit('updateTabList', newList);
 		}
 
-		return {updateTabList};
+		return {updateTabList, splitTab};
 	},
 	methods: {
+		sleep(ms) {
+			return new Promise(resolve => setTimeout(resolve, ms));
+		},
+		getParent(name) {
+			let p = this.$parent;
+			while (typeof p !== 'undefined') {
+				if (p.$options.name == name) {
+					return p;
+				} else {
+					p = p.$parent;
+				}
+			}
+			return false;
+		},
 		addTab() {
 			let tabList = this.$store.state.tabList;
 			let id = Date.now().toString();
@@ -48,6 +64,11 @@ export default {
 
 			tabList.push(newTab);
 			this.updateTabList(tabList);
+
+			this.sleep(100).then(() => {
+				let menu = this.getParent('Menu');
+				menu.setSplitBy(this.splitTab);
+			});
 		}
 	}
 }

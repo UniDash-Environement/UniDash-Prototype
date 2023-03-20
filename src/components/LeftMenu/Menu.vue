@@ -25,10 +25,10 @@
 				<BoxHover class="slider">
 					<div ref="sliderContent" class="flex flex-between width-100">
 						<div class="flex flex-center">
-							<span ref="setSplitBy1Button" @click="setSplitBy1" class="clicked">1</span>
-							<span ref="setSplitBy2Button" @click="setSplitBy2">2</span>
-							<span ref="setSplitBy3Button" @click="setSplitBy3">3</span>
-							<span ref="setSplitBy4Button" @click="setSplitBy4">4</span>
+							<span ref="setSplitBy1Button" @click="setSplitBy(1)" class="clicked">1</span>
+							<span ref="setSplitBy2Button" @click="setSplitBy(2)">2</span>
+							<span ref="setSplitBy3Button" @click="setSplitBy(3)">3</span>
+							<span ref="setSplitBy4Button" @click="setSplitBy(4)">4</span>
 						</div>
 						<div class="flex">
 							<bookmark-icon ref="tab-icon"
@@ -80,8 +80,16 @@ export default {
 	setup() {
 		const store = useStore();
 		const tabList = computed(() => store.state.tabList);
+		const splitTab = computed(() => store.state.splitTab);
+
+		function updateSplitTab(newList) {
+			store.commit('updateSplitTab', newList);
+		}
+
 		return {
-			tabList
+			tabList,
+			splitTab,
+			updateSplitTab,
 		};
 	},
 	data() {
@@ -119,60 +127,16 @@ export default {
 			showElement.classList.remove("hidden");
 			icon.classList.add("clicked");
 		},
-		setSplitBy1() {
-			let elementList = document.querySelectorAll(".auto-size");
-			for (let element of elementList) {
-				element.classList.remove("split-by-2");
-				element.classList.remove("split-by-3");
-				element.classList.remove("split-by-4");
-			}
-
-			this.$refs["setSplitBy1Button"].classList.add("clicked");
-			this.$refs["setSplitBy2Button"].classList.remove("clicked");
-			this.$refs["setSplitBy3Button"].classList.remove("clicked");
-			this.$refs["setSplitBy4Button"].classList.remove("clicked");
-		},
-		setSplitBy2() {
-			let elementList = document.querySelectorAll(".auto-size");
-			for (let element of elementList) {
-				element.classList.add("split-by-2");
-
-				element.classList.remove("split-by-3");
-				element.classList.remove("split-by-4");
-			}
-
-			this.$refs["setSplitBy1Button"].classList.remove("clicked");
-			this.$refs["setSplitBy2Button"].classList.add("clicked");
-			this.$refs["setSplitBy3Button"].classList.remove("clicked");
-			this.$refs["setSplitBy4Button"].classList.remove("clicked");
-		},
-		setSplitBy3() {
-			let elementList = document.querySelectorAll(".auto-size");
-			for (let element of elementList) {
-				element.classList.add("split-by-3");
-
-				element.classList.remove("split-by-2");
-				element.classList.remove("split-by-4");
-			}
-
-			this.$refs["setSplitBy1Button"].classList.remove("clicked");
-			this.$refs["setSplitBy2Button"].classList.remove("clicked");
-			this.$refs["setSplitBy3Button"].classList.add("clicked");
-			this.$refs["setSplitBy4Button"].classList.remove("clicked");
-		},
-		setSplitBy4() {
-			let elementList = document.querySelectorAll(".auto-size");
-			for (let element of elementList) {
-				element.classList.add("split-by-4");
-
-				element.classList.remove("split-by-2");
-				element.classList.remove("split-by-3");
-			}
-
+		setSplitBy(number) {
 			this.$refs["setSplitBy1Button"].classList.remove("clicked");
 			this.$refs["setSplitBy2Button"].classList.remove("clicked");
 			this.$refs["setSplitBy3Button"].classList.remove("clicked");
-			this.$refs["setSplitBy4Button"].classList.add("clicked");
+			this.$refs["setSplitBy4Button"].classList.remove("clicked");
+
+			let svg = this.$refs["setSplitBy" + number + "Button"]
+			svg.classList.add("clicked");
+
+			this.updateSplitTab(number);
 		},
 	},
 	watch: {

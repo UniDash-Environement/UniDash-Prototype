@@ -24,6 +24,7 @@ const store = new Vuex.Store({
       tabList: [],
       favoritesFolderList: favoritesList.favoritesFolderList,
       loadModules: loadModules.loadModules,
+      splitTab: 1,
     }
   },
   mutations: {
@@ -32,6 +33,9 @@ const store = new Vuex.Store({
     },
     updateFavoritesFolderList(state, newList) {
       state.favoritesFolderList = newList;
+    },
+    updateSplitTab(state, newSplitTab) {
+      state.splitTab = newSplitTab;
     }
   }
 });
