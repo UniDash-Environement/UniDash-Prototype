@@ -15,7 +15,7 @@
 						<ArrowsPointingOutIcon @click="toggleMax(index)" />
 					</div>
 					<div ref="pinIcon" class="flex">
-						<BookmarkIcon @click="activeToggleTab(tab.id, index)" />
+						<BookmarkIcon class="clicked" @click="activeToggleTab(tab.id, index)" />
 					</div>
 					<div ref="darkIcon" class="flex">
 						<MoonIcon @click="toggleDark(index)" />
