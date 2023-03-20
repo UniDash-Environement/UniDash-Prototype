@@ -7,7 +7,6 @@ import loadModules from '@/settings/loadModules.json' assert {type: 'json'};
 import favoritesList from "@/settings/favorites.json" assert {type: "json"};
 
 import '@/style.scss';
-import * as assert from "assert";
 
 let modulesList = [];
 if (loadModules.loadModules != null) {
@@ -43,7 +42,7 @@ const store = new Vuex.Store({
   },
   mutations: {
     updateTabList(state, newList) {
-      state.list = newList;
+      state.tabList = newList;
     },
     updateFavoritesFolderList(state, newList) {
       state.favoritesFolderList = newList;

@@ -2,23 +2,23 @@
 	<main class="width-100">
 		<ul id="element-list" class="width-100 height-100 flex flex-warp list-none">
 			<li :id="tab.id" v-for="(tab, index) in tabList" :key="tab.id" :class="[tab.active, `split-by-${splitTab}`]"
-			    ref="elementLi" class="auto-size show">
+			    class="auto-size show">
 				<div class="element">
-					<component ref="element" v-bind:is="tab.data.module" :data="tab.data"/>
+					<component :id="tab.id + 'element'" v-bind:is="tab.data.module" :data="tab.data"/>
 				</div>
 
 				<PopBox>
-					<div ref="closeIcon" class="flex">
+					<div :id="tab.id + 'close'" class="flex">
 						<XMarkIcon @click="removeTab(tab.id)" />
 					</div>
-					<div ref="fullIcon" class="flex">
-						<ArrowsPointingOutIcon @click="toggleMax(index)" />
+					<div :id="tab.id + 'full'" class="flex">
+						<ArrowsPointingOutIcon @click="toggleMax(tab.id)" />
 					</div>
-					<div ref="pinIcon" class="flex">
-						<BookmarkIcon class="clicked" @click="activeToggleTab(tab.id, index)" />
+					<div :id="tab.id + 'pin'" class="flex">
+						<BookmarkIcon class="clicked" @click="activeToggleTab(tab.id)" />
 					</div>
-					<div ref="darkIcon" class="flex">
-						<MoonIcon @click="toggleDark(index)" />
+					<div :id="tab.id + 'dark'" class="flex">
+						<MoonIcon @click="toggleDark(tab.id)" />
 					</div>
 				</PopBox>
 			</li>
@@ -55,10 +55,11 @@ export default {
 		return {tabList, updateTabList, splitTab};
 	},
 	methods: {
-		toggleDark(index) {
-			let element = this.$refs.element[index].$el;
+		toggleDark(id) {
+			let element = document.getElementById(id + "element");
 			element.classList.toggle("filter-dark");
-			let svg = this.$refs.darkIcon[index].querySelector("svg");
+			let svg = document.getElementById(id + "dark").querySelector("svg");
+			console.log(svg);
 			svg.classList.toggle("clicked");
 		},
 		removeTab(id) {
@@ -72,14 +73,14 @@ export default {
 
 			this.updateTabList(tabList);
 		},
-		toggleMax(index) {
-			let elementLi = this.$refs.elementLi[index];
-			let svg = this.$refs.fullIcon[index].querySelector("svg");
+		toggleMax(id) {
+			let elementLi = document.getElementById(id);
+			let svg = document.getElementById(id + "full").querySelector("svg");
 			svg.classList.toggle("clicked");
 			elementLi.classList.toggle("max");
 		},
 
-		activeToggleTab(id, index) {
+		activeToggleTab(id) {
 			let tabList = this.$store.state.tabList;
 			for (let tabElement of tabList) {
 				if (tabElement.id === id) {
@@ -93,7 +94,7 @@ export default {
 
 			this.updateTabList(tabList);
 			document.getElementById(id + "tab").querySelector("svg").classList.toggle("clicked");
-			let svg = this.$refs.fullIcon[index].querySelector("svg");
+			let svg = document.getElementById(id + "pin").querySelector("svg");
 			svg.classList.toggle("clicked");
 		},
 	}
