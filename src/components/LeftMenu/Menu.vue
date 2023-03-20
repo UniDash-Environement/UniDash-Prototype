@@ -145,7 +145,6 @@ export default {
 				this.$refs["menu-lists"].classList.add("hidden");
 				this.$refs["title"].classList.add("hidden");
 
-				this.$refs["slider"].classList.remove("width-100");
 				this.$refs["slider"].classList.add("vertical");
 
 				this.$refs["left-menu-background"].classList.add("closed-menu");
@@ -154,7 +153,6 @@ export default {
 				this.$refs["title"].classList.remove("hidden");
 
 				this.$refs["slider"].classList.remove("vertical");
-				this.$refs["slider"].classList.add("width-100");
 
 				this.$refs["left-menu-background"].classList.remove("closed-menu");
 			}
@@ -172,14 +170,26 @@ export default {
 
 .left-menu-background-border {
 	height: 100vh;
-	width: 20rem;
+	width: 73px !important;
+
 	padding: 0;
 	border-radius: 0;
 	margin: 0;
 
+	transition: width $default-time;
+
 	span {
 		padding: $min-len;
 		margin: 0;
+	}
+
+	ul {
+		list-style-type: none;
+		padding: 0;
+
+		li {
+			margin-bottom: $default-len;
+		}
 	}
 
 	.left-menu-background {
@@ -193,6 +203,7 @@ export default {
 
 		.slider {
 			margin: 0;
+			overflow: scroll;
 		}
 
 		&.closed-menu {
@@ -268,28 +279,15 @@ export default {
 		}
 
 		& ~ {
-			nav {
-				margin-left: 0 !important;
+			.left-menu-background-border {
+				width: 270px !important;
+				transition: width $default-time;
 			}
 		}
 	}
 
 	&:not(:focus-visible):focus ~ label {
 		box-shadow: 0 0 0 $super-light-len $uni-gradiant-color;
-	}
-}
-
-nav {
-	margin-left: -14.7rem !important;
-	transition: margin-left $default-time;
-
-	ul {
-		list-style-type: none;
-		padding: 0;
-
-		li {
-			margin-bottom: $default-len;
-		}
 	}
 }
 

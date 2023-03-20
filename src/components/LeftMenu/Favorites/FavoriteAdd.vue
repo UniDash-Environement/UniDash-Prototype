@@ -168,7 +168,6 @@ export default {
 			overflow: scroll;
 
 			form * {
-				margin-bottom: $medium-min-len;
 			}
 		}
 	}
