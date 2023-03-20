@@ -1,0 +1,10 @@
+{
+  "url": {
+    "label": "url",
+    "element": "input",
+    "type": "text",
+    "value": "http://www.example.com",
+    "required": true,
+    "hidden": false
+  }
+}

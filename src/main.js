@@ -7,13 +7,26 @@ import loadModules from '@/settings/loadModules.json' assert {type: 'json'};
 import favoritesList from "@/settings/favorites.json" assert {type: "json"};
 
 import '@/style.scss';
+import * as assert from "assert";
 
 let modulesList = [];
 if (loadModules.loadModules != null) {
   for (const module of loadModules.loadModules) {
     if (module != null && module.path != null && module.enabled) {
-      let moduleTemp = import(`@/modules/loader/${module.path}.js`);
+      let moduleTemp = import(`@/modules/${module.path}/plugin.js`);
       modulesList.push(moduleTemp);
+    }
+  }
+}
+
+let moduleConfList = {};
+if (loadModules.loadModules != null) {
+  for (const module of loadModules.loadModules) {
+    if (module != null && module.path != null && module.enabled) {
+      let moduleTemp = import(`@/modules/${module.path}/config.json`);
+      moduleTemp.then((moduleTemp) => {
+        moduleConfList[module.vuePath] = moduleTemp.default;
+      });
     }
   }
 }
@@ -25,6 +38,7 @@ const store = new Vuex.Store({
       favoritesFolderList: favoritesList.favoritesFolderList,
       loadModules: loadModules.loadModules,
       splitTab: 1,
+      moduleConfList: moduleConfList
     }
   },
   mutations: {

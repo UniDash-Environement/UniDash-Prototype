@@ -17,7 +17,7 @@
 								</option>
 							</select>
 						</Box>
-						<Box v-for="(input, index) in modules.forms" :key="index" v-show="!input.hidden">
+						<Box v-for="(input, index) in modules" :key="index" v-show="!input.hidden">
 							<label>{{ input.label.toUpperCase() }} :</label>
 							<input class="input hover" :class="input.label" :type="input.type"
 							       :value="input.value">
@@ -48,7 +48,7 @@ export default {
 	},
 	data() {
 		let moduleName = "IframeElement";
-		let modules = this.loadModules.find(module => module.vuePath === moduleName);
+		let modules = this.moduleConfList[moduleName];
 		return {
 			moduleName,
 			modules
@@ -57,6 +57,7 @@ export default {
 	setup() {
 		const store = useStore();
 		const favoritesFolderList = computed(() => store.state.favoritesFolderList);
+		const moduleConfList = computed(() => store.state.moduleConfList);
 		const loadModules = computed(() => store.state.loadModules);
 
 		function updateFavoritesFolderList(newList) {
@@ -66,7 +67,8 @@ export default {
 		return {
 			updateFavoritesFolderList,
 			favoritesFolderList,
-			loadModules
+			loadModules,
+			moduleConfList
 		};
 	},
 	methods: {
@@ -82,9 +84,7 @@ export default {
 			return false;
 		},
 		getModule() {
-			const loadModules = this.$store.state.loadModules;
-			let module = loadModules.find(module => module.vuePath === this.moduleName);
-			return module;
+			return this.moduleConfList[this.moduleName];
 		},
 		addFavorites(event) {
 			event.preventDefault();
@@ -101,8 +101,8 @@ export default {
 				}
 			}
 
-			for (const index in this.getModule().forms) {
-				const input = this.getModule().forms[index];
+			for (const index in this.modules) {
+				const input = this.modules[index];
 				newFavorite.data[input.label] = this.$refs["input-list"].getElementsByClassName(
 						input.label)[0].value;
 			}
