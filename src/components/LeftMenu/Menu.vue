@@ -177,6 +177,11 @@ export default {
 	border-radius: 0;
 	margin: 0;
 
+	span {
+		padding: $min-len;
+		margin: 0;
+	}
+
 	.left-menu-background {
 		background-color: $gray-color;
 		border-radius: 0;
