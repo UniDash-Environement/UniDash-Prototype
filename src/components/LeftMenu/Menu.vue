@@ -31,6 +31,8 @@
 							<span ref="setSplitBy4Button" @click="setSplitBy4">4</span>
 						</div>
 						<div class="flex">
+							<bookmark-icon ref="tab-icon"
+							               @click="showElement('tab-icon', 'tab-content')"/>
 							<StarIcon ref="favorites-icon" class="clicked"
 							          @click="showElement(
 													'favorites-icon', 'favorites-content')"/>
@@ -49,8 +51,13 @@
 import {computed} from "vue";
 import {useStore} from "vuex";
 
-import {ChevronLeftIcon, ChevronRightIcon} from "@heroicons/vue/20/solid";
-import {Cog6ToothIcon, StarIcon} from "@heroicons/vue/20/solid";
+import {
+	ChevronLeftIcon,
+	ChevronRightIcon,
+	BookmarkIcon,
+	Cog6ToothIcon,
+	StarIcon
+} from "@heroicons/vue/20/solid";
 
 import BoxHover from "@/components/Custom/BoxHover.vue";
 import FavoritesList from "@/components/LeftMenu/Favorites/FavoritesList.vue";
@@ -68,6 +75,7 @@ export default {
 		FavoritesList,
 		TabsList,
 		Tab,
+		BookmarkIcon,
 	},
 	setup() {
 		const store = useStore();
@@ -95,27 +103,21 @@ export default {
 
 			let settingsIcon = this.$refs["settings-icon"];
 			let favoritesIcon = this.$refs["favorites-icon"];
+			let tabIcon = this.$refs["tab-icon"];
 
 			let showElement = this.$refs[showElementId];
 			let icon = this.$refs[iconId];
 
-			const hiddenAll = () => {
-				showSettings.classList.add("hidden");
-				showFavorites.classList.add("hidden");
-				showTab.classList.add("hidden");
+			showSettings.classList.add("hidden");
+			showFavorites.classList.add("hidden");
+			showTab.classList.add("hidden");
 
-				settingsIcon.classList.remove("clicked");
-				favoritesIcon.classList.remove("clicked");
-			}
+			settingsIcon.classList.remove("clicked");
+			favoritesIcon.classList.remove("clicked");
+			tabIcon.classList.remove("clicked");
 
-			if (showElement.classList.contains("hidden")) {
-				hiddenAll();
-				showElement.classList.remove("hidden");
-				icon.classList.add("clicked");
-			} else {
-				hiddenAll();
-				showTab.classList.remove("hidden");
-			}
+			showElement.classList.remove("hidden");
+			icon.classList.add("clicked");
 		},
 		setSplitBy1() {
 			let elementList = document.querySelectorAll(".auto-size");
