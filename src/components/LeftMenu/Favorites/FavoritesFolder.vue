@@ -73,6 +73,7 @@ export default {
 		addFavorite() {
 			let favoriteForm = this.$refs["add-favorite-form"].$el;
 			favoriteForm.classList.toggle("hidden");
+			this.$refs["add-favorite-form"].$refs.favoriteName.focus();
 		},
 		renameFolder() {
 			let listHiddenOnRename = this.$el.querySelectorAll(".hidden-on-rename");

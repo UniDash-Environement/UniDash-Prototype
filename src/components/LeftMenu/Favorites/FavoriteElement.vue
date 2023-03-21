@@ -102,6 +102,7 @@ export default {
 		},
 		toggleEdit() {
 			this.$refs.editFavorite.$el.classList.toggle('hidden');
+			this.$refs.editFavorite.$refs.favoriteName.focus();
 		}
 	}
 }
