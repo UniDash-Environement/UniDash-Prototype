@@ -9,6 +9,7 @@
 			</div>
 			<div class="hidden-on-rename flex flex-center flex-between">
 				<PencilSquareIcon @click="renameFolder"/>
+				<XMarkIcon @click="deleteFavoriteFolder" />
 			</div>
 		</div>
 		<ul ref="favorites-folder" class="show hidden flex flex-column list-none">
@@ -30,6 +31,7 @@ import {useStore} from "vuex";
 
 import {DocumentPlusIcon, FolderIcon} from "@heroicons/vue/24/solid";
 import { PencilSquareIcon } from "@heroicons/vue/20/solid";
+import { XMarkIcon } from "@heroicons/vue/20/solid";
 
 import Box from "@/components/Custom/Box.vue";
 import FavoriteAdd from "@/components/LeftMenu/Favorites/FavoriteAdd.vue";
@@ -45,6 +47,7 @@ export default {
 		FavoriteElement,
 		FolderIcon,
 		PencilSquareIcon,
+		XMarkIcon,
 	},
 	setup() {
 		const store = useStore();
@@ -88,6 +91,14 @@ export default {
 			});
 
 			input.focus();
+		},
+		deleteFavoriteFolder() {
+			let favoriteFolderList = JSON.parse(JSON.stringify(this.favoritesFolderList));
+			let folderIndex = favoriteFolderList.findIndex(
+					favoriteFolder => favoriteFolder.id === this.favoritesFolder.id);
+
+			favoriteFolderList.splice(folderIndex, 1)
+			this.updateFavoritesFolderList(favoriteFolderList);
 		},
 		renameFolderEnd() {
 			let listHiddenOnRename = this.$el.querySelectorAll(".hidden-on-rename");

@@ -5,8 +5,8 @@
 		  <div class="tab-icons">
 			  <div :id="tabId" class="flex">
 				  <BookmarkIcon class="clicked" @click="activeToggleTab" />
+				  <XMarkIcon @click="removeTab" />
 			  </div>
-			  <XMarkIcon @click="removeTab" />
 		  </div>
 	  </a>
   </Box>

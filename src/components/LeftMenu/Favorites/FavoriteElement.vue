@@ -7,6 +7,7 @@
 			</div>
 			<div class="flex flex-center flex-between">
 				<PencilSquareIcon @click="toggleEdit"/>
+				<XMarkIcon @click="deleteFavorite" />
 			</div>
 		</div>
 
@@ -20,6 +21,7 @@ import {useStore} from "vuex";
 
 import {DocumentIcon} from "@heroicons/vue/20/solid";
 import { PencilSquareIcon } from "@heroicons/vue/20/solid";
+import { XMarkIcon } from "@heroicons/vue/20/solid";
 import FavoriteAdd from "@/components/LeftMenu/Favorites/FavoriteAdd.vue";
 
 export default {
@@ -27,7 +29,8 @@ export default {
 	components: {
 		FavoriteAdd,
 		DocumentIcon,
-		PencilSquareIcon
+		PencilSquareIcon,
+		XMarkIcon,
 	},
 	props: {
 		favorite: {
@@ -43,11 +46,16 @@ export default {
 		const store = useStore();
 
 		const splitTab = computed(() => store.state.splitTab);
+		const favoritesFolderList = computed(() => store.state.favoritesFolderList);
+
 		function updateTabList(newList) {
 			store.commit('updateTabList', newList);
 		}
+		function updateFavoritesFolderList(newList) {
+			store.commit('updateFavoritesFolderList', newList);
+		}
 
-		return {updateTabList, splitTab};
+		return {updateTabList, splitTab, favoritesFolderList, updateFavoritesFolderList };
 	},
 	methods: {
 		sleep(ms) {
@@ -64,8 +72,18 @@ export default {
 			}
 			return false;
 		},
+		deleteFavorite() {
+			let favoriteFolderList = JSON.parse(JSON.stringify(this.favoritesFolderList));
+			let folderIndex = favoriteFolderList.findIndex(
+					favoriteFolder => favoriteFolder.id === this.favoriteFolder.id);
+			let favoriteIndex = favoriteFolderList[folderIndex].list.findIndex(
+					favorite => favorite.id === this.favorite.id);
+
+			favoriteFolderList[folderIndex].list.splice(favoriteIndex, 1);
+			this.updateFavoritesFolderList(favoriteFolderList);
+		},
 		addTab() {
-			let tabList = this.$store.state.tabList;
+			let tabList = JSON.parse(JSON.stringify(this.$store.state.tabList));
 			let id = Date.now().toString();
 			let newTab = {
 				name: this.favorite.name,
