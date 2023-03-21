@@ -56,6 +56,17 @@ export default {
     return { updateTabList, splitTab };
   },
   methods: {
+	  getParent(name) {
+		  let p = this.$parent;
+		  while (typeof p !== 'undefined') {
+			  if (p.$options.name == name) {
+				  return p;
+			  } else {
+				  p = p.$parent;
+			  }
+		  }
+		  return false;
+	  },
     removeTab() {
       let tabList = this.$store.state.tabList;
 
