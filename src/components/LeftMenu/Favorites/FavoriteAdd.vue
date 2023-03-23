@@ -91,30 +91,27 @@ export default {
 			return this.moduleConfList[this.moduleName];
 		},
 		makeFavorite() {
-			let parent = this.getParent("FavoritesFolder");
 			let newFavorite = {
 				name: this.$refs["favoriteName"].value,
 				id: Date.now().toString(),
 				data: {
 					module: this.moduleName,
 				},
-				moduleSave: this.modules
+				moduleSave: JSON.parse(JSON.stringify(this.modules)),
 			}
 
-			if (typeof(this.favorite) != "undefined") {
+			if (typeof(this.favorite) !== "undefined") {
 				newFavorite.id = this.favorite.id;
 			}
 
-			for (const index in this.modules) {
-				const input = this.modules[index];
+			for (const index in newFavorite.moduleSave) {
+				let input = newFavorite.moduleSave[index];
 				let valueTmp = this.$refs["input-list"].getElementsByClassName(
 						input.label)[0].value;
 
 				newFavorite.data[input.label] = valueTmp;
 				newFavorite.moduleSave[input.label].value = valueTmp;
 			}
-
-			newFavorite.moduleSave = JSON.parse(JSON.stringify(newFavorite.moduleSave));
 
 			return newFavorite;
 		},
@@ -129,8 +126,8 @@ export default {
 
 			this.$refs["form"].classList.add("hidden");
 		},
-		editFavorite() {
-			this.editFavorite(this.makeFavorite(), this.favoritesFolder.id);
+		editeFavoriteButton() {
+			this.editeFavorite(this.makeFavorite(), this.favoritesFolder.id);
 
 			this.$refs["form"].classList.add("hidden");
 		},
@@ -141,7 +138,7 @@ export default {
 				this.moduleName = this.favorite.data.module;
 				this.modules = this.favorite.moduleSave;
 
-				this.editFavorite();
+				this.editeFavoriteButton();
 			}
 			else {
 				this.addFavorites();
