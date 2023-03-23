@@ -27,8 +27,7 @@
 </template>
 
 <script>
-import {computed} from "vue";
-import {useStore} from "vuex";
+import { useTabStore } from '@/stores/tab.js'
 
 import { MoonIcon, XMarkIcon, ArrowsPointingOutIcon, BookmarkIcon } from "@heroicons/vue/20/solid";
 
@@ -44,15 +43,15 @@ export default {
 		BookmarkIcon
 	},
 	setup() {
-		const store = useStore();
-		const splitTab = computed(() => store.state.splitTab);
-		const tabList = computed(() => store.state.tabList);
+		const tabStore = useTabStore()
+		const { tabList, deleteTab, activateTab, splitTab } = tabStore
 
-		function updateTabList(newList) {
-			store.commit('updateTabList', newList);
-		}
-
-		return {tabList, updateTabList, splitTab};
+		return {
+			tabList,
+			deleteTab,
+			activateTab,
+			splitTab
+		};
 	},
 	methods: {
 		toggleDark(id) {
@@ -63,15 +62,7 @@ export default {
 			svg.classList.toggle("clicked");
 		},
 		removeTab(id) {
-			let tabList = this.$store.state.tabList;
-
-			for (let tabElement of tabList) {
-				if (tabElement.id === id) {
-					tabList.splice(tabList.indexOf(tabElement), 1);
-				}
-			}
-
-			this.updateTabList(tabList);
+			this.deleteTab(id);
 		},
 		toggleMax(id) {
 			let elementLi = document.getElementById(id);
@@ -81,18 +72,7 @@ export default {
 		},
 
 		activeToggleTab(id) {
-			let tabList = this.$store.state.tabList;
-			for (let tabElement of tabList) {
-				if (tabElement.id === id) {
-					if (tabElement.active === "") {
-						tabElement.active = "hidden";
-					} else {
-						tabElement.active = "";
-					}
-				}
-			}
-
-			this.updateTabList(tabList);
+			this.activateTab(id)
 			document.getElementById(id + "tab").querySelector("svg").classList.toggle("clicked");
 			let svg = document.getElementById(id + "pin").querySelector("svg");
 			svg.classList.toggle("clicked");

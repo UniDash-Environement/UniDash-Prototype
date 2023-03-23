@@ -48,8 +48,7 @@
 </template>
 
 <script>
-import {computed} from "vue";
-import {useStore} from "vuex";
+import { useTabStore } from '@/stores/tab.js'
 
 import {
 	ChevronLeftIcon,
@@ -78,18 +77,11 @@ export default {
 		BookmarkIcon,
 	},
 	setup() {
-		const store = useStore();
-		const tabList = computed(() => store.state.tabList);
-		const splitTab = computed(() => store.state.splitTab);
-
-		function updateSplitTab(newList) {
-			store.commit('updateSplitTab', newList);
-		}
+		const tabStore = useTabStore()
+		const { splitTab } = tabStore
 
 		return {
-			tabList,
 			splitTab,
-			updateSplitTab,
 		};
 	},
 	data() {
@@ -136,7 +128,7 @@ export default {
 			let svg = this.$refs["setSplitBy" + number + "Button"]
 			svg.classList.add("clicked");
 
-			this.updateSplitTab(number);
+			this.splitTab = number;
 		},
 	},
 	watch: {

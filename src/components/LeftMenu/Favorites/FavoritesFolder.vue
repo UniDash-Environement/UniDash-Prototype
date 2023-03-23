@@ -26,8 +26,7 @@
 </template>
 
 <script>
-import {computed} from "vue";
-import {useStore} from "vuex";
+import { useFavoriteStore } from '@/stores/favorites.js'
 
 import {DocumentPlusIcon, FolderIcon} from "@heroicons/vue/24/solid";
 import { PencilSquareIcon } from "@heroicons/vue/20/solid";
@@ -50,16 +49,14 @@ export default {
 		XMarkIcon,
 	},
 	setup() {
-		const store = useStore();
-		const favoritesFolderList = computed(() => store.state.favoritesFolderList);
+		const favoriteStore = useFavoriteStore();
 
-		function updateFavoritesFolderList(newList) {
-			store.commit('updateFavoritesFolderList', newList);
-		}
+		const { favoritesFolderList, deleteFavoriteFolder, editeFavoriteFolder } = favoriteStore();
 
 		return {
-			updateFavoritesFolderList,
-			favoritesFolderList
+			favoritesFolderList,
+			deleteFavoriteFolder,
+			editeFavoriteFolder,
 		};
 	},
 	methods: {
@@ -94,12 +91,7 @@ export default {
 			input.focus();
 		},
 		deleteFavoriteFolder() {
-			let favoriteFolderList = JSON.parse(JSON.stringify(this.favoritesFolderList));
-			let folderIndex = favoriteFolderList.findIndex(
-					favoriteFolder => favoriteFolder.id === this.favoritesFolder.id);
-
-			favoriteFolderList.splice(folderIndex, 1)
-			this.updateFavoritesFolderList(favoriteFolderList);
+			this.deleteFavoriteFolder(this.favoritesFolder.id);
 		},
 		renameFolderEnd() {
 			let listHiddenOnRename = this.$el.querySelectorAll(".hidden-on-rename");
@@ -113,6 +105,8 @@ export default {
 			listHiddenOnRename.forEach((element) => {
 				element.classList.remove("hidden");
 			});
+
+			this.editeFavoriteFolder(this.favoritesFolder.id, folderName.innerText);
 		}
 	},
 	props: {

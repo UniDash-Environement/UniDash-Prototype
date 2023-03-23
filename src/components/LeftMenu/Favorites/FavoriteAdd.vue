@@ -33,8 +33,8 @@
 </template>
 
 <script>
-import {computed} from "vue";
-import {useStore} from "vuex";
+import { useFavoriteStore } from '@/stores/favorites.js'
+import { useModuleStore } from '@/stores/modules.js'
 
 import Box from "@/components/Custom/Box.vue";
 
@@ -61,20 +61,28 @@ export default {
 		}
 	},
 	setup() {
-		const store = useStore();
-		const favoritesFolderList = computed(() => store.state.favoritesFolderList);
-		const moduleConfList = computed(() => store.state.moduleConfList);
-		const loadModules = computed(() => store.state.loadModules);
+		const favoriteStore = useFavoriteStore();
+		const moduleStore = useModuleStore();
 
-		function updateFavoritesFolderList(newList) {
-			store.commit('updateFavoritesFolderList', newList);
-		}
+		const favoritesFolderList = favoriteStore.favoritesFolderList
+		const findFavoriteFolder = favoriteStore.findFavoriteFolder
+		const editeFavoriteFolder = favoriteStore.editeFavoriteFolder
+		const findFavorite = favoriteStore.findFavorite
+		const editeFavorite = favoriteStore.editeFavorite
+
+		const {
+			moduleConfList,
+			loadModules
+		} = moduleStore();
 
 		return {
-			updateFavoritesFolderList,
 			favoritesFolderList,
-			loadModules,
-			moduleConfList
+			findFavoriteFolder,
+			editeFavoriteFolder,
+			findFavorite,
+			editeFavorite,
+			moduleConfList,
+			loadModules
 		};
 	},
 	methods: {
@@ -121,32 +129,18 @@ export default {
 			return newFavorite;
 		},
 		addFavorites() {
-			let favoritesFolderList = this.favoritesFolderList;
-			let favoritesFolder = favoritesFolderList.find(
-					favoritesFolder => favoritesFolder.id === this.favoritesFolder.id)
-
 			let newFavorite = this.makeFavorite();
 
-			favoritesFolder.list.push(newFavorite);
-			favoritesFolderList.find(
-					favoritesFolder => favoritesFolder.id === this.favoritesFolder.id
-			).list = favoritesFolder.list
-
-			this.updateFavoritesFolderList(favoritesFolderList);
+			this.favoritesFolderList.forEach(favoritesFolder => {
+				if (favoritesFolder.id === this.favoritesFolder.id) {
+					favoritesFolder.list.push(newFavorite);
+				}
+			});
 
 			this.$refs["form"].classList.add("hidden");
 		},
 		editFavorite() {
-			let oldFavorite = this.favorite;
-			let favoriteFolderList = this.$store.state.favoritesFolderList
-
-			let favoriteFolderIndex = favoriteFolderList.findIndex(
-					favoriteFolder => favoriteFolder.id === this.favoritesFolder.id);
-			let favoriteIndex = favoriteFolderList[favoriteFolderIndex].list.findIndex(
-					favorite => favorite.id === oldFavorite.id);
-
-			favoriteFolderList[favoriteFolderIndex].list[favoriteIndex] = this.makeFavorite();
-			this.updateFavoritesFolderList(favoriteFolderList);
+			this.editFavorite(this.makeFavorite());
 
 			this.$refs["form"].classList.add("hidden");
 		},

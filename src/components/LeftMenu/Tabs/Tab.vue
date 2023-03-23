@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { useStore } from "vuex";
+import { useTabStore } from '@/stores/tab.js'
 
 import { BookmarkIcon } from "@heroicons/vue/20/solid";
 import { XMarkIcon } from "@heroicons/vue/20/solid";
@@ -46,14 +46,14 @@ export default {
 		}
 	},
   setup() {
-    const store = useStore();
+	  const tabStore = useTabStore()
+	  const { tabList, deleteTab, activateTab, splitTab } = tabStore
 
-	  const splitTab = computed(() => store.state.splitTab);
     function updateTabList(newList) {
       store.commit('updateTabList', newList);
     }
 
-    return { updateTabList, splitTab };
+    return { tabList, deleteTab, activateTab, splitTab };
   },
   methods: {
 	  getParent(name) {
@@ -68,36 +68,15 @@ export default {
 		  return false;
 	  },
     removeTab() {
-      let tabList = this.$store.state.tabList;
-
-      for (let tabElement of tabList) {
-        if (tabElement.id === this.tab.id) {
-          tabList.splice(tabList.indexOf(tabElement), 1);
-        }
-      }
-
-      this.updateTabList(tabList);
-	    if (tabList.length === 0) {
-		    this.getParent("Menu").showElement("favorites-icon", "favorites-content");
-	    }
+      deleteTab(this.tab.id);
     },
     activeToggleTab(event) {
-      let tabList = this.$store.state.tabList;
-      for (let tabElement of tabList) {
-        if (tabElement.id === this.tab.id) {
-          if (tabElement.active === "") {
-            tabElement.active = "hidden";
-          } else {
-            tabElement.active = "";
-          }
-        }
-      }
-      this.updateTabList(tabList);
+			activeTab(this.tab.id)
+
       let element = event.target;
       if (element.tagName !== "svg") {
         element = event.target.parentElement;
       }
-
 	    element.classList.toggle("clicked");
     }
   }

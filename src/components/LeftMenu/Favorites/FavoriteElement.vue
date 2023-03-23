@@ -7,7 +7,7 @@
 			</div>
 			<div class="flex flex-center flex-between">
 				<PencilSquareIcon @click="toggleEdit"/>
-				<XMarkIcon @click="deleteFavorite" />
+				<XMarkIcon @click="removeFavorite" />
 			</div>
 		</div>
 
@@ -16,8 +16,9 @@
 </template>
 
 <script>
-import {computed} from "vue";
-import {useStore} from "vuex";
+import { useFavoriteStore } from '@/stores/favorites.js'
+import { useTabStore } from '@/stores/tab.js'
+
 
 import {DocumentIcon} from "@heroicons/vue/20/solid";
 import { PencilSquareIcon } from "@heroicons/vue/20/solid";
@@ -43,19 +44,29 @@ export default {
 		},
 	},
 	setup() {
-		const store = useStore();
+		const favoriteStore = useFavoriteStore();
+		const tabStore = useTabStore();
 
-		const splitTab = computed(() => store.state.splitTab);
-		const favoritesFolderList = computed(() => store.state.favoritesFolderList);
+		const {
+			favoritesFolderList,
+			deleteFavorite
+		} = favoriteStore();
 
-		function updateTabList(newList) {
-			store.commit('updateTabList', newList);
-		}
-		function updateFavoritesFolderList(newList) {
-			store.commit('updateFavoritesFolderList', newList);
-		}
+		const {
+			tabList,
+			splitTab,
+			deleteTab,
+			activateTab
+		} = tabStore();
 
-		return {updateTabList, splitTab, favoritesFolderList, updateFavoritesFolderList };
+		return {
+			favoritesFolderList,
+			deleteFavorite,
+			tabList,
+			splitTab,
+			deleteTab,
+			activateTab
+		};
 	},
 	methods: {
 		sleep(ms) {
@@ -72,18 +83,10 @@ export default {
 			}
 			return false;
 		},
-		deleteFavorite() {
-			let favoriteFolderList = JSON.parse(JSON.stringify(this.favoritesFolderList));
-			let folderIndex = favoriteFolderList.findIndex(
-					favoriteFolder => favoriteFolder.id === this.favoriteFolder.id);
-			let favoriteIndex = favoriteFolderList[folderIndex].list.findIndex(
-					favorite => favorite.id === this.favorite.id);
-
-			favoriteFolderList[folderIndex].list.splice(favoriteIndex, 1);
-			this.updateFavoritesFolderList(favoriteFolderList);
+		removeFavorite() {
+			this.deleteFavorite(this.favorite.id);
 		},
 		addTab() {
-			let tabList = JSON.parse(JSON.stringify(this.$store.state.tabList));
 			let id = Date.now().toString();
 			let newTab = {
 				name: this.favorite.name,
@@ -92,13 +95,7 @@ export default {
 				id: id
 			};
 
-			tabList.push(newTab);
-			this.updateTabList(tabList);
-
-			this.sleep(100).then(() => {
-				let menu = this.getParent('Menu');
-				menu.setSplitBy(this.splitTab);
-			});
+			this.tabList.push(newTab);
 		},
 		toggleEdit() {
 			this.$refs.editFavorite.$el.classList.toggle('hidden');

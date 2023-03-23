@@ -10,8 +10,7 @@
 </template>
 
 <script>
-import { computed } from 'vue';
-import { useStore } from 'vuex';
+import { useTabStore } from '@/stores/tab.js'
 
 import draggable from 'vuedraggable'
 
@@ -23,14 +22,19 @@ export default {
     Tab,
     draggable
   },
+	setup() {
+		const tabStore = useTabStore()
+		const { tabList } = tabStore
+
+		return { tabList }
+	},
 	computed: {
 		tabList: {
 			get() {
-				return this.$store.state.tabList
+				return this.tabList
 			},
 			set(value) {
-				this.$store.commit('updateTabList', value)
-				console.log(this.tabList)
+				this.tabList = value
 			}
 		}
 	}

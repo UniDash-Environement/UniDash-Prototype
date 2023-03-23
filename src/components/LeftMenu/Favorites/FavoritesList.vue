@@ -17,8 +17,7 @@
 </template>
 
 <script>
-import {computed} from "vue";
-import {useStore} from "vuex";
+import { useFavoriteStore } from '@/stores/favorites.js'
 
 import {FolderPlusIcon} from "@heroicons/vue/24/solid";
 
@@ -41,16 +40,13 @@ export default {
 		FolderPlusIcon,
 	},
 	setup() {
-		const store = useStore();
+		const favoriteStore = useFavoriteStore();
 
-		const favoritesFolderList = computed(() => store.state.favoritesFolderList);
-
-		function updateFavoritesFolderList(newList) {
-			store.commit('updateFavoritesFolderList', newList);
-		}
+		const {
+			favoritesFolderList,
+		} = favoriteStore();
 
 		return {
-			updateFavoritesFolderList,
 			favoritesFolderList
 		};
 	},
@@ -77,7 +73,6 @@ export default {
 		},
 		addFolder(event) {
 			let input = event.target;
-			let favoritesFolderList = this.favoritesFolderList;
 
 			if (input.value !== "") {
 				let newFolder = {
@@ -86,8 +81,7 @@ export default {
 					"list": []
 				}
 
-				favoritesFolderList.push(newFolder);
-				this.updateFavoritesFolderList(favoritesFolderList);
+				this.favoritesFolderList.push(newFolder);
 
 				this.disableFocusOut();
 			}
