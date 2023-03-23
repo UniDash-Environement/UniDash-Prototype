@@ -33,15 +33,14 @@ export const useFavoriteStore = defineStore('favorite', {
         folder.favoritesList = folder.favoritesList.filter((favoriteTemp) => favoriteTemp.id !== id);
       }
     },
-    editeFavorite(favorite) {
-      for (const folder of this.favoritesFolderList) {
-        folder.favoritesList = folder.favoritesList.map((favoriteTemp) => {
-          if (favoriteTemp.id === favorite.id) {
-            favoriteTemp = favorite;
-          }
-          return favoriteTemp;
-        });
-      }
+    editeFavorite(favorite, folderId) {
+      let folder = this.findFavoriteFolder(folderId);
+      folder.favoritesList = folder.favoritesList.map((favoriteTemp) => {
+        if (favoriteTemp.id === favorite.id) {
+          favoriteTemp = favorite;
+        }
+        return favoriteTemp;
+      });
     }
   }
 })

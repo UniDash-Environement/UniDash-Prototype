@@ -64,25 +64,15 @@ export default {
 		const favoriteStore = useFavoriteStore();
 		const moduleStore = useModuleStore();
 
-		const favoritesFolderList = favoriteStore.favoritesFolderList
-		const findFavoriteFolder = favoriteStore.findFavoriteFolder
-		const editeFavoriteFolder = favoriteStore.editeFavoriteFolder
-		const findFavorite = favoriteStore.findFavorite
-		const editeFavorite = favoriteStore.editeFavorite
-
-		const {
-			moduleConfList,
-			loadModules
-		} = moduleStore();
-
 		return {
-			favoritesFolderList,
-			findFavoriteFolder,
-			editeFavoriteFolder,
-			findFavorite,
-			editeFavorite,
-			moduleConfList,
-			loadModules
+			favoritesFolderList: favoriteStore.favoritesFolderList,
+			findFavoriteFolder: favoriteStore.findFavoriteFolder,
+			editeFavoriteFolder: favoriteStore.editeFavoriteFolder,
+			findFavorite: favoriteStore.findFavorite,
+			editeFavorite: favoriteStore.editeFavorite,
+
+			moduleConfList: moduleStore.moduleConfList,
+			loadModules: moduleStore.loadModules
 		};
 	},
 	methods: {
@@ -140,7 +130,7 @@ export default {
 			this.$refs["form"].classList.add("hidden");
 		},
 		editFavorite() {
-			this.editFavorite(this.makeFavorite());
+			this.editFavorite(this.makeFavorite(), this.favoritesFolder.id);
 
 			this.$refs["form"].classList.add("hidden");
 		},

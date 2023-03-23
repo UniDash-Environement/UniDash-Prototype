@@ -24,9 +24,10 @@ export default {
   },
 	setup() {
 		const tabStore = useTabStore()
-		const { tabList } = tabStore
 
-		return { tabList }
+		return {
+			tabList: tabStore.tabList
+		}
 	},
 	computed: {
 		tabList: {

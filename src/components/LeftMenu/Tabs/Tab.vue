@@ -47,13 +47,13 @@ export default {
 	},
   setup() {
 	  const tabStore = useTabStore()
-	  const { tabList, deleteTab, activateTab, splitTab } = tabStore
 
-    function updateTabList(newList) {
-      store.commit('updateTabList', newList);
-    }
-
-    return { tabList, deleteTab, activateTab, splitTab };
+    return {
+	    tabList: tabStore.tabList,
+	    deleteTab: tabStore.deleteTab,
+	    activateTab: tabStore.activateTab,
+	    splitTab: tabStore.splitTab
+    };
   },
   methods: {
 	  getParent(name) {

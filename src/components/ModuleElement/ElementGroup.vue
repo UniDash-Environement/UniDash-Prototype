@@ -32,6 +32,7 @@ import { useTabStore } from '@/stores/tab.js'
 import { MoonIcon, XMarkIcon, ArrowsPointingOutIcon, BookmarkIcon } from "@heroicons/vue/20/solid";
 
 import PopBox from "@/components/Custom/PopBox.vue";
+import tab from "@/components/LeftMenu/Tabs/Tab.vue";
 
 export default {
 	name: "ElementGroup",
@@ -44,13 +45,12 @@ export default {
 	},
 	setup() {
 		const tabStore = useTabStore()
-		const { tabList, deleteTab, activateTab, splitTab } = tabStore
 
 		return {
-			tabList,
-			deleteTab,
-			activateTab,
-			splitTab
+			tabList: tabStore.tabList,
+			deleteTab: tabStore.deleteTab,
+			activateTab: tabStore.activateTab,
+			splitTab: tabStore.splitTab
 		};
 	},
 	methods: {

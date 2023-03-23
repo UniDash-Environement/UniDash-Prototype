@@ -2,21 +2,9 @@ import { createApp } from 'vue';
 import App from '@/App.vue';
 
 import { createPinia } from 'pinia'
+
 import loadModules from "@/settings/loadModules.json" assert {type: "json"};
-
-
 import '@/style.scss';
-let moduleConfList = {};
-if (loadModules.loadModules != null) {
-  for (const module of loadModules.loadModules) {
-    if (module != null && module.path != null && module.enabled) {
-      let moduleTemp = import(`@/modules/${module.path}/config.json`);
-      moduleTemp.then((moduleTemp) => {
-        moduleConfList[module.vuePath] = moduleTemp.default;
-      });
-    }
-  }
-}
 
 let modulesList = [];
 if (loadModules.loadModules != null) {

@@ -51,12 +51,10 @@ export default {
 	setup() {
 		const favoriteStore = useFavoriteStore();
 
-		const { favoritesFolderList, deleteFavoriteFolder, editeFavoriteFolder } = favoriteStore();
-
 		return {
-			favoritesFolderList,
-			deleteFavoriteFolder,
-			editeFavoriteFolder,
+			favoritesFolderList: favoriteStore.favoritesFolderList,
+			deleteFavoriteFolder: favoriteStore.deleteFavoriteFolder,
+			editeFavoriteFolder: favoriteStore.editeFavoriteFolder,
 		};
 	},
 	methods: {

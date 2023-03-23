@@ -42,12 +42,8 @@ export default {
 	setup() {
 		const favoriteStore = useFavoriteStore();
 
-		const {
-			favoritesFolderList,
-		} = favoriteStore();
-
 		return {
-			favoritesFolderList
+			favoritesFolderList: favoriteStore.favoritesFolderList,
 		};
 	},
 	methods: {

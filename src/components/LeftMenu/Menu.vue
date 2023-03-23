@@ -78,10 +78,9 @@ export default {
 	},
 	setup() {
 		const tabStore = useTabStore()
-		const { splitTab } = tabStore
 
 		return {
-			splitTab,
+			splitTab: tabStore.splitTab,
 		};
 	},
 	data() {

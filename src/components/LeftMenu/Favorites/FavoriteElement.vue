@@ -47,25 +47,14 @@ export default {
 		const favoriteStore = useFavoriteStore();
 		const tabStore = useTabStore();
 
-		const {
-			favoritesFolderList,
-			deleteFavorite
-		} = favoriteStore();
-
-		const {
-			tabList,
-			splitTab,
-			deleteTab,
-			activateTab
-		} = tabStore();
-
 		return {
-			favoritesFolderList,
-			deleteFavorite,
-			tabList,
-			splitTab,
-			deleteTab,
-			activateTab
+			favoritesFolderList: favoriteStore.favoritesFolderList,
+			deleteFavorite: favoriteStore.deleteFavorite,
+
+			tabList: tabStore.tabList,
+			splitTab: tabStore.splitTab,
+			deleteTab: tabStore.deleteTab,
+			activateTab: tabStore.activateTab
 		};
 	},
 	methods: {
