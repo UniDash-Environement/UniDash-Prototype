@@ -6,11 +6,6 @@
 import { MoonIcon } from "@heroicons/vue/20/solid";
 export default {
   name: "IframeElement",
-  data() {
-    return {
-      isDarkTheme: false,
-    }
-  },
   props: {
     data: {
       type: Object,
@@ -19,16 +14,6 @@ export default {
   },
   components: {
     MoonIcon,
-  },
-
-  watch: {
-    isDarkTheme(value) {
-      if (value) {
-        this.$refs.iframeElement.classList.add('iframe-dark');
-      } else {
-        this.$refs.iframeElement.classList.remove('iframe-dark');
-      }
-    },
   },
 }
 </script>

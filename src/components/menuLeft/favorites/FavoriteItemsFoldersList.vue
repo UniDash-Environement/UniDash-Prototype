@@ -1,17 +1,17 @@
 <template>
 	<ul class="flex list-none flex-column width-100 height-100">
 		<li v-for="favoriteFolder in favoritesFolderList">
-			<FavoritesFolder :favorites-folder="favoriteFolder"/>
+			<FavoriteItemsFolder :favorites-folder="favoriteFolder"/>
 		</li>
 		<li>
-			<Box>
+			<BoxGradient>
 				<div ref="add-folder" class="hover flex flex-column flex-center"
 				     @click="addFolderShowUpdater">
 					<FolderPlusIcon class="folder-icon show"/>
 					<input type="text" @keydown.enter="this.addFolder" name="add-folder"
 					       class="input hover show hidden">
 				</div>
-			</Box>
+			</BoxGradient>
 		</li>
 	</ul>
 </template>
@@ -22,16 +22,16 @@ import { useFavoriteStore } from '@/stores/favorites.js'
 
 import {FolderPlusIcon} from "@heroicons/vue/24/solid";
 
-import Box from "@/components/Custom/Box.vue";
-import FavoriteElement from "@/components/LeftMenu/Favorites/FavoriteElement.vue";
-import FavoritesFolder from "@/components/LeftMenu/Favorites/FavoritesFolder.vue";
+import BoxGradient from "@/components/utils/box/BoxGradient.vue";
+import FavoriteItem from "@/components/menuLeft/favorites/FavoriteItem.vue";
+import FavoriteItemsFolder from "@/components/menuLeft/favorites/FavoriteItemsFolder.vue";
 
 export default {
-	name: "FavoritesList",
+	name: "FavoriteItemsFoldersList",
 	components: {
-		Box,
-		FavoritesFolder,
-		FavoriteElement,
+		BoxGradient,
+		FavoriteItemsFolder,
+		FavoriteItem,
 		FolderPlusIcon,
 	},
 	setup() {

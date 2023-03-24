@@ -7,7 +7,7 @@
 					<component :id="tab.id + 'element'" v-bind:is="tab.data.module" :data="tab.data"/>
 				</div>
 
-				<PopBox>
+				<PopBoxGradient>
 					<div :id="tab.id + 'close'" class="flex">
 						<XMarkIcon @click="removeTab(tab.id)" />
 					</div>
@@ -20,7 +20,7 @@
 					<div :id="tab.id + 'dark'" class="flex">
 						<MoonIcon @click="toggleDark(tab.id)" />
 					</div>
-				</PopBox>
+				</PopBoxGradient>
 			</li>
 		</ul>
 	</main>
@@ -32,13 +32,13 @@ import { useTabStore } from '@/stores/tab.js'
 
 import { MoonIcon, XMarkIcon, ArrowsPointingOutIcon, BookmarkIcon } from "@heroicons/vue/20/solid";
 
-import PopBox from "@/components/Custom/PopBox.vue";
-import tab from "@/components/LeftMenu/Tabs/Tab.vue";
+import PopBoxGradient from "@/components/utils/box/PopBoxGradient.vue";
+import TabItem from "@/components/menuLeft/tabs/TabItem.vue";
 
 export default {
-	name: "ElementGroup",
+	name: "TabItemsElementsList",
 	components: {
-		PopBox,
+		PopBoxGradient,
 		MoonIcon,
 		XMarkIcon,
 		ArrowsPointingOutIcon,
@@ -76,7 +76,7 @@ export default {
 
 		activeToggleTab(id) {
 			this.activateTab(id)
-			document.getElementById(id + "tab").querySelector("svg").classList.toggle("clicked");
+			document.getElementById(id + "TabItem").querySelector("svg").classList.toggle("clicked");
 			let svg = document.getElementById(id + "pin").querySelector("svg");
 			svg.classList.toggle("clicked");
 		},

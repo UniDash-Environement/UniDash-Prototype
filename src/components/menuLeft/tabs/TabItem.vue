@@ -1,5 +1,5 @@
 <template>
-  <Box>
+  <BoxGradient>
 	  <a :href="'#' + tab.id" class="hover width-100 flex flex-center flex-between">
 		  <span>{{ tab.name }}</span>
 		  <div class="tab-icons">
@@ -9,7 +9,7 @@
 			  </div>
 		  </div>
 	  </a>
-  </Box>
+  </BoxGradient>
 </template>
 
 <script>
@@ -20,12 +20,12 @@ import { useTabStore } from '@/stores/tab.js'
 import { BookmarkIcon } from "@heroicons/vue/20/solid";
 import { XMarkIcon } from "@heroicons/vue/20/solid";
 
-import Box from "@/components/Custom/Box.vue";
+import BoxGradient from "@/components/utils/box/BoxGradient.vue";
 
 export default {
-  name: "Tab",
+  name: "TabItem",
   components: {
-    Box,
+    BoxGradient,
     XMarkIcon,
     BookmarkIcon
   },

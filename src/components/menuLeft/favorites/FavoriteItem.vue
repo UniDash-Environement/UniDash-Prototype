@@ -11,7 +11,7 @@
 			</div>
 		</div>
 
-		<FavoriteAdd ref="editFavorite" class="hidden" :favorites-folder="favoriteFolder" :favorite="favorite"/>
+		<FavoriteItemAdd ref="editFavorite" class="hidden" :favorites-folder="favoriteFolder" :favorite="favorite"/>
 	</li>
 </template>
 
@@ -24,12 +24,12 @@ import { useTabStore } from '@/stores/tab.js'
 import {DocumentIcon} from "@heroicons/vue/20/solid";
 import { PencilSquareIcon } from "@heroicons/vue/20/solid";
 import { XMarkIcon } from "@heroicons/vue/20/solid";
-import FavoriteAdd from "@/components/LeftMenu/Favorites/FavoriteAdd.vue";
+import FavoriteItemAdd from "@/components/menuLeft/favorites/FavoriteItemAdd.vue";
 
 export default {
-	name: "FavoriteElement",
+	name: "FavoriteItem",
 	components: {
-		FavoriteAdd,
+		FavoriteItemAdd,
 		DocumentIcon,
 		PencilSquareIcon,
 		XMarkIcon,

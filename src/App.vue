@@ -1,11 +1,11 @@
 <script setup>
-import Menu from "@/components/LeftMenu/Menu.vue";
-import ElementGroup from "@/components/ModuleElement/ElementGroup.vue";
+import MenuLeft from "@/components/menuLeft/MenuLeft.vue";
+import TabItemsElementsList from "@/components/main/TabItemsElementsList.vue";
 </script>
 
 <template>
-  <Menu />
-  <ElementGroup ref="elementGroup" />
+  <MenuLeft />
+  <TabItemsElementsList ref="elementGroup" />
 </template>
 
 <style scoped lang="scss">

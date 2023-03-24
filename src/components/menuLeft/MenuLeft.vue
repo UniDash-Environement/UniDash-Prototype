@@ -10,11 +10,11 @@
 			<div ref="menu-lists" id="menu-lists"
 			     class="show-checkbox-list flex flex-column width-100 height-100 padding">
 				<div class="width-100 height-100 show" :class="showTabs" ref="tab-content">
-					<TabsList/>
+					<TabItemsList/>
 				</div>
 
 				<div class="width-100 height-100 show" :class="showFavorites" ref="favorites-content">
-					<FavoritesList/>
+					<FavoriteItemsFoldersList/>
 				</div>
 
 				<div class="width-100 height-100 show" :class="showSettings" ref="settings-content">
@@ -22,7 +22,7 @@
 			</div>
 
 			<div ref="slider" class="padding">
-				<BoxHover class="slider">
+				<BoxGradientWithHover class="slider">
 					<div ref="sliderContent" class="flex flex-between width-100">
 						<div class="flex flex-center">
 							<span ref="setSplitBy1Button" @click="setSplitBy(1)" class="clicked">1</span>
@@ -39,7 +39,7 @@
 								:class="iconSettings"/>
 						</div>
 					</div>
-				</BoxHover>
+				</BoxGradientWithHover>
 			</div>
 		</div>
 	</nav>
@@ -58,22 +58,22 @@ import {
 	StarIcon
 } from "@heroicons/vue/20/solid";
 
-import BoxHover from "@/components/Custom/BoxHover.vue";
-import FavoritesList from "@/components/LeftMenu/Favorites/FavoritesList.vue";
-import Tab from "@/components/LeftMenu/Tabs/Tab.vue";
-import TabsList from "@/components/LeftMenu/Tabs/TabsList.vue";
+import BoxGradientWithHover from "@/components/utils/box/BoxGradientWithHover.vue";
+import FavoriteItemsFoldersList from "@/components/menuLeft/favorites/FavoriteItemsFoldersList.vue";
+import TabItem from "@/components/menuLeft/tabs/TabItem.vue";
+import TabItemsList from "@/components/menuLeft/tabs/TabItemsList.vue";
 
 export default {
-	name: "Menu",
+	name: "MenuLeft",
 	components: {
 		ChevronLeftIcon,
 		ChevronRightIcon,
 		Cog6ToothIcon,
 		StarIcon,
-		BoxHover,
-		FavoritesList,
-		TabsList,
-		Tab,
+		BoxGradientWithHover,
+		FavoriteItemsFoldersList,
+		TabItemsList,
+		TabItem,
 		BookmarkIcon,
 	},
 	setup() {
@@ -134,14 +134,14 @@ export default {
 
 				this.$refs["slider"].classList.add("vertical");
 
-				this.$refs["left-menu-background"].classList.add("closed-menu");
+				this.$refs["left-menu-background"].classList.add("closed-menuLeft");
 			} else {
 				this.$refs["menu-lists"].classList.remove("hidden");
 				this.$refs["title"].classList.remove("hidden");
 
 				this.$refs["slider"].classList.remove("vertical");
 
-				this.$refs["left-menu-background"].classList.remove("closed-menu");
+				this.$refs["left-menu-background"].classList.remove("closed-menuLeft");
 			}
 		}
 	}

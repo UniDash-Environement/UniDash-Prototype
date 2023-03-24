@@ -1,4 +1,4 @@
-import Element from '@/modules/iframeElement/vue.vue'
+import Element from '@/modules/iframeElement/VueElement.vue'
 
 let Data = {
   module: {

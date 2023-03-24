@@ -4,30 +4,30 @@
 		<form @submit="getMode"
 		      class="flex flex-column flex-between width-100 height-100 list-none" ref="input-list">
 			<div>
-				<Box>
+				<BoxGradient>
 					<label>NAME :</label>
 					<input class="input hover" ref="favoriteName" type="text" :value="name">
-				</Box>
-				<Box>
+				</BoxGradient>
+				<BoxGradient>
 					<label>MODULE :</label>
 					<select v-bind:value="moduleName" v-model="moduleName" class="input width-100">
 						<option class="input" v-for="module in loadModules" :value="module.vuePath"
 						        :key="module.vuePath">{{ module.name }}
 						</option>
 					</select>
-				</Box>
-				<Box v-for="(input, index) in modules" :key="index" v-show="!input.hidden">
+				</BoxGradient>
+				<BoxGradient v-for="(input, index) in modules" :key="index" v-show="!input.hidden">
 					<label>{{ input.label.toUpperCase() }} :</label>
 					<input class="input hover" :class="input.label" :type="input.type"
 					       :value="input.value">
-				</Box>
+				</BoxGradient>
 			</div>
-			<Box>
+			<BoxGradient>
 				<div class="flex add-close-button">
 					<button class="input width-100 hover" type="submit">{{ addButtonText }}</button>
 					<button class="input width-100 hover" @click="closeFavoriteAddForm">Close</button>
 				</div>
-			</Box>
+			</BoxGradient>
 		</form>
 	</div>
 </template>
@@ -37,12 +37,12 @@ import { storeToRefs } from 'pinia'
 import { useFavoriteStore } from '@/stores/favorites.js'
 import { useModuleStore } from '@/stores/modules.js'
 
-import Box from "@/components/Custom/Box.vue";
+import BoxGradient from "@/components/utils/box/BoxGradient.vue";
 
 export default {
-	name: "FavoriteAdd",
+	name: "FavoriteItemAdd",
 	components: {
-		Box
+		BoxGradient
 	},
 	data() {
 		let moduleName = "IframeElement";

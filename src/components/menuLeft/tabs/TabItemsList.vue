@@ -4,7 +4,7 @@
              item-key="id"
              class="tab-list list-none width-100 height-100 flex flex-column">
 	  <template #item="{element}">
-      <div class="width-100" ><Tab :tab="element" /></div>
+      <div class="width-100" ><TabItem :tab="element" /></div>
 	  </template>
   </draggable>
 </template>
@@ -15,12 +15,12 @@ import { useTabStore } from '@/stores/tab.js'
 
 import draggable from 'vuedraggable'
 
-import Tab from "@/components/LeftMenu/Tabs/Tab.vue";
+import TabItem from "@/components/menuLeft/tabs/TabItem.vue";
 
 export default {
-  name: "TabList",
+  name: "TabItemsList",
   components: {
-    Tab,
+    TabItem,
     draggable
   },
 	setup() {

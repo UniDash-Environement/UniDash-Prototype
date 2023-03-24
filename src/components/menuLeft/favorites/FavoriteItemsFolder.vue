@@ -1,5 +1,5 @@
 <template>
-	<Box>
+	<BoxGradient>
 		<div class="hover flex">
 			<div class="flex folderName" @click="showFolder">
 				<FolderIcon class="hidden-on-rename"/>
@@ -13,7 +13,7 @@
 			</div>
 		</div>
 		<ul ref="favorites-folder" class="show hidden flex flex-column list-none">
-			<FavoriteElement v-for="favorite in favoritesFolder.list" :favoriteFolder="favoritesFolder"
+			<FavoriteItem v-for="favorite in favoritesFolder.list" :favoriteFolder="favoritesFolder"
 			                 :favorite="favorite"/>
 			<li>
 				<div ref="add-favorite" class="flex width-100 hover" @click="this.addFavorite">
@@ -21,8 +21,8 @@
 				</div>
 			</li>
 		</ul>
-		<FavoriteAdd ref="add-favorite-form" :favorites-folder="favoritesFolder" class="hidden"/>
-	</Box>
+		<FavoriteItemAdd ref="add-favorite-form" :favorites-folder="favoritesFolder" class="hidden"/>
+	</BoxGradient>
 </template>
 
 <script>
@@ -33,18 +33,18 @@ import {DocumentPlusIcon, FolderIcon} from "@heroicons/vue/24/solid";
 import { PencilSquareIcon } from "@heroicons/vue/20/solid";
 import { XMarkIcon } from "@heroicons/vue/20/solid";
 
-import Box from "@/components/Custom/Box.vue";
-import FavoriteAdd from "@/components/LeftMenu/Favorites/FavoriteAdd.vue";
-import FavoriteElement from "@/components/LeftMenu/Favorites/FavoriteElement.vue";
+import BoxGradient from "@/components/utils/box/BoxGradient.vue";
+import FavoriteItemAdd from "@/components/menuLeft/favorites/FavoriteItemAdd.vue";
+import FavoriteItem from "@/components/menuLeft/favorites/FavoriteItem.vue";
 
 
 export default {
-	name: "FavoritesFolder",
+	name: "FavoriteItemsFolder",
 	components: {
-		FavoriteAdd,
-		Box,
+		FavoriteItemAdd,
+		BoxGradient,
 		DocumentPlusIcon,
-		FavoriteElement,
+		FavoriteItem,
 		FolderIcon,
 		PencilSquareIcon,
 		XMarkIcon,

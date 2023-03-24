@@ -8,6 +8,6 @@
 
 <script>
 export default {
-	name: "Box"
+	name: "BoxGradient"
 }
 </script>

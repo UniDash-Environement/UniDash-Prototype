@@ -10,6 +10,6 @@
 
 <script>
 export default {
-	name: "BoxHover"
+	name: "BoxGradientWithHover"
 }
 </script>

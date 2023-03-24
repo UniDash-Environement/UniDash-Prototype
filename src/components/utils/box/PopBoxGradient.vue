@@ -17,7 +17,7 @@
 import { PlusIcon } from "@heroicons/vue/20/solid";
 
 export default {
-	name: "PopBox",
+	name: "PopBoxGradient",
 	components: {
 		PlusIcon
 	},
