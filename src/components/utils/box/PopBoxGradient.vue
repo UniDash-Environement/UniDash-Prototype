@@ -1,13 +1,13 @@
 <template>
-	<div class="pop-box gradient-border flex">
-		<div class="pop-box-content favorites-folder content flex" @mouseenter="showPopBoxMenu" @mouseleave="showPopBoxMenu">
+	<div class="popBox gradientBorder flex">
+		<div class="popBoxContent favoritesFolder content flex" @mouseenter="showPopBoxMenu" @mouseleave="showPopBoxMenu">
 
 			<div ref="popBoxMenu" class="flex hidden">
 				<slot></slot>
 			</div>
 
 			<div ref="plusIcon" class="flex">
-				<PlusIcon class="plus-icon" />
+				<PlusIcon class="plusIcon" />
 			</div>
 		</div>
 	</div>
@@ -33,19 +33,19 @@ export default {
 <style scoped lang="scss">
 @import "@/style.scss";
 
-.pop-box {
+.popBox {
 	position: absolute;
-	bottom: $light-len;
-	right: calc($light-len * 2);
+	bottom: $lenMin;
+	right: calc($lenMin * 2);
 	z-index: 1;
 
-	max-width: calc(100% - $light-len * 4);
+	max-width: calc(100% - $lenMin * 4);
 
-	.pop-box-content {
+	.popBoxContent {
 		align-items: end;
 	}
 
-	.plus-icon {
+	.plusIcon {
 		cursor: pointer;
 		padding: 0;
 	}

@@ -1,7 +1,7 @@
 <template>
-	<div class="gradient-border width-100 flex">
-		<div class="favorites-folder content width-100 flex flex-column">
-			<div class="hover width-100 flex flex-center flex-between">
+	<div class="gradientBorder width100 flex">
+		<div class="favoritesFolder content width100 flex flexColumn">
+			<div class="hover width100 flex flexCenter flexBetween">
 				<slot></slot>
 			</div>
 		</div>

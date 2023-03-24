@@ -1,8 +1,8 @@
 
 <template>
-	<div ref="form" class="add-favorite-form content width-100 flex flex-column">
+	<div ref="form" class="favoriteItemAddForm content width100 flex flexColumn">
 		<form @submit="getMode"
-		      class="flex flex-column flex-between width-100 height-100 list-none" ref="input-list">
+		      class="flex flexColumn flexBetween width100 height100 listNone" ref="inputList">
 			<div>
 				<BoxGradient>
 					<label>NAME :</label>
@@ -10,7 +10,7 @@
 				</BoxGradient>
 				<BoxGradient>
 					<label>MODULE :</label>
-					<select v-bind:value="moduleName" v-model="moduleName" class="input width-100">
+					<select v-bind:value="moduleName" v-model="moduleName" class="input width100">
 						<option class="input" v-for="module in loadModules" :value="module.vuePath"
 						        :key="module.vuePath">{{ module.name }}
 						</option>
@@ -24,8 +24,8 @@
 			</div>
 			<BoxGradient>
 				<div class="flex add-close-button">
-					<button class="input width-100 hover" type="submit">{{ addButtonText }}</button>
-					<button class="input width-100 hover" @click="closeFavoriteAddForm">Close</button>
+					<button class="input width100 hover" type="submit">{{ addButtonText }}</button>
+					<button class="input width100 hover" @click="closeFavoriteAddForm">Close</button>
 				</div>
 			</BoxGradient>
 		</form>
@@ -97,7 +97,7 @@ export default {
 
 			for (const index in newFavorite.moduleSave) {
 				let input = newFavorite.moduleSave[index];
-				let valueTmp = this.$refs["input-list"].getElementsByClassName(
+				let valueTmp = this.$refs["inputList"].getElementsByClassName(
 						input.label)[0].value;
 
 				newFavorite.data[input.label] = valueTmp;
@@ -157,10 +157,10 @@ export default {
 @import "@/style.scss";
 
 .add-close-button {
-	gap: $light-len;
+	gap: $lenMin;
 }
-.add-favorite-form {
-	background-color: $gray-color !important;
+.favoriteItemAddForm {
+	background-color: $colorGray !important;
 	overflow: scroll;
 
 	form * {

@@ -1,5 +1,5 @@
 <script setup>
-import MenuLeft from "@/components/menuLeft/MenuLeft.vue";
+import MenuLeft from "@/components/leftMenu/MenuLeft.vue";
 import TabItemsElementsList from "@/components/main/TabItemsElementsList.vue";
 </script>
 

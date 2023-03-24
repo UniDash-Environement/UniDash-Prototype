@@ -1,11 +1,11 @@
 <template>
-	<li class="flex flex-column width-100">
-		<div class="flex width-100 hover padding-left flex-center flex-between">
-			<div @click="addTab" class="width-100 flex">
+	<li class="flex flexColumn width100">
+		<div class="flex width100 hover paddingLeft flexCenter flexBetween">
+			<div @click="addTab" class="width100 flex">
 				<DocumentIcon class=""/>
 				<span>{{ favorite.name }}</span>
 			</div>
-			<div class="flex flex-center flex-between">
+			<div class="flex flexCenter flexBetween">
 				<PencilSquareIcon @click="toggleEdit"/>
 				<XMarkIcon @click="removeFavorite" />
 			</div>
@@ -24,7 +24,7 @@ import { useTabStore } from '@/stores/tab.js'
 import {DocumentIcon} from "@heroicons/vue/20/solid";
 import { PencilSquareIcon } from "@heroicons/vue/20/solid";
 import { XMarkIcon } from "@heroicons/vue/20/solid";
-import FavoriteItemAdd from "@/components/menuLeft/favorites/FavoriteItemAdd.vue";
+import FavoriteItemAdd from "@/components/leftMenu/favorites/FavoriteItemAdd.vue";
 
 export default {
 	name: "FavoriteItem",

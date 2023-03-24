@@ -41,7 +41,7 @@ export const useFavoriteStore = defineStore('favorite', {
       let folderIndex;
       for (const folderIndexTemp in this.favoritesFolderList) {
         favoriteIndex = this.favoritesFolderList[folderIndexTemp].list.findIndex(
-            (favoriteTemp) => favoriteTemp.id === id
+            (favoriteTemp) => favoriteTemp.id === favorite.id
         );
         if (favoriteIndex !== -1) {
           folderIndex = folderIndexTemp;

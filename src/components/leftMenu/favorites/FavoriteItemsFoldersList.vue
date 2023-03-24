@@ -1,14 +1,14 @@
 <template>
-	<ul class="flex list-none flex-column width-100 height-100">
+	<ul class="flex listNone flexColumn width100 height100">
 		<li v-for="favoriteFolder in favoritesFolderList">
 			<FavoriteItemsFolder :favorites-folder="favoriteFolder"/>
 		</li>
 		<li>
 			<BoxGradient>
-				<div ref="add-folder" class="hover flex flex-column flex-center"
+				<div ref="addFolder" class="hover flex flexColumn flexCenter"
 				     @click="addFolderShowUpdater">
-					<FolderPlusIcon class="folder-icon show"/>
-					<input type="text" @keydown.enter="this.addFolder" name="add-folder"
+					<FolderPlusIcon class="folderIcon show"/>
+					<input type="text" @keydown.enter="this.addFolder" name="addFolder"
 					       class="input hover show hidden">
 				</div>
 			</BoxGradient>
@@ -23,8 +23,8 @@ import { useFavoriteStore } from '@/stores/favorites.js'
 import {FolderPlusIcon} from "@heroicons/vue/24/solid";
 
 import BoxGradient from "@/components/utils/box/BoxGradient.vue";
-import FavoriteItem from "@/components/menuLeft/favorites/FavoriteItem.vue";
-import FavoriteItemsFolder from "@/components/menuLeft/favorites/FavoriteItemsFolder.vue";
+import FavoriteItem from "@/components/leftMenu/favorites/FavoriteItem.vue";
+import FavoriteItemsFolder from "@/components/leftMenu/favorites/FavoriteItemsFolder.vue";
 
 export default {
 	name: "FavoriteItemsFoldersList",
@@ -45,8 +45,8 @@ export default {
 	},
 	methods: {
 		disableFocusOut() {
-			let input = this.$refs["add-folder"].querySelector("input");
-			let svg = this.$refs["add-folder"].querySelector("svg");
+			let input = this.$refs["addFolder"].querySelector("input");
+			let svg = this.$refs["addFolder"].querySelector("svg");
 
 			input.classList.add("hidden");
 			svg.classList.remove("hidden");
@@ -54,8 +54,8 @@ export default {
 			input.removeEventListener("focusout", this.disableFocusOut);
 		},
 		addFolderShowUpdater() {
-			let input = this.$refs["add-folder"].querySelector("input");
-			let svg = this.$refs["add-folder"].querySelector("svg");
+			let input = this.$refs["addFolder"].querySelector("input");
+			let svg = this.$refs["addFolder"].querySelector("svg");
 			svg.classList.add("hidden");
 			input.classList.remove("hidden");
 			input.focus();
@@ -85,11 +85,11 @@ export default {
 <style scoped lang="scss">
 @import "@/style.scss";
 
-.folder-icon {
-	height: $default-len;
+.folderIcon {
+	height: $lenMediumMax;
 }
 
-input.input[type="text"][name="add-folder"] {
-	width: calc(100% - 2 * $min-len);
+input.input[type="text"][name="addFolder"] {
+	width: calc(100% - 2 * $lenMediumMin);
 }
 </style>

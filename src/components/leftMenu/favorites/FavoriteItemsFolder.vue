@@ -2,26 +2,26 @@
 	<BoxGradient>
 		<div class="hover flex">
 			<div class="flex folderName" @click="showFolder">
-				<FolderIcon class="hidden-on-rename"/>
-				<span ref="folderName" class="hidden-on-rename folderName">{{ favoritesFolder.name }}</span>
-				<input ref="renameFolderInput" type="text" name="add-folder"
+				<FolderIcon class="hiddenOnRename"/>
+				<span ref="folderName" class="hiddenOnRename folderName">{{ favoritesFolder.name }}</span>
+				<input ref="renameFolderInput" type="text" name="addFolder"
 				       class="input hover show hidden" @keypress.enter="renameFolderEnd">
 			</div>
-			<div class="hidden-on-rename flex flex-center flex-between">
+			<div class="hiddenOnRename flex flexCenter flexBetween">
 				<PencilSquareIcon @click="renameFolder"/>
 				<XMarkIcon @click="deleteFavoriteFolder" />
 			</div>
 		</div>
-		<ul ref="favorites-folder" class="show hidden flex flex-column list-none">
+		<ul ref="favoritesFolder" class="show hidden flex flexColumn listNone">
 			<FavoriteItem v-for="favorite in favoritesFolder.list" :favoriteFolder="favoritesFolder"
 			                 :favorite="favorite"/>
 			<li>
-				<div ref="add-favorite" class="flex width-100 hover" @click="this.addFavorite">
+				<div ref="addFavorite" class="flex width100 hover" @click="this.addFavorite">
 					<DocumentPlusIcon class="favorite-icon show"/>
 				</div>
 			</li>
 		</ul>
-		<FavoriteItemAdd ref="add-favorite-form" :favorites-folder="favoritesFolder" class="hidden"/>
+		<FavoriteItemAdd ref="addFavoriteForm" :favoritesFolder="favoritesFolder" class="hidden"/>
 	</BoxGradient>
 </template>
 
@@ -34,8 +34,8 @@ import { PencilSquareIcon } from "@heroicons/vue/20/solid";
 import { XMarkIcon } from "@heroicons/vue/20/solid";
 
 import BoxGradient from "@/components/utils/box/BoxGradient.vue";
-import FavoriteItemAdd from "@/components/menuLeft/favorites/FavoriteItemAdd.vue";
-import FavoriteItem from "@/components/menuLeft/favorites/FavoriteItem.vue";
+import FavoriteItemAdd from "@/components/leftMenu/favorites/FavoriteItemAdd.vue";
+import FavoriteItem from "@/components/leftMenu/favorites/FavoriteItem.vue";
 
 
 export default {
@@ -61,16 +61,16 @@ export default {
 	},
 	methods: {
 		showFolder() {
-			let folderItemList = this.$refs["favorites-folder"];
+			let folderItemList = this.$refs["favoritesFolder"];
 			folderItemList.classList.toggle("hidden");
 		},
 		addFavorite() {
-			let favoriteForm = this.$refs["add-favorite-form"].$el;
+			let favoriteForm = this.$refs["addFavoriteForm"].$el;
 			favoriteForm.classList.toggle("hidden");
-			this.$refs["add-favorite-form"].$refs.favoriteName.focus();
+			this.$refs["addFavoriteForm"].$refs.favoriteName.focus();
 		},
 		renameFolder() {
-			let listHiddenOnRename = this.$el.querySelectorAll(".hidden-on-rename");
+			let listHiddenOnRename = this.$el.querySelectorAll(".hiddenOnRename");
 			let input = this.$refs["renameFolderInput"];
 
 			input.classList.remove("hidden");
@@ -91,7 +91,7 @@ export default {
 			this.deleteFavoriteFolder(this.favoritesFolder.id);
 		},
 		renameFolderEnd() {
-			let listHiddenOnRename = this.$el.querySelectorAll(".hidden-on-rename");
+			let listHiddenOnRename = this.$el.querySelectorAll(".hiddenOnRename");
 			let input = this.$refs["renameFolderInput"];
 
 			let folderName = this.$refs["folderName"];
@@ -118,15 +118,15 @@ export default {
 @import "@/style.scss";
 
 .favorite-icon {
-	height: $default-len;
-	padding-left: $default-len;
+	height: $lenMediumMax;
+	padding-left: $lenMediumMax;
 }
 
 .folderName {
 	flex: 1;
 }
 
-input.input[type="text"][name="add-favorite"] {
-	width: calc(100% - 2 * $min-len);
+input.input[type="text"][name="addFavorite"] {
+	width: calc(100% - 2 * $lenMediumMin);
 }
 </style>

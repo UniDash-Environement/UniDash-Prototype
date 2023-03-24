@@ -1,8 +1,8 @@
 <template>
-	<main class="width-100">
-		<ul id="element-list" class="width-100 height-100 flex flex-warp list-none">
-			<li :id="tab.id" v-for="tab in tabList" :key="tab.id" :class="[tab.active, `split-by-${splitTab}`]"
-			    class="auto-size show">
+	<main class="width100">
+		<ul id="element-list" class="width100 height100 flex flexWarp listNone">
+			<li :id="tab.id" v-for="tab in tabList" :key="tab.id" :class="[tab.active, `splitBy${splitTab}`]"
+			    class="autoSize show">
 				<div class="element">
 					<component :id="tab.id + 'element'" v-bind:is="tab.data.module" :data="tab.data"/>
 				</div>
@@ -15,7 +15,7 @@
 						<ArrowsPointingOutIcon @click="toggleMax(tab.id)" />
 					</div>
 					<div :id="tab.id + 'pin'" class="flex">
-						<BookmarkIcon class="clicked" @click="activeToggleTab(tab.id)" />
+						<BookmarkIcon class="clicked" @click="activateTab(tab.id)" />
 					</div>
 					<div :id="tab.id + 'dark'" class="flex">
 						<MoonIcon @click="toggleDark(tab.id)" />
@@ -33,7 +33,7 @@ import { useTabStore } from '@/stores/tab.js'
 import { MoonIcon, XMarkIcon, ArrowsPointingOutIcon, BookmarkIcon } from "@heroicons/vue/20/solid";
 
 import PopBoxGradient from "@/components/utils/box/PopBoxGradient.vue";
-import TabItem from "@/components/menuLeft/tabs/TabItem.vue";
+import TabItem from "@/components/leftMenu/tabs/TabItem.vue";
 
 export default {
 	name: "TabItemsElementsList",
@@ -73,13 +73,6 @@ export default {
 			svg.classList.toggle("clicked");
 			elementLi.classList.toggle("max");
 		},
-
-		activeToggleTab(id) {
-			this.activateTab(id)
-			document.getElementById(id + "TabItem").querySelector("svg").classList.toggle("clicked");
-			let svg = document.getElementById(id + "pin").querySelector("svg");
-			svg.classList.toggle("clicked");
-		},
 	}
 }
 </script>
@@ -89,16 +82,16 @@ export default {
 
 main {
 	overflow: scroll;
-	height: calc(100vh - $super-light-len * 3);
+	height: calc(100vh - $lenLight * 3);
 	flex: 1;
 
-	padding: $light-len;
+	padding: $lenMin;
 
 	#element-list li {
-		margin: calc($super-light-len / 2);
+		margin: calc($lenLight / 2);
 
-		border-radius: $default-len;
-		background: $black-color;
+		border-radius: $lenMediumMax;
+		background: $colorBlack;
 
 		position: relative;
 
@@ -127,7 +120,7 @@ main {
 		}
 
 		&:hover {
-			background: $gradient-color
+			background: $colorGradient
 		}
 
 		svg {
@@ -136,24 +129,24 @@ main {
 		}
 
 		.element {
-			width: calc(100% - $super-light-len * 2);
-			height: calc(100% - $super-light-len * 2);
-			margin: $super-light-len;
+			width: calc(100% - $lenLight * 2);
+			height: calc(100% - $lenLight * 2);
+			margin: $lenLight;
 
-			border-radius: $default-len;
-			background-color: $black-gray-color;
+			border-radius: $lenMediumMax;
+			background-color: $colorBlackGray;
 
 			filter: none;
 			transition: filter 300ms ease-in-out;
 
 			*:not(.filter-dark) {
 				filter: none;
-				transition: filter $medium-time ease-in-out;
+				transition: filter $timeMediumMin ease-in-out;
 			}
 
 			.filter-dark {
 				filter: hue-rotate(180deg) invert(1) saturate(1.2);
-				transition: filter $medium-time ease-in-out;
+				transition: filter $timeMediumMin ease-in-out;
 			}
 		}
 	}

@@ -1,6 +1,6 @@
 <template>
   <BoxGradient>
-	  <a :href="'#' + tab.id" class="hover width-100 flex flex-center flex-between">
+	  <a :href="'#' + tab.id" class="hover width100 flex flexCenter flexBetween">
 		  <span>{{ tab.name }}</span>
 		  <div class="tab-icons">
 			  <div :id="tab.id + 'tab'" class="flex">

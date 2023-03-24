@@ -2,9 +2,9 @@
   <draggable v-model="this.tabList"
              group="tabs"
              item-key="id"
-             class="tab-list list-none width-100 height-100 flex flex-column">
+             class="tabItemsList listNone width100 height100 flex flexColumn">
 	  <template #item="{element}">
-      <div class="width-100" ><TabItem :tab="element" /></div>
+      <div class="width100" ><TabItem :tab="element" /></div>
 	  </template>
   </draggable>
 </template>
@@ -15,7 +15,7 @@ import { useTabStore } from '@/stores/tab.js'
 
 import draggable from 'vuedraggable'
 
-import TabItem from "@/components/menuLeft/tabs/TabItem.vue";
+import TabItem from "@/components/leftMenu/tabs/TabItem.vue";
 
 export default {
   name: "TabItemsList",
@@ -48,7 +48,7 @@ export default {
 <style scoped lang="scss">
 @import "@/style";
 
-.tab-list {
+.tabItemsList {
   overflow: scroll;
 }
 </style>

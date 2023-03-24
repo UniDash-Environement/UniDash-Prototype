@@ -1,41 +1,41 @@
 <template>
-	<input v-model="showMenu" ref="menu-hamburger-button" class="menu-hamburger" type="checkbox"
+	<input v-model="showMenu" class="hamburgerMenu" type="checkbox"
 	       id="show-menu-button">
 	<label class="icon-burger" for="show-menu-button" aria-label="Menu"><span></span></label>
 
-	<nav class="left-menu-background-border flex flex-column gradient-border">
-		<div ref="left-menu-background" class="left-menu-background flex flex-column flex-g height-100 width-100 content">
+	<nav class="leftMenuBackgroundBorder flex flexColumn gradientBorder">
+		<div ref="leftMenuBackground" class="leftMenuBackground flex flexColumn flex-g height100 width100 content">
 			<h1 ref="title" class="title">UniDash</h1>
 
-			<div ref="menu-lists" id="menu-lists"
-			     class="show-checkbox-list flex flex-column width-100 height-100 padding">
-				<div class="width-100 height-100 show" :class="showTabs" ref="tab-content">
+			<div ref="menuLists" id="menuLists"
+			     class="show-checkbox-list flex flexColumn width100 height100 padding">
+				<div class="width100 height100 show" :class="showTabs" ref="tabContent">
 					<TabItemsList/>
 				</div>
 
-				<div class="width-100 height-100 show" :class="showFavorites" ref="favorites-content">
+				<div class="width100 height100 show" :class="showFavorites" ref="favoritesContent">
 					<FavoriteItemsFoldersList/>
 				</div>
 
-				<div class="width-100 height-100 show" :class="showSettings" ref="settings-content">
+				<div class="width100 height100 show" :class="showSettings" ref="settingsContent">
 				</div>
 			</div>
 
 			<div ref="slider" class="padding">
 				<BoxGradientWithHover class="slider">
-					<div ref="sliderContent" class="flex flex-between width-100">
-						<div class="flex flex-center">
+					<div ref="sliderContent" class="flex flexBetween width100">
+						<div class="flex flexCenter">
 							<span ref="setSplitBy1Button" @click="setSplitBy(1)" class="clicked">1</span>
 							<span ref="setSplitBy2Button" @click="setSplitBy(2)">2</span>
 							<span ref="setSplitBy3Button" @click="setSplitBy(3)">3</span>
 							<span ref="setSplitBy4Button" @click="setSplitBy(4)">4</span>
 						</div>
 						<div class="flex">
-							<bookmark-icon ref="tab-icon" @click="updateShow('tabs')"
+							<bookmarkIcon ref="tabIcon" @click="updateShow('tabs')"
 								:class="iconTabs"/>
-							<StarIcon ref="favorites-icon" @click="updateShow('favorites')"
+							<StarIcon ref="favoritesIcon" @click="updateShow('favorites')"
 								:class="iconFavorites"/>
-							<Cog6ToothIcon ref="settings-icon" @click="updateShow('settings')"
+							<Cog6ToothIcon ref="settingsIcon" @click="updateShow('settings')"
 								:class="iconSettings"/>
 						</div>
 					</div>
@@ -59,12 +59,12 @@ import {
 } from "@heroicons/vue/20/solid";
 
 import BoxGradientWithHover from "@/components/utils/box/BoxGradientWithHover.vue";
-import FavoriteItemsFoldersList from "@/components/menuLeft/favorites/FavoriteItemsFoldersList.vue";
-import TabItem from "@/components/menuLeft/tabs/TabItem.vue";
-import TabItemsList from "@/components/menuLeft/tabs/TabItemsList.vue";
+import FavoriteItemsFoldersList from "@/components/leftMenu/favorites/FavoriteItemsFoldersList.vue";
+import TabItem from "@/components/leftMenu/tabs/TabItem.vue";
+import TabItemsList from "@/components/leftMenu/tabs/TabItemsList.vue";
 
 export default {
-	name: "MenuLeft",
+	name: "leftMenu",
 	components: {
 		ChevronLeftIcon,
 		ChevronRightIcon,
@@ -129,19 +129,19 @@ export default {
 			this.updateShowMenu(value)
 
 			if (!value) {
-				this.$refs["menu-lists"].classList.add("hidden");
+				this.$refs["menuLists"].classList.add("hidden");
 				this.$refs["title"].classList.add("hidden");
 
 				this.$refs["slider"].classList.add("vertical");
 
-				this.$refs["left-menu-background"].classList.add("closed-menuLeft");
+				this.$refs["leftMenuBackground"].classList.add("closed-leftMenu");
 			} else {
-				this.$refs["menu-lists"].classList.remove("hidden");
+				this.$refs["menuLists"].classList.remove("hidden");
 				this.$refs["title"].classList.remove("hidden");
 
 				this.$refs["slider"].classList.remove("vertical");
 
-				this.$refs["left-menu-background"].classList.remove("closed-menuLeft");
+				this.$refs["leftMenuBackground"].classList.remove("closed-leftMenu");
 			}
 		}
 	}
@@ -152,10 +152,10 @@ export default {
 @import "@/style.scss";
 
 .chevron {
-	width: $max-len;
+	width: $lenBig;
 }
 
-.left-menu-background-border {
+.leftMenuBackgroundBorder {
 	height: 100vh;
 	width: 73px !important;
 
@@ -163,10 +163,10 @@ export default {
 	border-radius: 0;
 	margin: 0;
 
-	transition: width $default-time;
+	transition: width $timeDefault;
 
 	span {
-		padding: $min-len;
+		padding: $lenMediumMin;
 		margin: 0;
 	}
 
@@ -175,16 +175,16 @@ export default {
 		padding: 0;
 
 		li {
-			margin-bottom: $default-len;
+			margin-bottom: $lenMediumMax;
 		}
 	}
 
-	.left-menu-background {
-		background-color: $gray-color;
+	.leftMenuBackground {
+		background-color: $colorGray;
 		border-radius: 0;
-		width: calc(100% - $light-len);
+		width: calc(100% - $lenMin);
 
-		#menu-lists {
+		#menuLists {
 			overflow: scroll;
 		}
 
@@ -195,46 +195,46 @@ export default {
 
 		&.closed-menu {
 			align-items: end;
-			justify-content: end;
+			justifyContent: end;
 		}
 	}
 }
 
-.padding .gradient-border .content {
+.padding .gradientBorder .content {
 	width: 100%;
 }
 
-.menu-hamburger {
+.hamburgerMenu {
 	& + label {
-		width: $max-len;
-		height: $max-len;
+		width: $lenBig;
+		height: $lenBig;
 		z-index: 9999;
 
 		display: flex;
 		align-items: center;
-		justify-content: center;
+		justifyContent: center;
 
 		position: fixed;
-		top: $min-len;
-		left: $min-len;
+		top: $lenMediumMin;
+		left: $lenMediumMin;
 
 		cursor: pointer;
-		background: $black-color;
-		border-radius: $medium-min-len;
+		background: $colorBlack;
+		border-radius: $lenDefault;
 
 		span {
 			width: 100%;
-			height: $super-light-len;
+			height: $lenLight;
 
-			background: $uni-gradiant-color;
+			background: $colorGradientUni;
 			position: relative;
 
 			&::before {
-				top: - calc($super-light-len * 1.5);
+				top: - calc($lenLight * 1.5);
 			}
 
 			&::after {
-				top: calc($super-light-len * 1.5);
+				top: calc($lenLight * 1.5);
 			}
 
 			&::before, &::after {
@@ -242,7 +242,7 @@ export default {
 				height: inherit;
 
 				position: absolute;
-				background: $uni-gradiant-color;
+				background: $colorGradientUni;
 				content: "";
 			}
 		}
@@ -266,15 +266,15 @@ export default {
 		}
 
 		& ~ {
-			.left-menu-background-border {
+			.leftMenuBackgroundBorder {
 				width: 270px !important;
-				transition: width $default-time;
+				transition: width $timeDefault;
 			}
 		}
 	}
 
 	&:not(:focus-visible):focus ~ label {
-		box-shadow: 0 0 0 $super-light-len $uni-gradiant-color;
+		box-shadow: 0 0 0 $lenLight $colorGradientUni;
 	}
 }
 
@@ -287,25 +287,25 @@ input[type="checkbox"] {
 	left: -100vw;
 }
 
-.menu-hamburger:focus-visible ~ label,
+.hamburgerMenu:focus-visible ~ label,
 nav .hidden:focus-visible,
 nav .hidden:focus {
 	transition: outline-offset .25s ease;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-	.menu-hamburger {
+	.hamburgerMenu {
 		& + label span {
 			transition: background 10ms 300ms;
 
 			&::before, &::after {
-				transition: top $default-time $default-time, transform $default-time 50ms;
+				transition: top $timeDefault $timeDefault, transform $timeDefault 50ms;
 			}
 		}
 
 		&:checked + label span {
 			&::before, &::after {
-				transition: top $default-time 50ms, transform $default-time $default-time
+				transition: top $timeDefault 50ms, transform $timeDefault $timeDefault
 			}
 		}
 	}

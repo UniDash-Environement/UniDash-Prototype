@@ -26,7 +26,7 @@ iframe {
   height: 100%;
 
   border: none;
-  border-radius: $default-len;
-  background-color: $black-gray-color;
+  border-radius: $lenMediumMax;
+  background-color: $colorBlackGray;
 }
 </style>
