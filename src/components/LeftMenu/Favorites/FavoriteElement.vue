@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import { storeToRefs } from 'pinia'
 import { useFavoriteStore } from '@/stores/favorites.js'
 import { useTabStore } from '@/stores/tab.js'
 
@@ -45,33 +46,25 @@ export default {
 	},
 	setup() {
 		const favoriteStore = useFavoriteStore();
+		const { favoritesFolderList } = storeToRefs(favoriteStore)
+
 		const tabStore = useTabStore();
+		const { tabList, splitTab } = storeToRefs(tabStore)
 
 		return {
-			favoritesFolderList: favoriteStore.favoritesFolderList,
+			favoritesFolderList: favoritesFolderList,
+
+			tabList: tabList,
+			splitTab: splitTab,
+
 			deleteFavorite: favoriteStore.deleteFavorite,
 
-			tabList: tabStore.tabList,
-			splitTab: tabStore.splitTab,
 			deleteTab: tabStore.deleteTab,
-			activateTab: tabStore.activateTab
+			activateTab: tabStore.activateTab,
+			addTab: tabStore.addTab,
 		};
 	},
 	methods: {
-		sleep(ms) {
-			return new Promise(resolve => setTimeout(resolve, ms));
-		},
-		getParent(name) {
-			let p = this.$parent;
-			while (typeof p !== 'undefined') {
-				if (p.$options.name == name) {
-					return p;
-				} else {
-					p = p.$parent;
-				}
-			}
-			return false;
-		},
 		removeFavorite() {
 			this.deleteFavorite(this.favorite.id);
 		},
@@ -84,7 +77,7 @@ export default {
 				id: id
 			};
 
-			this.tabList.push(newTab);
+			this.addTab(newTab);
 		},
 		toggleEdit() {
 			this.$refs.editFavorite.$el.classList.toggle('hidden');

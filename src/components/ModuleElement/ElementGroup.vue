@@ -1,7 +1,7 @@
 <template>
 	<main class="width-100">
 		<ul id="element-list" class="width-100 height-100 flex flex-warp list-none">
-			<li :id="tab.id" v-for="(tab, index) in tabList" :key="tab.id" :class="[tab.active, `split-by-${splitTab}`]"
+			<li :id="tab.id" v-for="tab in tabList" :key="tab.id" :class="[tab.active, `split-by-${splitTab}`]"
 			    class="auto-size show">
 				<div class="element">
 					<component :id="tab.id + 'element'" v-bind:is="tab.data.module" :data="tab.data"/>
@@ -27,6 +27,7 @@
 </template>
 
 <script>
+import { storeToRefs } from 'pinia'
 import { useTabStore } from '@/stores/tab.js'
 
 import { MoonIcon, XMarkIcon, ArrowsPointingOutIcon, BookmarkIcon } from "@heroicons/vue/20/solid";
@@ -45,12 +46,14 @@ export default {
 	},
 	setup() {
 		const tabStore = useTabStore()
+		const { splitTab, tabList } = storeToRefs(tabStore)
 
 		return {
-			tabList: tabStore.tabList,
+			tabList: tabList,
+			splitTab: splitTab,
+
 			deleteTab: tabStore.deleteTab,
 			activateTab: tabStore.activateTab,
-			splitTab: tabStore.splitTab
 		};
 	},
 	methods: {

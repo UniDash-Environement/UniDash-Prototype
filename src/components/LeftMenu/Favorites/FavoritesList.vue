@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import { storeToRefs } from 'pinia'
 import { useFavoriteStore } from '@/stores/favorites.js'
 
 import {FolderPlusIcon} from "@heroicons/vue/24/solid";
@@ -27,12 +28,6 @@ import FavoritesFolder from "@/components/LeftMenu/Favorites/FavoritesFolder.vue
 
 export default {
 	name: "FavoritesList",
-	computed: {},
-	data() {
-		return {
-			addFolderShow: false
-		}
-	},
 	components: {
 		Box,
 		FavoritesFolder,
@@ -41,9 +36,11 @@ export default {
 	},
 	setup() {
 		const favoriteStore = useFavoriteStore();
+		const { favoritesFolderList } = storeToRefs(favoriteStore)
 
 		return {
-			favoritesFolderList: favoriteStore.favoritesFolderList,
+			favoritesFolderList: favoritesFolderList,
+			addFavoriteFolder: favoriteStore.addFavoriteFolder,
 		};
 	},
 	methods: {
@@ -77,8 +74,7 @@ export default {
 					"list": []
 				}
 
-				this.favoritesFolderList.push(newFolder);
-
+				this.addFavoriteFolder(newFolder);
 				this.disableFocusOut();
 			}
 		}

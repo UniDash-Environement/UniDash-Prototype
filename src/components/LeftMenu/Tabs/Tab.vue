@@ -1,9 +1,9 @@
 <template>
   <Box>
-	  <a :href="tabLink" class="hover width-100 flex flex-center flex-between">
+	  <a :href="'#' + tab.id" class="hover width-100 flex flex-center flex-between">
 		  <span>{{ tab.name }}</span>
 		  <div class="tab-icons">
-			  <div :id="tabId" class="flex">
+			  <div :id="tab.id + 'tab'" class="flex">
 				  <BookmarkIcon class="clicked" @click="activeToggleTab" />
 				  <XMarkIcon @click="removeTab" />
 			  </div>
@@ -13,13 +13,14 @@
 </template>
 
 <script>
+import { storeToRefs } from 'pinia'
+import { useMenuStore } from '@/stores/menu.js'
 import { useTabStore } from '@/stores/tab.js'
 
 import { BookmarkIcon } from "@heroicons/vue/20/solid";
 import { XMarkIcon } from "@heroicons/vue/20/solid";
 
 import Box from "@/components/Custom/Box.vue";
-import {computed} from "vue";
 
 export default {
   name: "Tab",
@@ -34,44 +35,30 @@ export default {
       required: true
     },
   },
-	data() {
-		let active = this.tab.active;
-		let tabId = this.tab.id + "tab";
-		let tabLink = "#" + this.tab.id;
-
-		return {
-			active: active,
-			tabId: tabId,
-			tabLink: tabLink
-		}
-	},
   setup() {
 	  const tabStore = useTabStore()
+	  const menuStore = useMenuStore()
+
+	  const { tabList } = storeToRefs(tabStore)
 
     return {
-	    tabList: tabStore.tabList,
+	    tabList: tabList,
+
 	    deleteTab: tabStore.deleteTab,
 	    activateTab: tabStore.activateTab,
-	    splitTab: tabStore.splitTab
+	    updateShow: menuStore.updateShow,
     };
   },
   methods: {
-	  getParent(name) {
-		  let p = this.$parent;
-		  while (typeof p !== 'undefined') {
-			  if (p.$options.name == name) {
-				  return p;
-			  } else {
-				  p = p.$parent;
-			  }
-		  }
-		  return false;
-	  },
     removeTab() {
-      deleteTab(this.tab.id);
+      this.deleteTab(this.tab.id);
+
+			if (this.tabList.length === 0) {
+				this.updateShow("favorites");
+			}
     },
     activeToggleTab(event) {
-			activeTab(this.tab.id)
+			this.activateTab(this.tab.id)
 
       let element = event.target;
       if (element.tagName !== "svg") {

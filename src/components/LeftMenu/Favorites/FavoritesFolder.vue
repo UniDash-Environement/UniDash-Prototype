@@ -26,6 +26,7 @@
 </template>
 
 <script>
+import { storeToRefs } from 'pinia'
 import { useFavoriteStore } from '@/stores/favorites.js'
 
 import {DocumentPlusIcon, FolderIcon} from "@heroicons/vue/24/solid";
@@ -50,18 +51,16 @@ export default {
 	},
 	setup() {
 		const favoriteStore = useFavoriteStore();
+		const { favoritesFolderList } = storeToRefs(favoriteStore)
 
 		return {
-			favoritesFolderList: favoriteStore.favoritesFolderList,
+			favoritesFolderList: favoritesFolderList,
 			deleteFavoriteFolder: favoriteStore.deleteFavoriteFolder,
 			editeFavoriteFolder: favoriteStore.editeFavoriteFolder,
 		};
 	},
 	methods: {
-		sleep(ms) {
-			return new Promise(resolve => setTimeout(resolve, ms));
-		},
-		showFolder(event) {
+		showFolder() {
 			let folderItemList = this.$refs["favorites-folder"];
 			folderItemList.classList.toggle("hidden");
 		},
@@ -97,7 +96,6 @@ export default {
 
 			let folderName = this.$refs["folderName"];
 			folderName.innerText = input.value;
-			input.value = "";
 
 			input.classList.add("hidden");
 			listHiddenOnRename.forEach((element) => {
@@ -121,7 +119,7 @@ export default {
 
 .favorite-icon {
 	height: $default-len;
-	padding-left: calc($default-len);
+	padding-left: $default-len;
 }
 
 .folderName {

@@ -25,7 +25,7 @@
 			<Box>
 				<div class="flex add-close-button">
 					<button class="input width-100 hover" type="submit">{{ addButtonText }}</button>
-					<button class="input width-100 hover" @click="addFavoritesClose">Close</button>
+					<button class="input width-100 hover" @click="closeFavoriteAddForm">Close</button>
 				</div>
 			</Box>
 		</form>
@@ -33,6 +33,7 @@
 </template>
 
 <script>
+import { storeToRefs } from 'pinia'
 import { useFavoriteStore } from '@/stores/favorites.js'
 import { useModuleStore } from '@/stores/modules.js'
 
@@ -52,6 +53,8 @@ export default {
 		if (typeof(this.favorite) != "undefined") {
 			name = this.favorite.name;
 			addButtonText = "Update";
+			moduleName = this.favorite.data.module;
+			modules = this.favorite.moduleSave;
 		}
 		return {
 			moduleName,
@@ -62,34 +65,22 @@ export default {
 	},
 	setup() {
 		const favoriteStore = useFavoriteStore();
+		const { favoritesFolderList } = storeToRefs(favoriteStore)
+
 		const moduleStore = useModuleStore();
+		const { moduleConfList, loadModules } = storeToRefs(moduleStore)
 
 		return {
-			favoritesFolderList: favoriteStore.favoritesFolderList,
-			findFavoriteFolder: favoriteStore.findFavoriteFolder,
-			editeFavoriteFolder: favoriteStore.editeFavoriteFolder,
-			findFavorite: favoriteStore.findFavorite,
-			editeFavorite: favoriteStore.editeFavorite,
+			moduleConfList: moduleConfList,
+			loadModules: loadModules,
 
-			moduleConfList: moduleStore.moduleConfList,
-			loadModules: moduleStore.loadModules
+			favoritesFolderList: favoritesFolderList,
+
+			editeFavorite: favoriteStore.editeFavorite,
+			addFavorite: favoriteStore.addFavorite,
 		};
 	},
 	methods: {
-		getParent(name) {
-			let p = this.$parent;
-			while (typeof p !== 'undefined') {
-				if (p.$options.name == name) {
-					return p;
-				} else {
-					p = p.$parent;
-				}
-			}
-			return false;
-		},
-		getModule() {
-			return this.moduleConfList[this.moduleName];
-		},
 		makeFavorite() {
 			let newFavorite = {
 				name: this.$refs["favoriteName"].value,
@@ -117,17 +108,12 @@ export default {
 		},
 		addFavorites() {
 			let newFavorite = this.makeFavorite();
-
-			this.favoritesFolderList.forEach(favoritesFolder => {
-				if (favoritesFolder.id === this.favoritesFolder.id) {
-					favoritesFolder.list.push(newFavorite);
-				}
-			});
+			this.addFavorite(newFavorite, this.favoritesFolder.id);
 
 			this.$refs["form"].classList.add("hidden");
 		},
 		editeFavoriteButton() {
-			this.editeFavorite(this.makeFavorite(), this.favoritesFolder.id);
+			this.editeFavorite(this.makeFavorite());
 
 			this.$refs["form"].classList.add("hidden");
 		},
@@ -144,7 +130,7 @@ export default {
 				this.addFavorites();
 			}
 		},
-		addFavoritesClose(event) {
+		closeFavoriteAddForm(event) {
 			event.preventDefault();
 			this.$refs["form"].classList.add("hidden");
 		}
@@ -161,7 +147,7 @@ export default {
 	},
 	watch: {
 		moduleName() {
-			this.modules = this.getModule();
+			this.modules = this.moduleConfList[this.moduleName];
 		}
 	}
 }

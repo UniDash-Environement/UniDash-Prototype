@@ -5,7 +5,7 @@ import ElementGroup from "@/components/ModuleElement/ElementGroup.vue";
 
 <template>
   <Menu />
-  <ElementGroup />
+  <ElementGroup ref="elementGroup" />
 </template>
 
 <style scoped lang="scss">

@@ -10,6 +10,7 @@
 </template>
 
 <script>
+import { storeToRefs } from 'pinia'
 import { useTabStore } from '@/stores/tab.js'
 
 import draggable from 'vuedraggable'
@@ -24,9 +25,11 @@ export default {
   },
 	setup() {
 		const tabStore = useTabStore()
+		const { tabList } = storeToRefs(tabStore)
 
 		return {
-			tabList: tabStore.tabList
+			tabList: tabList,
+			updateTabList: tabStore.updateTabList,
 		}
 	},
 	computed: {
@@ -35,7 +38,7 @@ export default {
 				return this.tabList
 			},
 			set(value) {
-				this.tabList = value
+				this.updateTabList(value)
 			}
 		}
 	}

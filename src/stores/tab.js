@@ -7,19 +7,27 @@ export const useTabStore = defineStore('tab', {
   }),
   actions: {
     deleteTab(id) {
-      this.tabList = this.tabList.filter((tabTemp) => tabTemp.id !== id);
+      let tabIndex = this.tabList.findIndex((tabTemp) => tabTemp.id === id);
+      this.tabList.splice(tabIndex, 1);
     },
     activateTab(id) {
-      this.tabList = this.tabList.map((tab) => {
-        if (tab.id === id) {
-          if (tab.active === "hidden") {
-            tab.active = "";
-          } else {
-            tab.active = "hidden";
-          }
-          return tab;
-        }
-      });
+      let tabIndex = this.tabList.findIndex((tabTemp) => tabTemp.id === id);
+
+      let active = "hidden";
+      if (this.tabList[tabIndex].active === "hidden") {
+        active = "";
+      }
+
+      this.tabList[tabIndex].active = active;
+    },
+    updateSplitTab(number) {
+      this.splitTab = number;
+    },
+    addTab(tab) {
+      this.tabList.push(tab);
+    },
+    updateTabList(tabList) {
+      this.tabList = tabList;
     }
-  }
+  },
 })

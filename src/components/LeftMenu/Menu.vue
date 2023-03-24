@@ -1,5 +1,5 @@
 <template>
-	<input v-model="toggleMenu" ref="menu-hamburger-button" class="menu-hamburger" type="checkbox"
+	<input v-model="showMenu" ref="menu-hamburger-button" class="menu-hamburger" type="checkbox"
 	       id="show-menu-button">
 	<label class="icon-burger" for="show-menu-button" aria-label="Menu"><span></span></label>
 
@@ -9,15 +9,15 @@
 
 			<div ref="menu-lists" id="menu-lists"
 			     class="show-checkbox-list flex flex-column width-100 height-100 padding">
-				<div class="width-100 height-100 show hidden" ref="tab-content">
+				<div class="width-100 height-100 show" :class="showTabs" ref="tab-content">
 					<TabsList/>
 				</div>
 
-				<div class="width-100 height-100 show" ref="favorites-content">
+				<div class="width-100 height-100 show" :class="showFavorites" ref="favorites-content">
 					<FavoritesList/>
 				</div>
 
-				<div class="width-100 height-100 show hidden" ref="settings-content">
+				<div class="width-100 height-100 show" :class="showSettings" ref="settings-content">
 				</div>
 			</div>
 
@@ -31,14 +31,12 @@
 							<span ref="setSplitBy4Button" @click="setSplitBy(4)">4</span>
 						</div>
 						<div class="flex">
-							<bookmark-icon ref="tab-icon"
-							               @click="showElement('tab-icon', 'tab-content')"/>
-							<StarIcon ref="favorites-icon" class="clicked"
-							          @click="showElement(
-													'favorites-icon', 'favorites-content')"/>
-							<Cog6ToothIcon ref="settings-icon"
-							               @click="showElement(
-															 'settings-icon', 'settings-content')"/>
+							<bookmark-icon ref="tab-icon" @click="updateShow('tabs')"
+								:class="iconTabs"/>
+							<StarIcon ref="favorites-icon" @click="updateShow('favorites')"
+								:class="iconFavorites"/>
+							<Cog6ToothIcon ref="settings-icon" @click="updateShow('settings')"
+								:class="iconSettings"/>
 						</div>
 					</div>
 				</BoxHover>
@@ -48,7 +46,9 @@
 </template>
 
 <script>
+import { storeToRefs } from 'pinia'
 import { useTabStore } from '@/stores/tab.js'
+import { useMenuStore } from '@/stores/menu.js'
 
 import {
 	ChevronLeftIcon,
@@ -78,46 +78,40 @@ export default {
 	},
 	setup() {
 		const tabStore = useTabStore()
+		const { splitTab } = storeToRefs(tabStore)
+
+		const menuStore = useMenuStore()
+		const {
+			showMenu,
+
+			showFavorites,
+			showTabs,
+			showSettings,
+
+			iconFavorites,
+			iconTabs,
+			iconSettings,
+		} = storeToRefs(menuStore)
 
 		return {
-			splitTab: tabStore.splitTab,
+			splitTab: splitTab,
+			updateSplitTab: tabStore.updateSplitTab,
+
+			showMenu: showMenu,
+
+			showFavorites: showFavorites,
+			showTabs: showTabs,
+			showSettings: showSettings,
+
+			iconFavorites: iconFavorites,
+			iconTabs: iconTabs,
+			iconSettings: iconSettings,
+
+			updateShow: menuStore.updateShow,
+			updateShowMenu: menuStore.updateShowMenu,
 		};
 	},
-	data() {
-		return {
-			toggleMenu: true
-		}
-	},
 	methods: {
-		showElement(iconId, showElementId) {
-			let menuBurgerButton = this.$refs["menu-hamburger-button"]
-
-			if (!menuBurgerButton.checked) {
-				menuBurgerButton.click();
-			}
-
-			let showSettings = this.$refs["settings-content"];
-			let showFavorites = this.$refs["favorites-content"];
-			let showTab = this.$refs["tab-content"];
-
-			let settingsIcon = this.$refs["settings-icon"];
-			let favoritesIcon = this.$refs["favorites-icon"];
-			let tabIcon = this.$refs["tab-icon"];
-
-			let showElement = this.$refs[showElementId];
-			let icon = this.$refs[iconId];
-
-			showSettings.classList.add("hidden");
-			showFavorites.classList.add("hidden");
-			showTab.classList.add("hidden");
-
-			settingsIcon.classList.remove("clicked");
-			favoritesIcon.classList.remove("clicked");
-			tabIcon.classList.remove("clicked");
-
-			showElement.classList.remove("hidden");
-			icon.classList.add("clicked");
-		},
 		setSplitBy(number) {
 			this.$refs["setSplitBy1Button"].classList.remove("clicked");
 			this.$refs["setSplitBy2Button"].classList.remove("clicked");
@@ -127,11 +121,13 @@ export default {
 			let svg = this.$refs["setSplitBy" + number + "Button"]
 			svg.classList.add("clicked");
 
-			this.splitTab = number;
+			this.updateSplitTab(number)
 		},
 	},
 	watch: {
-		toggleMenu(value) {
+		showMenu(value) {
+			this.updateShowMenu(value)
+
 			if (!value) {
 				this.$refs["menu-lists"].classList.add("hidden");
 				this.$refs["title"].classList.add("hidden");
