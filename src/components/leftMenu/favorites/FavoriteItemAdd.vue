@@ -27,13 +27,11 @@
 				</BoxGradient>
 				<BoxGradient v-for="(input, index) in modules"
 				             :key="index">
-					<template v-show="!input.hidden">
-						<label class="paddingIn">{{ input.label.toUpperCase() }} :</label>
-						<input class="input hover"
-						       :class="input.label"
-						       :type="input.type"
-						       :value="input.value">
-					</template>
+					<label class="paddingIn">{{ input.label.toUpperCase() }} :</label>
+					<input class="input hover"
+					       :class="input.label"
+					       :type="input.type"
+					       :value="input.value">
 				</BoxGradient>
 			</div>
 			<BoxGradient>
