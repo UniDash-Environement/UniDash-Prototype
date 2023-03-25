@@ -15,7 +15,7 @@
 				</BoxGradient>
 				<BoxGradient>
 					<label class="paddingIn">MODULE :</label>
-					<select class="input width100"
+					<select class="input width100 hover"
 					        v-bind:value="moduleName"
 					        v-model="moduleName">
 						<option v-for="module in loadModules"
