@@ -69,6 +69,7 @@ import TabItemsList from "@/components/leftMenu/tabs/TabItemsList.vue";
 
 export default {
 	name: "leftMenu",
+
 	components: {
 		ChevronLeftIcon,
 		ChevronRightIcon,
@@ -80,6 +81,7 @@ export default {
 		TabItem,
 		BookmarkIcon,
 	},
+
 	setup() {
 		const tabStore = useTabStore()
 		const { splitTab } = storeToRefs(tabStore)
@@ -115,19 +117,7 @@ export default {
 			updateShowMenu: menuStore.updateShowMenu,
 		};
 	},
-	methods: {
-		setSplitBy(number) {
-			this.$refs["setSplitBy1Button"].classList.remove("clicked");
-			this.$refs["setSplitBy2Button"].classList.remove("clicked");
-			this.$refs["setSplitBy3Button"].classList.remove("clicked");
-			this.$refs["setSplitBy4Button"].classList.remove("clicked");
 
-			let svg = this.$refs["setSplitBy" + number + "Button"]
-			svg.classList.add("clicked");
-
-			this.updateSplitTab(number)
-		},
-	},
 	watch: {
 		showMenu(value) {
 			this.updateShowMenu(value)
@@ -148,7 +138,21 @@ export default {
 				this.$refs["leftMenuBackground"].classList.remove("closed-leftMenu");
 			}
 		}
-	}
+	},
+
+	methods: {
+		setSplitBy(number) {
+			this.$refs["setSplitBy1Button"].classList.remove("clicked");
+			this.$refs["setSplitBy2Button"].classList.remove("clicked");
+			this.$refs["setSplitBy3Button"].classList.remove("clicked");
+			this.$refs["setSplitBy4Button"].classList.remove("clicked");
+
+			let svg = this.$refs["setSplitBy" + number + "Button"]
+			svg.classList.add("clicked");
+
+			this.updateSplitTab(number)
+		},
+	},
 }
 </script>
 

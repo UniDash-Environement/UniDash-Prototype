@@ -41,9 +41,29 @@ import BoxGradient from "@/components/utils/box/BoxGradient.vue";
 
 export default {
 	name: "FavoriteItemAdd",
+
 	components: {
 		BoxGradient
 	},
+
+	setup() {
+		const favoriteStore = useFavoriteStore();
+		const { favoritesFolderList } = storeToRefs(favoriteStore)
+
+		const moduleStore = useModuleStore();
+		const { moduleConfList, loadModules } = storeToRefs(moduleStore)
+
+		return {
+			moduleConfList: moduleConfList,
+			loadModules: loadModules,
+
+			favoritesFolderList: favoritesFolderList,
+
+			editeFavorite: favoriteStore.editeFavorite,
+			addFavorite: favoriteStore.addFavorite,
+		};
+	},
+
 	data() {
 		let moduleName = "IframeElement";
 		let modules = this.moduleConfList[moduleName];
@@ -63,23 +83,7 @@ export default {
 			addButtonText
 		}
 	},
-	setup() {
-		const favoriteStore = useFavoriteStore();
-		const { favoritesFolderList } = storeToRefs(favoriteStore)
 
-		const moduleStore = useModuleStore();
-		const { moduleConfList, loadModules } = storeToRefs(moduleStore)
-
-		return {
-			moduleConfList: moduleConfList,
-			loadModules: loadModules,
-
-			favoritesFolderList: favoritesFolderList,
-
-			editeFavorite: favoriteStore.editeFavorite,
-			addFavorite: favoriteStore.addFavorite,
-		};
-	},
 	methods: {
 		makeFavorite() {
 			let newFavorite = {
@@ -106,17 +110,20 @@ export default {
 
 			return newFavorite;
 		},
+
 		addFavorites() {
 			let newFavorite = this.makeFavorite();
 			this.addFavorite(newFavorite, this.favoritesFolder.id);
 
 			this.$refs["form"].classList.add("hidden");
 		},
+
 		editeFavoriteButton() {
 			this.editeFavorite(this.makeFavorite());
 
 			this.$refs["form"].classList.add("hidden");
 		},
+
 		getMode(event) {
 			event.preventDefault();
 
@@ -130,11 +137,13 @@ export default {
 				this.addFavorites();
 			}
 		},
+
 		closeFavoriteAddForm(event) {
 			event.preventDefault();
 			this.$refs["form"].classList.add("hidden");
 		}
 	},
+
 	props: {
 		favoritesFolder: {
 			type: Object,
@@ -145,6 +154,7 @@ export default {
 			required: false
 		}
 	},
+
 	watch: {
 		moduleName() {
 			this.modules = this.moduleConfList[this.moduleName];

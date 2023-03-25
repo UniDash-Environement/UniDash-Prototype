@@ -18,9 +18,11 @@ import { PlusIcon } from "@heroicons/vue/20/solid";
 
 export default {
 	name: "PopBoxGradient",
+
 	components: {
 		PlusIcon
 	},
+
 	methods: {
 		showPopBoxMenu() {
 			this.$refs.popBoxMenu.classList.toggle("hidden");

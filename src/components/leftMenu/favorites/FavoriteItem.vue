@@ -28,12 +28,14 @@ import FavoriteItemAdd from "@/components/leftMenu/favorites/FavoriteItemAdd.vue
 
 export default {
 	name: "FavoriteItem",
+
 	components: {
 		FavoriteItemAdd,
 		DocumentIcon,
 		PencilSquareIcon,
 		XMarkIcon,
 	},
+
 	props: {
 		favorite: {
 			type: Object,
@@ -44,6 +46,7 @@ export default {
 			required: true
 		},
 	},
+
 	setup() {
 		const favoriteStore = useFavoriteStore();
 		const { favoritesFolderList } = storeToRefs(favoriteStore)
@@ -64,10 +67,12 @@ export default {
 			addTab: tabStore.addTab,
 		};
 	},
+
 	methods: {
 		removeFavorite() {
 			this.deleteFavorite(this.favorite.id);
 		},
+
 		addTab() {
 			let id = Date.now().toString();
 			let newTab = {
@@ -80,6 +85,7 @@ export default {
 
 			this.addTab(newTab);
 		},
+
 		toggleEdit() {
 			this.$refs.editFavorite.$el.classList.toggle('hidden');
 			this.$refs.editFavorite.$refs.favoriteName.focus();

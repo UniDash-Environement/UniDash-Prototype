@@ -39,6 +39,7 @@ import TabItem from "@/components/leftMenu/tabs/TabItem.vue";
 
 export default {
 	name: "TabItemsElementsList",
+
 	components: {
 		PopBoxGradient,
 		MoonIcon,
@@ -46,6 +47,7 @@ export default {
 		ArrowsPointingOutIcon,
 		BookmarkIcon
 	},
+
 	setup() {
 		const tabStore = useTabStore()
 		const { splitTab, tabList } = storeToRefs(tabStore)
@@ -58,6 +60,7 @@ export default {
 			activateTab: tabStore.activateTab,
 		};
 	},
+
 	methods: {
 		toggleDark(id) {
 			let element = document.getElementById(id + "element");
@@ -66,9 +69,11 @@ export default {
 			console.log(svg);
 			svg.classList.toggle("clicked");
 		},
+
 		removeTab(id) {
 			this.deleteTab(id);
 		},
+
 		toggleMax(id) {
 			let elementLi = document.getElementById(id);
 			let svg = document.getElementById(id + "full").querySelector("svg");

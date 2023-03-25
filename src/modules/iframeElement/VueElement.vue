@@ -6,15 +6,17 @@
 import { MoonIcon } from "@heroicons/vue/20/solid";
 export default {
   name: "IframeElement",
-  props: {
-    data: {
-      type: Object,
-      required: true
-    },
-  },
+
   components: {
     MoonIcon,
   },
+
+	props: {
+		data: {
+			type: Object,
+			required: true
+		},
+	},
 }
 </script>
 

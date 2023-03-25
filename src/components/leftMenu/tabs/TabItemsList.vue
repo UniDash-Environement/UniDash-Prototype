@@ -19,10 +19,12 @@ import TabItem from "@/components/leftMenu/tabs/TabItem.vue";
 
 export default {
   name: "TabItemsList",
+
   components: {
     TabItem,
     draggable
   },
+
 	setup() {
 		const tabStore = useTabStore()
 		const { tabList } = storeToRefs(tabStore)
@@ -32,6 +34,7 @@ export default {
 			updateTabList: tabStore.updateTabList,
 		}
 	},
+
 	computed: {
 		tabList: {
 			get() {

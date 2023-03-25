@@ -41,6 +41,7 @@ import FavoriteItem from "@/components/leftMenu/favorites/FavoriteItem.vue";
 
 export default {
 	name: "FavoriteItemsFolder",
+
 	components: {
 		FavoriteItemAdd,
 		BoxGradient,
@@ -50,6 +51,14 @@ export default {
 		PencilSquareIcon,
 		XMarkIcon,
 	},
+
+	props: {
+		favoritesFolder: {
+			type: Object,
+			required: true
+		}
+	},
+
 	setup() {
 		const favoriteStore = useFavoriteStore();
 		const { favoritesFolderList } = storeToRefs(favoriteStore)
@@ -60,16 +69,19 @@ export default {
 			editeFavoriteFolder: favoriteStore.editeFavoriteFolder,
 		};
 	},
+
 	methods: {
 		showFolder() {
 			let folderItemList = this.$refs["favoritesFolder"];
 			folderItemList.classList.toggle("hidden");
 		},
+
 		addFavorite() {
 			let favoriteForm = this.$refs["addFavoriteForm"].$el;
 			favoriteForm.classList.toggle("hidden");
 			this.$refs["addFavoriteForm"].$refs.favoriteName.focus();
 		},
+
 		renameFolder() {
 			let listHiddenOnRename = this.$el.querySelectorAll(".hiddenOnRename");
 			let input = this.$refs["renameFolderInput"];
@@ -88,9 +100,11 @@ export default {
 
 			input.focus();
 		},
+
 		deleteFavoriteFolder() {
 			this.deleteFavoriteFolder(this.favoritesFolder.id);
 		},
+
 		renameFolderEnd() {
 			let listHiddenOnRename = this.$el.querySelectorAll(".hiddenOnRename");
 			let input = this.$refs["renameFolderInput"];
@@ -106,12 +120,6 @@ export default {
 			this.editeFavoriteFolder(this.favoritesFolder.id, folderName.innerText);
 		}
 	},
-	props: {
-		favoritesFolder: {
-			type: Object,
-			required: true
-		}
-	}
 }
 </script>
 

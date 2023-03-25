@@ -26,17 +26,20 @@ import BoxGradient from "@/components/utils/box/BoxGradient.vue";
 
 export default {
   name: "TabItem",
+
   components: {
     BoxGradient,
     XMarkIcon,
     BookmarkIcon
   },
+
   props: {
     tab: {
       type: Object,
       required: true
     },
   },
+
   setup() {
 	  const tabStore = useTabStore()
 	  const menuStore = useMenuStore()
@@ -51,6 +54,7 @@ export default {
 	    updateShow: menuStore.updateShow,
     };
   },
+
   methods: {
     removeTab() {
       this.deleteTab(this.tab.id);

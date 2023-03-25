@@ -31,12 +31,14 @@ import FavoriteItemsFolder from "@/components/leftMenu/favorites/FavoriteItemsFo
 
 export default {
 	name: "FavoriteItemsFoldersList",
+
 	components: {
 		BoxGradient,
 		FavoriteItemsFolder,
 		FavoriteItem,
 		FolderPlusIcon,
 	},
+
 	setup() {
 		const favoriteStore = useFavoriteStore();
 		const { favoritesFolderList } = storeToRefs(favoriteStore)
@@ -46,6 +48,7 @@ export default {
 			addFavoriteFolder: favoriteStore.addFavoriteFolder,
 		};
 	},
+
 	methods: {
 		disableFocusOut() {
 			let input = this.$refs["addFolder"].querySelector("input");
@@ -56,6 +59,7 @@ export default {
 			input.value = "";
 			input.removeEventListener("focusout", this.disableFocusOut);
 		},
+
 		addFolderShowUpdater() {
 			let input = this.$refs["addFolder"].querySelector("input");
 			let svg = this.$refs["addFolder"].querySelector("svg");
@@ -67,6 +71,7 @@ export default {
 				input.addEventListener("focusout", this.disableFocusOut);
 			}
 		},
+
 		addFolder(event) {
 			let input = event.target;
 
