@@ -8,17 +8,19 @@
 				</div>
 
 				<PopBoxGradient>
-					<div :id="tab.id + 'close'" class="flex">
-						<XMarkIcon @click="removeTab(tab.id)" />
-					</div>
-					<div :id="tab.id + 'full'" class="flex">
-						<ArrowsPointingOutIcon @click="toggleMax(tab.id)" />
-					</div>
-					<div :id="tab.id + 'pin'" class="flex">
-						<BookmarkIcon class="clicked" @click="activateTab(tab.id)" />
-					</div>
-					<div :id="tab.id + 'dark'" class="flex">
-						<MoonIcon @click="toggleDark(tab.id)" />
+					<div class="flex flexColumn flexCenter hover">
+						<div :id="tab.id + 'close'" class="flex hoverClickable" @click="removeTab(tab.id)">
+							<XMarkIcon />
+						</div>
+						<div :id="tab.id + 'full'" class="flex hoverClickable" @click="toggleMax(tab.id)">
+							<ArrowsPointingOutIcon />
+						</div>
+						<div :id="tab.id + 'pin'" class="flex hoverClickable" @click="activateTab(tab.id)">
+							<BookmarkIcon :class="tab.clicked" />
+						</div>
+						<div :id="tab.id + 'dark'" class="flex hoverClickable" @click="toggleDark(tab.id)">
+							<MoonIcon />
+						</div>
 					</div>
 				</PopBoxGradient>
 			</li>
@@ -82,7 +84,7 @@ export default {
 
 main {
 	overflow: scroll;
-	height: calc(100vh - $lenLight * 3);
+	height: calc(100vh - $lenLight * 3.5);
 	flex: 1;
 
 	padding: $lenMin;
@@ -121,11 +123,6 @@ main {
 
 		&:hover {
 			background: $colorGradient
-		}
-
-		svg {
-			cursor: pointer;
-			padding: 0;
 		}
 
 		.element {

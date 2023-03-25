@@ -5,9 +5,12 @@
 		</li>
 		<li>
 			<BoxGradient>
-				<div ref="addFolder" class="hover flex flexColumn flexCenter"
+				<div ref="addFolder" class="hover flex flexCenter"
 				     @click="addFolderShowUpdater">
-					<FolderPlusIcon class="folderIcon show"/>
+					<div class="hoverClickable flex flex1">
+						<FolderPlusIcon class="folderIcon"/>
+						<label>Add Folder</label>
+					</div>
 					<input type="text" @keydown.enter="this.addFolder" name="addFolder"
 					       class="input hover show hidden">
 				</div>
@@ -84,10 +87,6 @@ export default {
 
 <style scoped lang="scss">
 @import "@/style.scss";
-
-.folderIcon {
-	height: $lenMediumMax;
-}
 
 input.input[type="text"][name="addFolder"] {
 	width: calc(100% - 2 * $lenMediumMin);

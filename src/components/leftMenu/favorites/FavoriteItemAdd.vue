@@ -2,14 +2,14 @@
 <template>
 	<div ref="form" class="favoriteItemAddForm content width100 flex flexColumn">
 		<form @submit="getMode"
-		      class="flex flexColumn flexBetween width100 height100 listNone" ref="inputList">
+		      class="flex flexColumn flexBetween width100 height100" ref="inputList">
 			<div>
 				<BoxGradient>
-					<label>NAME :</label>
+					<label class="paddingIn">NAME :</label>
 					<input class="input hover" ref="favoriteName" type="text" :value="name">
 				</BoxGradient>
 				<BoxGradient>
-					<label>MODULE :</label>
+					<label class="paddingIn">MODULE :</label>
 					<select v-bind:value="moduleName" v-model="moduleName" class="input width100">
 						<option class="input" v-for="module in loadModules" :value="module.vuePath"
 						        :key="module.vuePath">{{ module.name }}
@@ -17,7 +17,7 @@
 					</select>
 				</BoxGradient>
 				<BoxGradient v-for="(input, index) in modules" :key="index" v-show="!input.hidden">
-					<label>{{ input.label.toUpperCase() }} :</label>
+					<label class="paddingIn">{{ input.label.toUpperCase() }} :</label>
 					<input class="input hover" :class="input.label" :type="input.type"
 					       :value="input.value">
 				</BoxGradient>

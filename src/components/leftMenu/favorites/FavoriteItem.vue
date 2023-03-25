@@ -1,13 +1,13 @@
 <template>
 	<li class="flex flexColumn width100">
-		<div class="flex width100 hover paddingLeft flexCenter flexBetween">
-			<div @click="addTab" class="width100 flex">
-				<DocumentIcon class=""/>
+		<div class="flex width100 hover flexCenter flexBetween">
+			<div @click="addTab" class="width100 flex hoverClickable">
+				<DocumentIcon class="paddingLeft"/>
 				<span>{{ favorite.name }}</span>
 			</div>
 			<div class="flex flexCenter flexBetween">
-				<PencilSquareIcon @click="toggleEdit"/>
-				<XMarkIcon @click="removeFavorite" />
+				<PencilSquareIcon class="hoverClickable" @click="toggleEdit"/>
+				<XMarkIcon class="hoverClickable" @click="removeFavorite" />
 			</div>
 		</div>
 
@@ -74,6 +74,7 @@ export default {
 				name: this.favorite.name,
 				data: this.favorite.data,
 				active: "",
+				clicked: "clicked",
 				id: id
 			};
 

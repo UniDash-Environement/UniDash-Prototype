@@ -1,7 +1,7 @@
 <template>
 	<input v-model="showMenu" class="hamburgerMenu" type="checkbox"
-	       id="show-menu-button">
-	<label class="icon-burger" for="show-menu-button" aria-label="Menu"><span></span></label>
+	       id="showMenuButton">
+	<label class="iconBurger" for="showMenuButton" aria-label="Menu"><span></span></label>
 
 	<nav class="leftMenuBackgroundBorder flex flexColumn gradientBorder">
 		<div ref="leftMenuBackground" class="leftMenuBackground flex flexColumn flex-g height100 width100 content">
@@ -25,18 +25,22 @@
 				<BoxGradientWithHover class="slider">
 					<div ref="sliderContent" class="flex flexBetween width100">
 						<div class="flex flexCenter">
-							<span ref="setSplitBy1Button" @click="setSplitBy(1)" class="clicked">1</span>
-							<span ref="setSplitBy2Button" @click="setSplitBy(2)">2</span>
-							<span ref="setSplitBy3Button" @click="setSplitBy(3)">3</span>
-							<span ref="setSplitBy4Button" @click="setSplitBy(4)">4</span>
+							<span ref="setSplitBy1Button" @click="setSplitBy(1)"
+							      class="clicked hoverClickable sliderIcon">1</span>
+							<span ref="setSplitBy2Button" @click="setSplitBy(2)"
+							      class="hoverClickable sliderIcon">2</span>
+							<span ref="setSplitBy3Button" @click="setSplitBy(3)"
+							      class="hoverClickable sliderIcon">3</span>
+							<span ref="setSplitBy4Button" @click="setSplitBy(4)"
+							      class="hoverClickable sliderIcon">4</span>
 						</div>
-						<div class="flex">
+						<div class="flex flexCenter">
 							<bookmarkIcon ref="tabIcon" @click="updateShow('tabs')"
-								:class="iconTabs"/>
+								:class="iconTabs" class="hoverClickable sliderIcon"/>
 							<StarIcon ref="favoritesIcon" @click="updateShow('favorites')"
-								:class="iconFavorites"/>
+								:class="iconFavorites" class="hoverClickable sliderIcon"/>
 							<Cog6ToothIcon ref="settingsIcon" @click="updateShow('settings')"
-								:class="iconSettings"/>
+								:class="iconSettings" class="hoverClickable sliderIcon"/>
 						</div>
 					</div>
 				</BoxGradientWithHover>
@@ -151,24 +155,39 @@ export default {
 <style scoped lang="scss">
 @import "@/style.scss";
 
+.iconBurger {
+	width: 30px !important;
+	height: 30px !important;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 5px;
+	margin: $lenMediumMin;
+
+	span {
+		width: 100%;
+		height: 100%;
+		margin: 0;
+		padding: 0;
+	}
+}
+
 .chevron {
 	width: $lenBig;
 }
 
 .leftMenuBackgroundBorder {
 	height: 100vh;
-	width: 73px !important;
+	width: 67px !important;
 
 	padding: 0;
 	border-radius: 0;
 	margin: 0;
 
-	transition: width $timeDefault;
+	overflow-y: scroll;
+	overflow-x: hidden;
 
-	span {
-		padding: $lenMediumMin;
-		margin: 0;
-	}
+	transition: width $timeDefault;
 
 	ul {
 		list-style-type: none;
@@ -183,19 +202,31 @@ export default {
 		background-color: $colorGray;
 		border-radius: 0;
 		width: calc(100% - $lenMin);
+		justify-content: end;
 
 		#menuLists {
-			overflow: scroll;
+			overflow: hidden;
+		}
+
+		.title {
+			overflow: hidden;
 		}
 
 		.slider {
 			margin: 0;
-			overflow: scroll;
+			overflow: hidden;
+
+			.sliderIcon {
+				height: 24px;
+				width: 24px;
+				text-align: center;
+				font-size: $lenDefault;
+			}
 		}
 
 		&.closed-menu {
 			align-items: end;
-			justifyContent: end;
+			justify-content: end;
 		}
 	}
 }
@@ -212,7 +243,7 @@ export default {
 
 		display: flex;
 		align-items: center;
-		justifyContent: center;
+		justify-content: center;
 
 		position: fixed;
 		top: $lenMediumMin;
@@ -230,11 +261,11 @@ export default {
 			position: relative;
 
 			&::before {
-				top: - calc($lenLight * 1.5);
+				top: -6px;
 			}
 
 			&::after {
-				top: calc($lenLight * 1.5);
+				top: 6px;
 			}
 
 			&::before, &::after {

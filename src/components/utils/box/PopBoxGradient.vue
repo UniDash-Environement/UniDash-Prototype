@@ -6,8 +6,8 @@
 				<slot></slot>
 			</div>
 
-			<div ref="plusIcon" class="flex">
-				<PlusIcon class="plusIcon" />
+			<div ref="plusIcon" class="flex flexColumn flexCenter hover">
+				<PlusIcon class="plusIcon hoverClickable" />
 			</div>
 		</div>
 	</div>
@@ -39,15 +39,12 @@ export default {
 	right: calc($lenMin * 2);
 	z-index: 1;
 
-	max-width: calc(100% - $lenMin * 4);
-
 	.popBoxContent {
 		align-items: end;
 	}
 
 	.plusIcon {
 		cursor: pointer;
-		padding: 0;
 	}
 }
 </style>

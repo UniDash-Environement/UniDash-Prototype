@@ -1,14 +1,16 @@
 <template>
   <BoxGradient>
-	  <a :href="'#' + tab.id" class="hover width100 flex flexCenter flexBetween">
-		  <span>{{ tab.name }}</span>
-		  <div class="tab-icons">
-			  <div :id="tab.id + 'tab'" class="flex">
-				  <BookmarkIcon class="clicked" @click="activeToggleTab" />
-				  <XMarkIcon @click="removeTab" />
+	  <div class="scroll">
+		  <a :href="'#' + tab.id" class="hover width100 flex flexCenter flexBetween">
+			  <span class="hoverClickable flex1">{{ tab.name }}</span>
+			  <div class="tab-icons">
+				  <div :id="tab.id + 'tab'" class="flex">
+					  <BookmarkIcon :class="tab.clicked" class="hoverClickable" @click="activateTab(tab.id)" />
+					  <XMarkIcon @click="removeTab" class="hoverClickable" />
+				  </div>
 			  </div>
-		  </div>
-	  </a>
+		  </a>
+	  </div>
   </BoxGradient>
 </template>
 
@@ -57,15 +59,6 @@ export default {
 				this.updateShow("favorites");
 			}
     },
-    activeToggleTab(event) {
-			this.activateTab(this.tab.id)
-
-      let element = event.target;
-      if (element.tagName !== "svg") {
-        element = event.target.parentElement;
-      }
-	    element.classList.toggle("clicked");
-    }
   }
 }
 </script>
@@ -76,6 +69,11 @@ export default {
 a {
 	margin: 0;
 	padding: 0;
+}
+
+.scroll {
+	overflow-y: scroll;
+	overflow-x: hidden;
 }
 
 .tab-icons {

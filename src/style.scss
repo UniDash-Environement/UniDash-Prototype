@@ -14,13 +14,13 @@ ul {
 }
 
 // width
-$lenLight: 0.2rem;
-$lenMin: 0.3rem;
-$lenMediumMin: 0.5rem;
-$lenDefault: 0.7rem;
-$lenMediumMax: 1rem;
-$lenMax: 1.5rem;
-$lenBig: 2rem;
+$lenLight: 3px;
+$lenMin: 5px;
+$lenMediumMin: 8px;
+$lenDefault: 12px;
+$lenMediumMax: 14px;
+$lenMax: 17px;
+$lenBig: 20px;
 
 // color
 $colorBlack: #1E2527;
@@ -42,7 +42,7 @@ $timeMax: 1s;
     background-color: $colorGray;
     border-radius: $lenMediumMin;
     filter: brightness(1.25);
-    
+
     transition: color $timeMediumMin ease-in-out;
   }
 }
@@ -59,6 +59,10 @@ $timeMax: 1s;
 
 .flex {
   display: flex;
+}
+
+.flex1 {
+  flex: 1;
 }
 
 .autoSize {
@@ -88,7 +92,6 @@ $timeMax: 1s;
 
 .vertical {
   flex-direction: column;
-  margin-right: calc($lenLight * 2);
 
   * {
     flex-direction: column;
@@ -162,11 +165,14 @@ $timeMax: 1s;
 
 .paddingLeft {
   padding-left: $lenMediumMax;
-  width: calc(100% - $lenMediumMax);
 }
 
 .padding {
   padding: $lenMin;
+}
+
+.paddingIn {
+  padding: calc($lenMin + $lenLight);
 }
 
 .content {
@@ -174,10 +180,6 @@ $timeMax: 1s;
   border-radius: $lenDefault;
   padding: $lenLight;
   width: calc(100% - $lenLight * 2);
-}
-
-.clicked {
-  color: $colorGradientUni !important;
 }
 
 label, span, input {
@@ -193,19 +195,25 @@ svg, span, label {
   color: $colorWhite;
   transition: color $timeMediumMin ease-in-out;
 
-  &:hover {
-    filter: brightness(1.5);
-  }
-
   &.clicked {
     color: $colorGradientUni;
     transition: color $timeMediumMin ease-in-out;
   }
 }
 
+.hoverClickable {
+  padding: $lenMin;
+  margin: $lenLight;
+  &:hover {
+    filter: brightness(0.7);
+    background: $colorBlackGray;
+    border-radius: $lenMin;
+  }
+}
+
 svg {
-  padding-left: 0;
-  margin: $lenMediumMin;
+  padding: 0;
+  margin: 0;
   height: $lenMediumMax;
   color: $colorWhite;
 }
@@ -223,8 +231,13 @@ body {
   font-family: 'M PLUS Rounded 1c', sans-serif;
 }
 
-p, a, label, span, h1, h2, h3, h4, h5, h6 {
+p, a, h1, h2, h3, h4, h5, h6 {
   margin: $lenMediumMin;
+  padding: 0;
+}
+
+label, span {
+  margin: 0 0 0 $lenMediumMin;
   padding: 0;
 }
 
