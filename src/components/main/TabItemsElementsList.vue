@@ -1,7 +1,7 @@
 <template>
 	<main class="width100">
 		<ul class="width100 height100 flex flexWarp listNone"
-				id="element-list">>
+				id="element-list">
 			<li	v-for="tab in tabList"
 		      class="autoSize show"
           :class="[tab.active, `splitBy${splitTab}`]"
