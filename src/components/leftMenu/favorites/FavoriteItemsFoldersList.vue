@@ -8,7 +8,7 @@
 				<div class="hover flex flexCenter"
 				     ref="addFolder"
 				     @click="addFolderShowUpdater">
-					<div class="hoverClickable flex flex1">
+					<div ref="newFolderLabel" class="hoverClickable flex flex1">
 						<FolderPlusIcon class="folderIcon"/>
 						<label>
 							Add Folder
@@ -57,7 +57,7 @@ export default {
 	methods: {
 		disableFocusOut() {
 			let input = this.$refs["addFolder"].querySelector("input");
-			let svg = this.$refs["addFolder"].querySelector("svg");
+			let svg = this.$refs["newFolderLabel"];
 
 			input.classList.add("hidden");
 			svg.classList.remove("hidden");
@@ -67,7 +67,7 @@ export default {
 
 		addFolderShowUpdater() {
 			let input = this.$refs["addFolder"].querySelector("input");
-			let svg = this.$refs["addFolder"].querySelector("svg");
+			let svg = this.$refs["newFolderLabel"];
 			svg.classList.add("hidden");
 			input.classList.remove("hidden");
 			input.focus();
