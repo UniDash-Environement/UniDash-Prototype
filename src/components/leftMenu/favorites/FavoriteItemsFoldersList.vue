@@ -1,5 +1,5 @@
 <template>
-	<ul class="flex listNone flexColumn width100 height100">
+	<ul class="favoriteItemsList flex listNone flexColumn width100 height100">
 		<li v-for="favoriteFolder in favoritesFolderList">
 			<FavoriteItemsFolder :favorites-folder="favoriteFolder"/>
 		</li>
@@ -100,5 +100,10 @@ export default {
 
 input.input[type="text"][name="addFolder"] {
 	width: calc(100% - 2 * $lenMediumMin);
+}
+
+.favoriteItemsList {
+	overflow-y: scroll;
+	overflow-x: hidden;
 }
 </style>

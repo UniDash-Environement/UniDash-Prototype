@@ -49,9 +49,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "@/style";
+@import "@/style.scss";
 
 .tabItemsList {
-  overflow: scroll;
+  overflow-y: scroll;
+	overflow-x: hidden;
 }
 </style>
