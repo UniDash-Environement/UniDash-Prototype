@@ -1,8 +1,8 @@
 <template>
 	<li class="flex flexColumn width100">
 		<div class="flex width100 hover flexCenter flexBetween">
-			<div @click="addTab"
-			     class="width100 flex hoverClickable">
+			<div class="width100 flex hoverClickable"
+			     @click="addTab">
 				<DocumentIcon class="paddingLeft"/>
 				<span>
 					{{ favorite.name }}
@@ -16,8 +16,8 @@
 			</div>
 		</div>
 
-		<FavoriteItemAdd ref="editFavorite"
-		                 class="hidden"
+		<FavoriteItemAdd class="hidden"
+		                 ref="editFavorite"
 		                 :favorites-folder="favoriteFolder"
 		                 :favorite="favorite"/>
 	</li>

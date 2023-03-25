@@ -4,14 +4,14 @@
 			<div class="flex folderName hoverClickable"
 			     @click="showFolder">
 				<FolderIcon class="hiddenOnRename"/>
-				<span ref="folderName"
-				      class="hiddenOnRename folderName">
+				<span class="hiddenOnRename folderName"
+				      ref="folderName">
 					{{ favoritesFolder.name }}
 				</span>
-				<input ref="renameFolderInput"
+				<input class="input hover show hidden"
+				       ref="renameFolderInput"
 				       type="text"
 				       name="addFolder"
-				       class="input hover show hidden"
 				       @keypress.enter="renameFolderEnd">
 			</div>
 			<div class="hiddenOnRename flex flexCenter flexBetween">
@@ -21,23 +21,23 @@
 				           @click="deleteFavoriteFolder" />
 			</div>
 		</div>
-		<ul ref="favoritesFolder"
-		    class="show hidden flex flexColumn listNone">
+		<ul class="show hidden flex flexColumn listNone"
+		    ref="favoritesFolder">
 			<FavoriteItem v-for="favorite in favoritesFolder.list"
 			              :favoriteFolder="favoritesFolder"
 			              :favorite="favorite"/>
 			<li class="hover">
-				<div ref="addFavorite"
-				     class="flex hoverClickable"
+				<div class="flex hoverClickable"
+				     ref="addFavorite"
 				     @click="this.addFavorite">
 					<DocumentPlusIcon class="favorite-icon paddingLeft"/>
 					<span>Add Favorite</span>
 				</div>
 			</li>
 		</ul>
-		<FavoriteItemAdd ref="addFavoriteForm"
+		<FavoriteItemAdd class="hidden"
 		                 :favoritesFolder="favoritesFolder"
-		                 class="hidden"/>
+		                 ref="addFavoriteForm"/>
 	</BoxGradient>
 </template>
 

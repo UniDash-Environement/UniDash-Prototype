@@ -1,8 +1,8 @@
 <template>
-  <draggable v-model="this.tabList"
+  <draggable class="tabItemsList listNone width100 height100 flex flexColumn"
+             v-model="this.tabList"
              group="tabs"
-             item-key="id"
-             class="tabItemsList listNone width100 height100 flex flexColumn">
+             item-key="id">
 	  <template #item="{element}">
       <div class="width100" ><TabItem :tab="element" /></div>
 	  </template>

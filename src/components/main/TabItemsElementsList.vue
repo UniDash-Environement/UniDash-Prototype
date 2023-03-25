@@ -1,12 +1,12 @@
 <template>
 	<main class="width100">
-		<ul id="element-list"
-		    class="width100 height100 flex flexWarp listNone">
-			<li :id="tab.id"
-			    v-for="tab in tabList"
-			    :key="tab.id"
-			    :class="[tab.active, `splitBy${splitTab}`]"
-			    class="autoSize show">
+		<ul class="width100 height100 flex flexWarp listNone"
+				id="element-list">>
+			<li	v-for="tab in tabList"
+		      class="autoSize show"
+          :class="[tab.active, `splitBy${splitTab}`]"
+		      :id="tab.id"
+			    :key="tab.id">
 				<div class="element">
 					<component :id="tab.id + 'element'"
 					           v-bind:is="tab.data.module"

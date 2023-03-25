@@ -1,21 +1,23 @@
 <template>
-	<input v-model="showMenu"
+	<input type="checkbox"
 	       class="hamburgerMenu"
-	       type="checkbox"
-	       id="showMenuButton">
-	<label class="iconBurger"
-	       for="showMenuButton"
-	       aria-label="Menu"><span></span></label>
+	       id="showMenuButton"
+	       v-model="showMenu">
+	<label for="showMenuButton"
+				 class="iconBurger"
+	       aria-label="Menu">
+		<span></span>
+	</label>
 
 	<nav class="leftMenuBackgroundBorder flex flexColumn gradientBorder">
-		<div ref="leftMenuBackground"
-		     class="leftMenuBackground flex flexColumn flex-g height100 width100 content">
-			<h1 ref="title"
-			    class="title">UniDash</h1>
+		<div class="leftMenuBackground flex flexColumn flex-g height100 width100 content"
+		     ref="leftMenuBackground">
+			<h1 class="title"
+			    ref="title">UniDash</h1>
 
-			<div ref="menuLists"
+			<div class="show-checkbox-list flex flexColumn width100 height100 padding"
 			     id="menuLists"
-			     class="show-checkbox-list flex flexColumn width100 height100 padding">
+			     ref="menuLists">
 				<div class="width100 height100 show"
 				     :class="showTabs"
 				     ref="tabContent">
@@ -34,38 +36,38 @@
 				</div>
 			</div>
 
-			<div ref="slider"
-			     class="padding">
+			<div class="padding"
+			     ref="slider">
 				<BoxGradientWithHover class="slider">
-					<div ref="sliderContent"
-					     class="flex flexBetween width100">
+					<div class="flex flexBetween width100"
+					     ref="sliderContent">
 						<div class="flex flexCenter">
-							<span ref="setSplitBy1Button"
-							      @click="setSplitBy(1)"
-							      class="clicked hoverClickable sliderIcon">1</span>
-							<span ref="setSplitBy2Button"
-							      @click="setSplitBy(2)"
-							      class="hoverClickable sliderIcon">2</span>
-							<span ref="setSplitBy3Button"
-							      @click="setSplitBy(3)"
-							      class="hoverClickable sliderIcon">3</span>
-							<span ref="setSplitBy4Button"
-							      @click="setSplitBy(4)"
-							      class="hoverClickable sliderIcon">4</span>
+							<span class="clicked hoverClickable sliderIcon"
+							      ref="setSplitBy1Button"
+							      @click="setSplitBy(1)">1</span>
+							<span class="hoverClickable sliderIcon"
+							      ref="setSplitBy2Button"
+							      @click="setSplitBy(2)">2</span>
+							<span class="hoverClickable sliderIcon"
+							      ref="setSplitBy3Button"
+							      @click="setSplitBy(3)">3</span>
+							<span class="hoverClickable sliderIcon"
+							      ref="setSplitBy4Button"
+							      @click="setSplitBy(4)">4</span>
 						</div>
 						<div class="flex flexCenter">
-							<bookmarkIcon ref="tabIcon"
-							              @click="updateShow('tabs')"
-														:class="iconTabs"
-								            class="hoverClickable sliderIcon"/>
-							<StarIcon ref="favoritesIcon"
-							          @click="updateShow('favorites')"
-												:class="iconFavorites"
-								        class="hoverClickable sliderIcon"/>
-							<Cog6ToothIcon ref="settingsIcon"
-							               @click="updateShow('settings')"
+							<bookmarkIcon class="hoverClickable sliderIcon"
+							              :class="iconTabs"
+							              ref="tabIcon"
+							              @click="updateShow('tabs')"/>
+							<StarIcon class="hoverClickable sliderIcon"
+							          :class="iconFavorites"
+							          ref="favoritesIcon"
+							          @click="updateShow('favorites')"/>
+							<Cog6ToothIcon class="hoverClickable sliderIcon"
 							               :class="iconSettings"
-								             class="hoverClickable sliderIcon"/>
+							               ref="settingsIcon"
+							               @click="updateShow('settings')"/>
 						</div>
 					</div>
 				</BoxGradientWithHover>
