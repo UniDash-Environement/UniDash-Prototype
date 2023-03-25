@@ -1,17 +1,25 @@
 <template>
 	<li class="flex flexColumn width100">
 		<div class="flex width100 hover flexCenter flexBetween">
-			<div @click="addTab" class="width100 flex hoverClickable">
+			<div @click="addTab"
+			     class="width100 flex hoverClickable">
 				<DocumentIcon class="paddingLeft"/>
-				<span>{{ favorite.name }}</span>
+				<span>
+					{{ favorite.name }}
+				</span>
 			</div>
 			<div class="flex flexCenter flexBetween">
-				<PencilSquareIcon class="hoverClickable" @click="toggleEdit"/>
-				<XMarkIcon class="hoverClickable" @click="removeFavorite" />
+				<PencilSquareIcon class="hoverClickable"
+				                  @click="toggleEdit"/>
+				<XMarkIcon class="hoverClickable"
+				           @click="removeFavorite" />
 			</div>
 		</div>
 
-		<FavoriteItemAdd ref="editFavorite" class="hidden" :favorites-folder="favoriteFolder" :favorite="favorite"/>
+		<FavoriteItemAdd ref="editFavorite"
+		                 class="hidden"
+		                 :favorites-folder="favoriteFolder"
+		                 :favorite="favorite"/>
 	</li>
 </template>
 

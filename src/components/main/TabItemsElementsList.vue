@@ -1,24 +1,38 @@
 <template>
 	<main class="width100">
-		<ul id="element-list" class="width100 height100 flex flexWarp listNone">
-			<li :id="tab.id" v-for="tab in tabList" :key="tab.id" :class="[tab.active, `splitBy${splitTab}`]"
+		<ul id="element-list"
+		    class="width100 height100 flex flexWarp listNone">
+			<li :id="tab.id"
+			    v-for="tab in tabList"
+			    :key="tab.id"
+			    :class="[tab.active, `splitBy${splitTab}`]"
 			    class="autoSize show">
 				<div class="element">
-					<component :id="tab.id + 'element'" v-bind:is="tab.data.module" :data="tab.data"/>
+					<component :id="tab.id + 'element'"
+					           v-bind:is="tab.data.module"
+					           :data="tab.data"/>
 				</div>
 
 				<PopBoxGradient>
 					<div class="flex flexColumn flexCenter hover">
-						<div :id="tab.id + 'close'" class="flex hoverClickable" @click="removeTab(tab.id)">
+						<div :id="tab.id + 'close'"
+						     class="flex hoverClickable"
+						     @click="removeTab(tab.id)">
 							<XMarkIcon />
 						</div>
-						<div :id="tab.id + 'full'" class="flex hoverClickable" @click="toggleMax(tab.id)">
+						<div :id="tab.id + 'full'"
+						     class="flex hoverClickable"
+						     @click="toggleMax(tab.id)">
 							<ArrowsPointingOutIcon />
 						</div>
-						<div :id="tab.id + 'pin'" class="flex hoverClickable" @click="activateTab(tab.id)">
+						<div :id="tab.id + 'pin'"
+						     class="flex hoverClickable"
+						     @click="activateTab(tab.id)">
 							<BookmarkIcon :class="tab.clicked" />
 						</div>
-						<div :id="tab.id + 'dark'" class="flex hoverClickable" @click="toggleDark(tab.id)">
+						<div :id="tab.id + 'dark'"
+						     class="flex hoverClickable"
+						     @click="toggleDark(tab.id)">
 							<MoonIcon />
 						</div>
 					</div>

@@ -1,28 +1,43 @@
 <template>
 	<BoxGradient>
 		<div class="hover flex">
-			<div class="flex folderName hoverClickable" @click="showFolder">
+			<div class="flex folderName hoverClickable"
+			     @click="showFolder">
 				<FolderIcon class="hiddenOnRename"/>
-				<span ref="folderName" class="hiddenOnRename folderName">{{ favoritesFolder.name }}</span>
-				<input ref="renameFolderInput" type="text" name="addFolder"
-				       class="input hover show hidden" @keypress.enter="renameFolderEnd">
+				<span ref="folderName"
+				      class="hiddenOnRename folderName">
+					{{ favoritesFolder.name }}
+				</span>
+				<input ref="renameFolderInput"
+				       type="text"
+				       name="addFolder"
+				       class="input hover show hidden"
+				       @keypress.enter="renameFolderEnd">
 			</div>
 			<div class="hiddenOnRename flex flexCenter flexBetween">
-				<PencilSquareIcon class="hoverClickable" @click="renameFolder"/>
-				<XMarkIcon class="hoverClickable" @click="deleteFavoriteFolder" />
+				<PencilSquareIcon class="hoverClickable"
+				                  @click="renameFolder"/>
+				<XMarkIcon class="hoverClickable"
+				           @click="deleteFavoriteFolder" />
 			</div>
 		</div>
-		<ul ref="favoritesFolder" class="show hidden flex flexColumn listNone">
-			<FavoriteItem v-for="favorite in favoritesFolder.list" :favoriteFolder="favoritesFolder"
-			                 :favorite="favorite"/>
+		<ul ref="favoritesFolder"
+		    class="show hidden flex flexColumn listNone">
+			<FavoriteItem v-for="favorite in favoritesFolder.list"
+			              :favoriteFolder="favoritesFolder"
+			              :favorite="favorite"/>
 			<li class="hover">
-				<div ref="addFavorite" class="flex hoverClickable" @click="this.addFavorite">
+				<div ref="addFavorite"
+				     class="flex hoverClickable"
+				     @click="this.addFavorite">
 					<DocumentPlusIcon class="favorite-icon paddingLeft"/>
 					<span>Add Favorite</span>
 				</div>
 			</li>
 		</ul>
-		<FavoriteItemAdd ref="addFavoriteForm" :favoritesFolder="favoritesFolder" class="hidden"/>
+		<FavoriteItemAdd ref="addFavoriteForm"
+		                 :favoritesFolder="favoritesFolder"
+		                 class="hidden"/>
 	</BoxGradient>
 </template>
 

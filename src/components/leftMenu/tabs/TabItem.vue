@@ -1,12 +1,19 @@
 <template>
   <BoxGradient>
 	  <div class="scroll">
-		  <a :href="'#' + tab.id" class="hover width100 flex flexCenter flexBetween">
-			  <span class="hoverClickable flex1">{{ tab.name }}</span>
+		  <a :href="'#' + tab.id"
+		     class="hover width100 flex flexCenter flexBetween">
+			  <span class="hoverClickable flex1">
+				  {{ tab.name }}
+			  </span>
 			  <div class="tab-icons">
-				  <div :id="tab.id + 'tab'" class="flex">
-					  <BookmarkIcon :class="tab.clicked" class="hoverClickable" @click="activateTab(tab.id)" />
-					  <XMarkIcon @click="removeTab" class="hoverClickable" />
+				  <div :id="tab.id + 'tab'"
+				       class="flex">
+					  <BookmarkIcon :class="tab.clicked"
+					                class="hoverClickable"
+					                @click="activateTab(tab.id)" />
+					  <XMarkIcon @click="removeTab"
+					             class="hoverClickable" />
 				  </div>
 			  </div>
 		  </a>

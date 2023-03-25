@@ -5,13 +5,18 @@
 		</li>
 		<li>
 			<BoxGradient>
-				<div ref="addFolder" class="hover flex flexCenter"
+				<div ref="addFolder"
+				     class="hover flex flexCenter"
 				     @click="addFolderShowUpdater">
 					<div class="hoverClickable flex flex1">
 						<FolderPlusIcon class="folderIcon"/>
-						<label>Add Folder</label>
+						<label>
+							Add Folder
+						</label>
 					</div>
-					<input type="text" @keydown.enter="this.addFolder" name="addFolder"
+					<input type="text"
+					       @keydown.enter="this.addFolder"
+					       name="addFolder"
 					       class="input hover show hidden">
 				</div>
 			</BoxGradient>

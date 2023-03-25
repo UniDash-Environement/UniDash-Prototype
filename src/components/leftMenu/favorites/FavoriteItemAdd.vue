@@ -1,31 +1,46 @@
 
 <template>
-	<div ref="form" class="favoriteItemAddForm content width100 flex flexColumn">
+	<div ref="form"
+	     class="favoriteItemAddForm content width100 flex flexColumn">
 		<form @submit="getMode"
-		      class="flex flexColumn flexBetween width100 height100" ref="inputList">
+		      class="flex flexColumn flexBetween width100 height100"
+		      ref="inputList">
 			<div>
 				<BoxGradient>
 					<label class="paddingIn">NAME :</label>
-					<input class="input hover" ref="favoriteName" type="text" :value="name">
+					<input class="input hover"
+					       ref="favoriteName"
+					       type="text"
+					       :value="name">
 				</BoxGradient>
 				<BoxGradient>
 					<label class="paddingIn">MODULE :</label>
-					<select v-bind:value="moduleName" v-model="moduleName" class="input width100">
-						<option class="input" v-for="module in loadModules" :value="module.vuePath"
+					<select v-bind:value="moduleName"
+					        v-model="moduleName"
+					        class="input width100">
+						<option class="input"
+						        v-for="module in loadModules"
+						        :value="module.vuePath"
 						        :key="module.vuePath">{{ module.name }}
 						</option>
 					</select>
 				</BoxGradient>
-				<BoxGradient v-for="(input, index) in modules" :key="index" v-show="!input.hidden">
+				<BoxGradient v-for="(input, index) in modules"
+				             :key="index"
+				             v-show="!input.hidden">
 					<label class="paddingIn">{{ input.label.toUpperCase() }} :</label>
-					<input class="input hover" :class="input.label" :type="input.type"
+					<input class="input hover"
+					       :class="input.label"
+					       :type="input.type"
 					       :value="input.value">
 				</BoxGradient>
 			</div>
 			<BoxGradient>
 				<div class="flex add-close-button">
-					<button class="input width100 hover" type="submit">{{ addButtonText }}</button>
-					<button class="input width100 hover" @click="closeFavoriteAddForm">Close</button>
+					<button class="input width100 hover"
+					        type="submit">{{ addButtonText }}</button>
+					<button class="input width100 hover"
+					        @click="closeFavoriteAddForm">Close</button>
 				</div>
 			</BoxGradient>
 		</form>

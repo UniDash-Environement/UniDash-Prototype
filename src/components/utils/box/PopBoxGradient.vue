@@ -1,12 +1,16 @@
 <template>
 	<div class="popBox gradientBorder flex">
-		<div class="popBoxContent favoritesFolder content flex" @mouseenter="showPopBoxMenu" @mouseleave="showPopBoxMenu">
+		<div class="popBoxContent favoritesFolder content flex"
+		     @mouseenter="showPopBoxMenu"
+		     @mouseleave="showPopBoxMenu">
 
-			<div ref="popBoxMenu" class="flex hidden">
+			<div ref="popBoxMenu"
+			     class="flex hidden">
 				<slot></slot>
 			</div>
 
-			<div ref="plusIcon" class="flex flexColumn flexCenter hover">
+			<div ref="plusIcon"
+			     class="flex flexColumn flexCenter hover">
 				<PlusIcon class="plusIcon hoverClickable" />
 			</div>
 		</div>
