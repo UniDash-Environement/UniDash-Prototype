@@ -23,6 +23,19 @@ export const useTabStore = defineStore('tab', {
       this.tabList[tabIndex].active = active;
       this.tabList[tabIndex].clicked = clicked;
     },
+    toggleDark(id) {
+      let tabIndex = this.tabList.findIndex((tabTemp) => tabTemp.id === id);
+
+      let dark = "filter-dark";
+      let darkClicked = "clicked";
+      if (this.tabList[tabIndex].dark === "filter-dark") {
+        dark = "";
+        darkClicked = "";
+      }
+
+      this.tabList[tabIndex].dark = dark;
+      this.tabList[tabIndex].darkClicked = darkClicked
+    },
     updateSplitTab(number) {
       this.splitTab = number;
     },

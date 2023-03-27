@@ -56,5 +56,4 @@ export const useFavoriteStore = defineStore('favorite', {
       this.favoritesFolderList[folderIndex].list.push(favorite);
     },
   },
-  persist: true,
 })

@@ -25,6 +25,13 @@
 						</option>
 					</select>
 				</BoxGradient>
+				<BoxGradient>
+					<label class="paddingIn">DARK :</label>
+					<input class="input hover"
+					       type="checkbox"
+					       ref="darkCheckbox"
+								 v-bind:checked="dark">
+				</BoxGradient>
 				<BoxGradient v-for="(input, index) in modules"
 				             :key="index">
 					<label class="paddingIn">{{ input.label.toUpperCase() }} :</label>
@@ -83,18 +90,24 @@ export default {
 		let modules = this.moduleConfList[moduleName];
 		let name = "";
 		let addButtonText = "Add";
+		let dark = false;
 
 		if (typeof(this.favorite) != "undefined") {
 			name = this.favorite.name;
 			addButtonText = "Update";
 			moduleName = this.favorite.data.module;
 			modules = this.favorite.moduleSave;
+
+			if (this.favorite.dark === "filter-dark") {
+				dark = true;
+			}
 		}
 		return {
 			moduleName,
 			modules,
 			name,
-			addButtonText
+			addButtonText,
+			dark,
 		}
 	},
 
@@ -102,11 +115,18 @@ export default {
 		makeFavorite() {
 			let newFavorite = {
 				name: this.$refs["favoriteName"].value,
+				dark: "",
+				darkClicked: "",
 				id: Date.now().toString(),
 				data: {
 					module: this.moduleName,
 				},
 				moduleSave: JSON.parse(JSON.stringify(this.modules)),
+			}
+
+			if (this.$refs["darkCheckbox"].checked) {
+				newFavorite.dark = "filter-dark"
+				newFavorite.darkClicked = "clicked"
 			}
 
 			if (typeof(this.favorite) !== "undefined") {

@@ -8,7 +8,8 @@
 		      :id="tab.id"
 			    :key="tab.id">
 				<div class="element">
-					<component :id="tab.id + 'element'"
+					<component :class="tab.dark"
+							       :id="tab.id + 'element'"
 					           v-bind:is="tab.data.module"
 					           :data="tab.data"/>
 				</div>
@@ -17,7 +18,7 @@
 					<div class="flex flexColumn flexCenter hover">
 						<div :id="tab.id + 'close'"
 						     class="flex hoverClickable"
-						     @click="removeTab(tab.id)">
+						     @click="deleteTab(tab.id)">
 							<XMarkIcon />
 						</div>
 						<div :id="tab.id + 'full'"
@@ -33,7 +34,7 @@
 						<div :id="tab.id + 'dark'"
 						     class="flex hoverClickable"
 						     @click="toggleDark(tab.id)">
-							<MoonIcon />
+							<MoonIcon :class="tab.darkClicked" />
 						</div>
 					</div>
 				</PopBoxGradient>
@@ -72,20 +73,21 @@ export default {
 
 			deleteTab: tabStore.deleteTab,
 			activateTab: tabStore.activateTab,
+			toggleDark: tabStore.toggleDark,
 		};
 	},
 
-	methods: {
-		toggleDark(id) {
-			let element = document.getElementById(id + "element");
-			element.classList.toggle("filter-dark");
-			let svg = document.getElementById(id + "dark").querySelector("svg");
-			console.log(svg);
-			svg.classList.toggle("clicked");
-		},
+	mounted() {
+		if (this.tabList.length > 0) {
+			this.sleep(1000).then(() => {
+				this.$forceUpdate();
+			});
+		}
+	},
 
-		removeTab(id) {
-			this.deleteTab(id);
+	methods: {
+		sleep(ms) {
+			return new Promise(resolve => setTimeout(resolve, ms));
 		},
 
 		toggleMax(id) {
@@ -157,11 +159,6 @@ main {
 
 			*:not(.filter-dark) {
 				filter: none;
-				transition: filter $timeMediumMin ease-in-out;
-			}
-
-			.filter-dark {
-				filter: hue-rotate(180deg) invert(1) saturate(1.2);
 				transition: filter $timeMediumMin ease-in-out;
 			}
 		}

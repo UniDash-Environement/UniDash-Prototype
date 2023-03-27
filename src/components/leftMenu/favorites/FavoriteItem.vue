@@ -86,8 +86,10 @@ export default {
 			let newTab = {
 				name: this.favorite.name,
 				data: this.favorite.data,
+				dark: this.favorite.dark,
 				active: "",
 				clicked: "clicked",
+				darkClicked: this.favorite.darkClicked,
 				id: id
 			};
 

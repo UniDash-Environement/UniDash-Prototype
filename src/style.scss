@@ -37,6 +37,11 @@ $timeDefault: 0.5s;
 $timeMediumMax: 0.7s;
 $timeMax: 1s;
 
+.filter-dark {
+  filter: hue-rotate(180deg) invert(1) saturate(1.2);
+  transition: filter $timeMediumMin ease-in-out;
+}
+
 .hover {
   &:hover {
     background-color: $colorGray;
