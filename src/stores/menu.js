@@ -41,5 +41,6 @@ export const useMenuStore = defineStore('menu', {
     updateShowMenu(value) {
       this.showMenu = value;
     }
-  }
+  },
+  persist: true,
 })

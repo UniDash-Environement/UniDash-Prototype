@@ -33,4 +33,5 @@ export const useTabStore = defineStore('tab', {
       this.tabList = tabList;
     }
   },
+  persist: true,
 })
