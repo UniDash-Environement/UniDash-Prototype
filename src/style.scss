@@ -60,6 +60,11 @@ $timeMax: 1s;
   padding: $lenMediumMin;
   color: $colorWhite;
   text-align: center;
+
+  &:focus {
+    outline: none;
+    border: none;
+  }
 }
 
 .flex {
