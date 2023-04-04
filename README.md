@@ -12,7 +12,7 @@ Ce projet est sous licence GNU GPL v3.0
 ## Auteur
 > ## [![Pikatsuto_Icon](https://avatars.githubusercontent.com/u/52610162?s=48&v=4)](https://github.com/Pikatsuto) [Gabriel Guillou](https://github.com/Pikatsuto)
 
-[README_EN 🇺🇸](README.md)
+[README_FR 🇫🇷](README_FR.md)
 
 -----
 
