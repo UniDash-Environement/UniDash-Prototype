@@ -30,8 +30,6 @@ It is also integrated with UniDash Repo which is a service manager based on ansi
 The UniDash project is currently in its early stages of development
 and therefore the project is not yet usable.
 
-Translated with www.DeepL.com/Translator (free version)
-
 ## Integration
 The integrations planned for this panel are:
 - SSH
