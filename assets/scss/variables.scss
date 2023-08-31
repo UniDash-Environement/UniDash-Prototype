@@ -1,0 +1,111 @@
+// Colors and Gradients Variables
+
+$darken-black-pct: 70%;
+$darken-middle-pct: 35%;
+$gradient-degrees: to right bottom;
+
+// Primary
+$pure-color-primary: blue;
+$color-primary: lighten($pure-color-primary, 15%);
+$color-dark-primary: desaturate(darken($color-primary, 30%), 45%);
+$gradient-primary: linear-gradient($gradient-degrees, adjust-hue($color-primary, -31.66deg) 0%, adjust-hue($color-primary, 31.66deg) 100%);
+
+// Secondary
+$color-secondary: complement($color-primary);
+$color-dark-secondary: desaturate(darken($color-secondary, 30%), 45%);
+$gradient-secondary: linear-gradient($gradient-degrees, adjust-hue($color-secondary, -31.66deg) 0%, adjust-hue($color-secondary, 31.66deg) 100%);
+
+// Black and White
+$color-white: desaturate($color-primary, 90%);
+$color-black: darken($color-white, 55%);
+$color-dark-gray: lighten($color-black, 5%);
+$color-dark-middle-gray: lighten($color-black, 7.5%);
+$color-middle-gray: lighten($color-black, 10%);
+$color-light-gray: lighten($color-black, 25%);
+$color-white-gray: lighten($color-black, 50%);
+
+// success
+$set-color-success: #00FF19;
+$color-success: darken($set-color-success, $darken-middle-pct);
+$gradient-success: linear-gradient($gradient-degrees, $set-color-success 0%, darken($set-color-success, $darken-black-pct) 100%);
+
+// info
+$set-color-info: #1400FF;
+$color-info: darken($set-color-info, $darken-middle-pct);
+$gradient-info: linear-gradient($gradient-degrees, $set-color-info 0%, darken($set-color-info, $darken-black-pct) 100%);
+
+// warning
+$set-color-warning: #FFC700;
+$color-warning: darken($set-color-warning, $darken-middle-pct);
+$gradient-warning: linear-gradient($gradient-degrees, $set-color-warning 0%, darken($set-color-warning, $darken-black-pct) 100%);
+
+// danger
+$set-color-danger: #FF0000;
+$color-danger: darken($set-color-danger, $darken-middle-pct);
+$gradient-danger: linear-gradient($gradient-degrees, $set-color-danger 0%, darken($set-color-danger, $darken-black-pct) 100%);
+
+// Lens Variables
+// px
+$len-px-0: 0px;
+$len-px-3: 3px;
+$len-px-5: 5px;
+$len-px-7: 7px;
+$len-px-10: 10px;
+$len-px-13: 13px;
+$len-px-15: 15px;
+$len-px-17: 17px;
+$len-px-20: 20px;
+
+// rem
+$len-rem-0-0: 0.0rem;
+$len-rem-0-3: 0.3rem;
+$len-rem-0-5: 0.5rem;
+$len-rem-0-7: 0.7rem;
+$len-rem-1-0: 1.0rem;
+$len-rem-1-3: 1.3rem;
+$len-rem-1-5: 1.5rem;
+$len-rem-1-7: 1.7rem;
+$len-rem-2-0: 2.0rem;
+
+// pct
+$len-pct-00-00: 0.0%;
+$len-pct-20-00: 20.0%;
+$len-pct-25-00: 25.0%;
+$len-pct-33-32: 33.32%;
+$len-pct-40-00: 40.0%;
+$len-pct-50-00: 50.0%;
+$len-pct-60-00: 60.0%;
+$len-pct-66-65: 66.65%;
+$len-pct-75-00: 75.0%;
+$len-pct-80-00: 80.0%;
+$len-pct-100-00: 100.0%;
+
+// vw
+$len-vw-00-00: 0.0vw;
+$len-vw-25-00: 25.0vw;
+$len-vw-33-32: 33.32vw;
+$len-vw-50-00: 50.0vw;
+$len-vw-66-65: 66.65vw;
+$len-vw-75-00: 75.0vw;
+$len-vw-100-00: 100.0vw;
+
+// vh
+$len-vh-00-00: 0.0vh;
+$len-vh-25-00: 25.0vh;
+$len-vh-33-32: 33.32vh;
+$len-vh-50-00: 50.0vh;
+$len-vh-66-65: 66.65vh;
+$len-vh-75-00: 75.0vh;
+$len-vh-100-00: 100.0vh;
+
+// Times Variables
+$time-0-1s: 0.1s;
+$time-0-2s: 0.2s;
+$time-0-3s: 0.3s;
+$time-0-5s: 0.5s;
+$time-0-7s: 0.7s;
+$time-1-0s: 1.0s;
+$time-1-3s: 1.3s;
+$time-1-5s: 1.5s;
+$time-1-7s: 1.7s;
+$time-2-0s: 2.0s;

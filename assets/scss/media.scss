@@ -1,0 +1,50 @@
+@import "variables";
+
+@media (max-width: 1685px) and (max-height: 895px) {
+  .menu-bar:hover,
+  .menu-bar.open {
+    ~ #page-content > .flex-column {
+      .box-card-row {
+        min-width: calc(100% - $len-px-3 * 2);
+      }
+
+      .box {
+        min-width: calc(50% - $len-px-3 * 2);
+      }
+    }
+  }
+}
+
+@media (max-width: 1505px) and (max-height: 895px) {
+
+  #page-content > .flex-column {
+    .box-card-row {
+      min-width: calc(100% - $len-px-3 * 2);
+    }
+  }
+}
+
+@media screen and (max-width: 1270px) and (max-height: 870px) {
+  .menu-bar:hover,
+  .menu-bar.open {
+    ~ #page-content > .flex-column {
+      .box-card-row {
+        min-width: calc(100% - $len-px-3 * 2);
+      }
+
+      .box {
+        min-width: calc(100% - $len-px-3 * 2);
+      }
+    }
+  }
+
+  #page-content > .flex-column {
+    .box {
+      min-width: calc(50% - $len-px-3 * 2);
+    }
+
+    .card {
+      min-width: calc($len-pct-33-32 - $len-px-3 * 2) !important;
+    }
+  }
+}

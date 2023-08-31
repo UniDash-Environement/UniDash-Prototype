@@ -1,0 +1,78 @@
+@import "variables";
+@import "mixins";
+
+body, html {
+  margin: 0;
+  padding: 0;
+
+  background-color: $color-black;
+  font-family: sans-serif;
+
+  scrollbar-width: none;
+}
+
+p, a, span, label, input, button, textarea, div, h1, h2, h3, h4, h5, h6 {
+  @include font();
+
+  &:focus, &:active, &:hover, &:visited, &:link, & {
+    border: none;
+    text-decoration: none;
+    outline: none;
+  }
+}
+
+.button .flex {
+  p, a, span, label, input, button, textarea, h1, h2, h3, h4, h5, h6 {
+    padding: 0;
+    margin: 0 calc($len-px-3 * 2) 0 0;
+  }
+}
+
+p, a, span, label, input, button, textarea, div {
+  font-size: $len-px-15;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: $color-primary;
+}
+
+h1, h2, h3, h4, h5, h6, span, label, input, button {
+  font-weight: bold;
+}
+
+input {
+  margin: $len-px-3;
+}
+
+div {
+  padding: 0;
+}
+
+svg {
+  @include color();
+  width: $len-px-20;
+  height: $len-px-20;
+}
+
+* {
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  transition: flex $time-0-2s ease-in-out, height $time-0-2s ease-in-out, font-size $time-0-2s ease-in-out, color $time-0-2s ease-in-out, background $time-0-2s ease-in-out, border-color $time-0-2s ease-in-out, opacity $time-0-2s ease-in-out, margin $time-0-2s ease-in-out;
+}
+
+input {
+  @include background-color($color-middle-gray);
+  margin: 0 !important;
+  width: 100%;
+
+  .flex {
+    width: 100%;
+    height: 100%;
+    align-items: center;
+
+    * {
+      margin: 0;
+      padding: 0;
+    }
+  }
+}

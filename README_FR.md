@@ -5,11 +5,13 @@
 -----
 
 ## Licence
+
 Ce projet est sous licence GNU GPL v3.0
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://github.com/UniDash-Environement/UniDash/blob/main/LICENSE)
 
 ## Auteur
+
 > ## [![Pikatsuto_Icon](https://avatars.githubusercontent.com/u/52610162?s=48&v=4)](https://github.com/Pikatsuto) [Gabriel Guillou](https://github.com/Pikatsuto)
 
 [README_EN 🇺🇸](README.md)
@@ -17,9 +19,11 @@ Ce projet est sous licence GNU GPL v3.0
 -----
 
 ## Screenshots
+
 <img src="wallpaper/UniDash_Screen.png" alt="UniDash Screenshot" width="100%">
 
 ## Description
+
 UniDash est un Dashboard universel fonctionnant garce avec une intégration de module
 utilisant des plugins Vue.JS pour intégrer tout type de fonctionnalité.
 
@@ -31,7 +35,9 @@ Le projet UniDash est actuellement dans ses débuts de développement
 et donc le projet n'est pas encore utilisable.
 
 ## Intégration
+
 Les intégrations prévues pour ce panel sont:
+
 - SSH
 - SFTP
 - FTP
@@ -45,11 +51,14 @@ Les intégrations prévues pour ce panel sont:
 - DNS
 
 ## Comment tester l'avencement du projet
+
 ### Prérequis
+
 - NodeJS 18 LTS
 - NPM
 
 ### Installation et lancement
+
 ```bash
 git clone https://github.com/UniDash-Environement/UniDash.git; cd UniDash
 npm i

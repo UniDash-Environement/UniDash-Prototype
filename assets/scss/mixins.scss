@@ -1,0 +1,111 @@
+@import "variables";
+
+// Mixin
+@mixin hidden($target: height, $time: $time-0-3s) {
+  & *, & {
+    display: block;
+    font-size: 0;
+
+    padding: 0 !important;
+    margin: 0 !important;
+
+    opacity: 0 !important;
+    border-width: 0 !important;
+
+    &:not(p, a, span, label, input, button, textarea, h1, h2, h3, h4, h5, h6) {
+      width: 0 !important;
+      height: 0 !important;
+
+      flex: 0 !important;
+    }
+  }
+}
+
+@mixin size($target: opacity, $width: auto, $height: auto, $padding: $len-px-3, $margin: $len-px-3, $time: $time-0-3s) {
+  min-width: $width;
+  max-width: auto;
+  width: auto;
+
+  min-height: $height;
+  max-height: auto;
+  height: auto;
+
+  padding: $padding;
+  margin: $margin;
+
+  opacity: 1;
+}
+
+@mixin border($radius: $len-px-5, $width: $len-px-5, $color: $color-secondary, $time: $time-0-3s) {
+  border-radius: $radius;
+  border-color: $color;
+  border-width: $width;
+}
+
+@mixin font($padding: $len-px-5, $color: $color-white, $weight: 100, $time: $time-0-3s) {
+  @include color();
+  font-weight: $weight;
+  padding: $padding;
+  margin: 0;
+  opacity: 1;
+}
+
+@mixin background-color($color: $color-middle-gray, $time: $time-0-3s) {
+  background-color: $color;
+
+  &:hover.hover {
+    background-color: lighten($color, 2.5%);
+  }
+}
+
+@mixin background-gradient($gradient: $color-primary, $time: $time-0-3s) {
+  background: $gradient;
+
+  &:hover.hover-detect {
+    background: $gradient-primary;
+  }
+}
+
+@mixin background-image($image: none, $time: $time-0-3s) {
+  background-image: $image;
+
+  &:hover.hover-detect {
+    filter: brightness(1.2);
+  }
+}
+
+@mixin color($color: white, $time: $time-0-3s) {
+  color: $color;
+
+  &:hover.hover-detect {
+    color: lighten($color-primary, 10%);
+  }
+}
+
+@mixin hover() {
+  &:not(:hover) {
+    &.hover, > .hover {
+      filter: brightness(1.0);
+    }
+  }
+
+  &:hover {
+    &.hover, > .hover {
+      filter: brightness(1.2);
+    }
+  }
+}
+
+@mixin hover-invert() {
+  &:not(:hover) {
+    &.hover-invert, > .hover-invert {
+      filter: brightness(1.0);
+    }
+  }
+
+  &:hover {
+    &.hover-invert, > .hover-invert {
+      filter: brightness(0.8);
+    }
+  }
+}

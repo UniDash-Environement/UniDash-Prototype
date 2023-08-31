@@ -1,0 +1,276 @@
+@import "mixins";
+@import "variables";
+
+// color gradient
+.background-gradient-primary {
+  @include background-gradient($gradient-primary);
+}
+
+.background-gradient-secondary {
+  @include background-gradient($gradient-secondary);
+}
+
+.background-gradient-success {
+  @include background-gradient($gradient-success);
+}
+
+.background-gradient-danger {
+  @include background-gradient($gradient-danger);
+}
+
+.background-gradient-warning {
+  @include background-gradient($gradient-warning);
+}
+
+.background-gradient-info {
+  @include background-gradient($gradient-info);
+}
+
+// color bg
+.background-color-primary {
+  @include background-color($color-primary);
+}
+
+.background-color-secondary {
+  @include background-color($color-secondary);
+}
+
+.background-color-success {
+  @include background-color($color-success);
+}
+
+.background-color-danger {
+  @include background-color($color-danger);
+}
+
+.background-color-warning {
+  @include background-color($color-warning);
+}
+
+.background-color-info {
+  @include background-color($color-info);
+}
+
+.background-color-white {
+  @include background-color($color-white);
+}
+
+.background-color-black {
+  @include background-color($color-black);
+}
+
+.background-color-light-gray {
+  @include background-color($color-middle-gray);
+}
+
+.background-color-dark-gray {
+  @include background-color($color-dark-gray);
+}
+
+// color text
+.color-primary {
+  @include color($color-primary);
+}
+
+.color-secondary {
+  @include color($color-secondary);
+}
+
+.color-success {
+  @include color($color-success);
+}
+
+.color-danger {
+  @include color($color-danger);
+}
+
+.color-warning {
+  @include color($color-warning);
+}
+
+.color-info {
+  @include color($color-info);
+}
+
+.color-white {
+  @include color($color-white);
+}
+
+.color-black {
+  @include color($color-black);
+}
+
+.color-light-gray {
+  @include color($color-middle-gray);
+}
+
+.color-dark-gray {
+  @include color($color-dark-gray);
+}
+
+// size class
+.width-pct-20-00 {
+  width: $len-pct-20-00;
+}
+
+.width-pct-25-00 {
+  width: $len-pct-25-00;
+}
+
+.width-pct-33-32 {
+  width: $len-pct-33-32;
+}
+
+.width-pct-40-00 {
+  width: $len-pct-40-00;
+}
+
+.width-pct-50-00 {
+  width: $len-pct-50-00;
+}
+
+.width-pct-60-00 {
+  width: $len-pct-60-00;
+}
+
+.width-pct-66-65 {
+  width: $len-pct-66-65;
+}
+
+.width-pct-75-00 {
+  width: $len-pct-75-00;
+}
+
+.width-pct-80-00 {
+  width: $len-pct-80-00;
+}
+
+.width-pct-100-00 {
+  width: $len-pct-100-00;
+}
+
+.height-pct-20-00 {
+  height: $len-pct-20-00;
+}
+
+.height-pct-25-00 {
+  height: $len-pct-25-00;
+}
+
+.height-pct-33-32 {
+  height: $len-pct-33-32;
+}
+
+.height-pct-40-00 {
+  height: $len-pct-40-00;
+}
+
+.height-pct-50-00 {
+  height: $len-pct-50-00;
+}
+
+.height-pct-60-00 {
+  height: $len-pct-60-00;
+}
+
+.height-pct-66-65 {
+  height: $len-pct-66-65;
+}
+
+.height-pct-75-00 {
+  height: $len-pct-75-00;
+}
+
+.height-pct-80-00 {
+  height: $len-pct-80-00;
+}
+
+.height-pct-100-00 {
+  height: $len-pct-100-00;
+}
+
+.width-vw-100 {
+  width: $len-vw-100-00;
+}
+
+.height-vh-100 {
+  height: $len-vh-100-00;
+}
+
+// utils class
+.border-radius {
+  @include border($len-px-5, 0);
+}
+
+.list-none {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.hidden {
+  @include hidden();
+}
+
+.hover {
+  @include border();
+  width: calc(100% - $len-px-3 * 4);
+  height: calc(100% - $len-px-3 * 4);
+  margin: $len-px-3;
+  padding: $len-px-3;
+}
+
+.hover-color *:hover {
+  color: $color-primary;
+}
+
+// page config
+#__nuxt {
+  min-width: 100vw;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+
+.click-save {
+  svg {
+    color: $color-primary;
+  }
+}
+
+.box {
+  .box, .box-color, .button, .box-card-row, .card {
+    @include background-color($color-middle-gray);
+
+    .content {
+      @include background-color($color-black);
+    }
+  }
+}
+
+.scroll {
+  overflow: scroll;
+  scrollbar-width: none;
+}
+
+.button span {
+  text-align: center;
+  font-weight: bold;
+}
+
+.input-border {
+  @include size(height, auto, calc(100% - $len-px-3 * 2));
+  @include background-color($color-dark-gray);
+  @include border($len-px-10, 0);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: calc($len-px-3 * 2) $len-px-3;
+}
+
+.text-center {
+  text-align: center;
+}
